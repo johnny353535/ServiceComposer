@@ -19,7 +19,7 @@ requirejs.config({
 });
 
 
-require(["react", "jquery", "html5shiv", "respond", "plugins", "bootstrap"], function (React) {
+require(["react", "components/FlowWrapper", "jquery", "html5shiv", "respond", "plugins", "bootstrap"], function (React, FlowWrapper) {
 
     React.initializeTouchEvents(true);
 
@@ -113,135 +113,6 @@ require(["react", "jquery", "html5shiv", "respond", "plugins", "bootstrap"], fun
             }
         ]
     }
-
-
-    var FlowWrapper = React.createClass({
-        addElement: function(){
-            alert('addElement');
-        },
-        deleteElement: function(){
-            window.confirm("Are you sure you want to remove this fragment?") ? alert("true") : alert("false");
-        },
-      render: function() {
-
-        var flowElementNodes = this.props.data.flow.map(function (flowElement) {
-
-            switch(flowElement.type){
-                case "activity":
-                    return (
-                      <li><Activity data={flowElement}></Activity></li>
-                    );
-                case "fragment":
-                    return (
-                      <li><Fragment data={flowElement}></Fragment></li>
-                    );
-                    break;
-                default:
-                    // do nufin
-            }
-        });
-
-        return (
-          <div className="flowWrapper">
-              <ul>
-                {flowElementNodes}
-              </ul>
-              <div className="flowControl panel panel-default" onClick={this.addElement}><span className="glyphicon glyphicon-plus"></span></div>
-          </div>
-        );
-      }
-    });
-
-    var Activity = React.createClass({
-      render: function() {
-        return (
-          <div className="flowElement activity panel panel-default">
-            <div className="panel-heading">
-                <span className="glyphicon glyphicon-cog"></span>
-                <h3 className="panel-title">{this.props.data.name}</h3>
-            </div>
-            <div className="panel-body">
-                {this.props.data.description}
-            </div>
-          </div>
-        );
-      }
-    });
-
-    var Fragment = React.createClass({
-      render: function() {
-
-        var first = true;
-        var fragmentTabNav = this.props.data.flows.map(function (flow) {
-
-            var className = first ? "active" : "";
-            first = false;
-
-            return (
-              <li role="presentation" className={className}>
-                <a href={"#"+flow.name} role="tab" data-toggle="tab">{flow.name} <span className="badge">{flow.flow.length}</span></a>
-              </li>
-            );
-        });
-
-        first = true;
-        var fragmentTabContents = this.props.data.flows.map(function (flow) {
-
-            var className = first ? "active" : "";
-            first = false;
-
-            return (
-                <li role="tabpanel" className={"tab-pane "+className} id={flow.name}><FlowWrapper data={flow} /></li>
-            );
-        });
-
-        var className = "";
-        var glyphicon = "";
-
-        switch (this.props.data.fragmentType){
-            case "conditional":
-                className = "panel-success fragment-conditional";
-                glyphicon = "glyphicon-question-sign";
-                break;
-            case "parallel":
-                className = "panel-warning fragment-parallel";
-                glyphicon = "glyphicon-pause";
-                break;
-            case "loop":
-                className = "panel-info fragment-loop";
-                glyphicon = "glyphicon-retweet";
-                break;
-            default:
-                className = "panel-default";
-        }
-
-        return (
-          <div className={"flowElement fragment panel "+className}>
-            <div className="panel-heading">
-                <span className={"glyphicon "+glyphicon}></span>
-                <h3 className="panel-title">{this.props.data.name}</h3>
-                <span className="glyphicon glyphicon-trash button-delete" onClick={this.delete}></span>
-            </div>
-            <div className="condition condition-top"><span>{this.props.data.condition}</span></div>
-            <div className="panel-body">
-                <div>{this.props.data.description}</div>
-            </div>
-            <div className="fragmentWrapper">
-                {/*Tab navigation*/}
-                <ul className="nav nav-tabs mobile-nav-tabs" role="tablist">
-                    {fragmentTabNav}
-                </ul>
-                {/* Tab contents */}
-                <ul className="tab-content mobile-nav-content">
-                    {fragmentTabContents}
-                </ul>
-            </div>
-            <div className="condition condition-bottom"><span>{this.props.data.condition}</span></div>
-        </div>
-        );
-      }
-    });
-
 
     React.render(
       <FlowWrapper data={data} />,
