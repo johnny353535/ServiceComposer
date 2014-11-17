@@ -1,0 +1,308 @@
+// Your styles here
+
+@base-color: rgb(51, 51, 51);
+
+
+* {
+	color: @base-color;
+
+	box-sizing: border-box;
+}
+
+html {
+	height: 100%;
+}
+
+body {
+	height: 100%;
+	background-color: @base-color;
+}
+
+section {
+	position: relative;
+}
+
+
+header.mainHeader {
+
+	text-align: center;
+	padding: 10px;
+
+	background-color: #337ab7;
+
+	div {
+		display: inline-block;
+	}
+
+	.title {
+		margin: 0;
+		line-height: 30px;
+		display: inline-block;
+
+		color: white;
+	}
+
+	.navBtnWrapper {
+		float: left;
+	}
+
+
+	.addBtnWrapper {
+		float: right;
+		display: none;
+
+		button {
+
+			span.glyphicon {
+				transition: transform 0.3s;
+			}
+
+			&.active {
+				span.glyphicon {
+					-webkit-transform: rotate(45deg);
+				}
+			}
+
+		}
+		
+		
+
+	}
+}
+
+.contentWrapper {
+	position: relative;
+	overflow: hidden;
+
+	transition: 0.3s opacity;
+
+	background-color: white;
+
+	&.dim {
+		opacity: 0.2;
+	}
+}
+
+.flowWrapper {
+
+	padding: 15px 10px;
+
+	&>ul {
+	
+		margin: 0;
+		padding: 0;
+
+		list-style: none;
+
+		&>li:last-child {
+			&>.flowElement {
+				//margin-bottom: 0;
+			}
+		}
+
+	}
+
+	
+	.flowControl {
+		padding: 10px;
+		text-align: center;
+		border-style: dashed;
+		border-width: 1px;
+		margin-bottom: 0;
+	}
+}
+
+
+.flowElement {
+	margin-bottom: 15px;
+
+	.panel-heading {
+
+		.panel-title {
+			display: inline-block;
+		}
+
+		.glyphicon {
+			color: inherit;
+			margin-right: 6px;
+		}
+
+		.button-delete {
+			float: right;
+			margin: 0;
+			color: @base-color;
+		}
+	}
+}
+
+.activity {
+
+}
+
+.fragment {
+
+
+	.fragmentWrapper {
+
+		.nav-tabs {
+
+			li.active>a {
+				background-color: #f7f7f9;
+			}
+		}
+
+		.tab-content {
+			
+		}
+
+	}
+
+	.condition {
+
+		display: none;
+
+		font-family: "Courier New", serif;
+		text-align: center;
+		font-weight: bold;
+
+		padding: 10px 15px;
+		background-color: #f5f5f5;
+
+		border: 0;
+
+		&.condition-top {
+			border-bottom: 1px solid #DDD;
+		}
+
+		&.condition-bottom {
+			border-top: 1px solid #DDD;
+		}
+	}
+
+}
+
+.fragment-conditional {
+	&>.condition-top {
+		display: block;
+	}
+}
+
+.fragment-loop {
+	&>.condition-bottom {
+		display: block;
+	}
+}
+
+.fragment-parallel {
+
+}
+
+
+
+.mobile-nav-tabs.nav-tabs {
+	margin-bottom: 0;
+	display: inline-block;
+	width: 100%;
+	margin-bottom: -4px;
+	margin-top: 6px;
+
+	li:first-child {
+		margin-left: 10px;
+	}
+
+
+	&>li {
+
+		display: inline-block;
+
+		&>a {
+			text-decoration: none;
+
+			.glyphicon {
+				color: inherit;
+				margin-right: 6px;
+			}
+		}
+
+		&.active>a {
+			color: @base-color;
+			font-weight: bold;
+		}
+	}
+}
+
+.mobile-nav-content.tab-content {
+	background-color: #f7f7f9;
+	padding: 0;
+
+	.tab-pane {
+
+		&>.panel:last-child {
+			margin-bottom: 0;
+		}
+
+		ul.media-list {
+			margin: 0;
+
+			li.media {
+				padding: 15px;
+				margin-top: 0;
+				cursor: pointer;
+
+				.media-body {
+
+					padding-left: 8px;	
+
+					p {
+						margin: 0;
+						font-size: 14px;
+					}
+				}
+			}
+
+			li:nth-child(odd) {
+				background-color: white;
+			}
+
+			li:nth-child(even) {
+				
+			}
+		}
+	}
+}
+
+
+
+
+.addComponentWrapper {
+
+	display: inline-block;
+	position: fixed;
+
+	height: 70%;
+
+	transition: bottom 0.5s;
+
+	bottom: -100%;
+	left: 10px;
+	right: 10px;
+
+	&.active {
+		bottom: 0px;
+	}
+
+
+	.navWrapper {	
+
+		border: 1px solid #ddd;
+		border-bottom: 0;
+
+		background-color: #f7f7f9;
+
+		border-radius: 4px 4px 0 0;
+
+		width: 100%;
+		height: 100%;
+	}
+}
+

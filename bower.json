@@ -1,0 +1,13 @@
+{
+  "name": "gosub",
+  "private": true,
+  "dependencies": {
+    "bootstrap": "3.*",
+    "jquery": "1.*",
+    "almond": "0.2.*",
+    "requirejs": "2.1.*",
+    "respond": "~1.4.2",
+    "html5shiv": "~3.7.2",
+    "react": "~0.12.0"
+  }
+}
