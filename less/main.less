@@ -74,18 +74,23 @@ header.mainHeader {
 	position: relative;
 	overflow: hidden;
 
-	transition: 0.3s opacity;
+}
 
+.contentWrapper>.flowWrapper:first-child {
 	background-color: white;
-
-	&.dim {
-		opacity: 0.2;
-	}
 }
 
 .flowWrapper {
 
 	padding: 15px 10px;
+
+	transition: 0.3s opacity;
+
+	&.dim {
+		opacity: 0;
+		pointer-events: none;
+	}
+
 
 	&>ul {
 	
@@ -303,6 +308,12 @@ header.mainHeader {
 
 		width: 100%;
 		height: 100%;
+
+
+		#closeAddComponentWrapper {
+			float: right;
+			margin-right: 15px;
+		}
 	}
 }
 

@@ -3,7 +3,8 @@ define(["react", "components/Fragment", "components/Activity", "exports"], funct
 
 	var FlowWrapper = React.createClass({
         addElement: function(){
-            alert('addElement');
+            $('.addComponentWrapper').toggleClass('active');
+            $('.flowWrapper').first().toggleClass('dim');
         },
         deleteElement: function(){
             window.confirm("Are you sure you want to remove this fragment?") ? alert("true") : alert("false");

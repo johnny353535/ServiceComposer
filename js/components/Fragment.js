@@ -31,28 +31,32 @@ define(["react", "require", "exports"], function(React, require, exports) {
             );
         });
 
-        var className = "";
         var glyphicon = "";
 
         switch (this.props.data.fragmentType){
             case "conditional":
-                className = "panel-success fragment-conditional";
                 glyphicon = "glyphicon-question-sign";
                 break;
             case "parallel":
-                className = "panel-warning fragment-parallel";
                 glyphicon = "glyphicon-pause";
                 break;
             case "loop":
-                className = "panel-info fragment-loop";
                 glyphicon = "glyphicon-retweet";
                 break;
             default:
-                className = "panel-default";
+                // do nufin
         }
 
+
+        var cx = React.addons.classSet;
+        var classes = cx({
+            'panel-success fragment-conditional': this.props.data.fragmentType == 'conditional',
+            'panel-warning fragment-parallel': this.props.data.fragmentType == 'parallel',
+            'panel-info fragment-loop': this.props.data.fragmentType == 'loop'
+        });
+
         return (
-          <div className={"flowElement fragment panel "+className}>
+          <div className={"flowElement fragment panel "+classes}>
             <div className="panel-heading">
                 <span className={"glyphicon "+glyphicon}></span>
                 <h3 className="panel-title">{this.props.data.name}</h3>
