@@ -29,13 +29,11 @@ require(["react", "components/FlowWrapper", "components/AddComponentWrapper", "c
             <MainHeader />
             <div id="contentWrapper" className="contentWrapper">
               <FlowWrapper data={data} />
-              <AddComponentWrapper />]
+              <AddComponentWrapper />
             </div>
           </div>,
           document.body
         );
-
-        $('.addComponentWrapper').height($('body').height() - $('.flowWrapper:first-child li:first-child').offset().top);
     };
 
     $.getJSON("data.json").done(init);

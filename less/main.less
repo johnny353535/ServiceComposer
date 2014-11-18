@@ -282,9 +282,9 @@ header.mainHeader {
 .addComponentWrapper {
 
 	display: inline-block;
-	position: fixed;
+	position: absolute;
 
-	height: 70%;
+	height: 100%;
 
 	transition: bottom 0.5s;
 
@@ -293,7 +293,7 @@ header.mainHeader {
 	right: 10px;
 
 	&.active {
-		bottom: 0px;
+		bottom: -15px;
 	}
 
 
@@ -312,7 +312,7 @@ header.mainHeader {
 
 		#closeAddComponentWrapper {
 			float: right;
-			margin-right: 15px;
+			margin-right: 10px;
 		}
 	}
 }
