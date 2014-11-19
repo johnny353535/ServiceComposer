@@ -1,13 +1,13 @@
 define(["react"], function(React) {
 
 
-	var AddComponentWrapper = React.createClass({
+	var AddElementWrapper = React.createClass({
       close: function(){
-        $('.addComponentWrapper').toggleClass('active');
+        $('.addElementWrapper').toggleClass('active');
         $('.flowWrapper').first().toggleClass('dim');
       }, render: function() {
         return (
-          <div className="addComponentWrapper">
+          <div className="addElementWrapper">
               <div className="navWrapper">
                   <ul className="nav nav-tabs mobile-nav-tabs" role="tablist">
                       <li role="presentation" className="active"><a href="#activities" role="tab" data-toggle="tab">
@@ -16,7 +16,7 @@ define(["react"], function(React) {
                       <li role="presentation">
                           <a href="#fragments" role="tab" data-toggle="tab"><span className="glyphicon glyphicon-list-alt"></span>Fragments</a>
                       </li>
-                      <button type="button" className="btn btn-default" id="closeAddComponentWrapper" onClick={this.close}><span className="glyphicon glyphicon-remove"></span></button>
+                      <button type="button" className="btn btn-default" id="closeAddElementWrapper" onClick={this.close}><span className="glyphicon glyphicon-remove"></span></button>
                   </ul>
                   <div className="tab-content mobile-nav-content">
                       <div role="tabpanel" className="tab-pane active" id="activities">
@@ -70,6 +70,6 @@ define(["react"], function(React) {
       }
     });
 
-    return AddComponentWrapper;
+    return AddElementWrapper;
 
 });

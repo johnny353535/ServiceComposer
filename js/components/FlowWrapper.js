@@ -1,26 +1,41 @@
-define(["react", "components/Fragment", "components/Activity", "exports"], function(React, Fragment, Activity, exports) {
-
+define(["react", "components/Fragment", "components/Activity", "underscore"], function(React, Fragment, Activity, _) {
 
 	var FlowWrapper = React.createClass({
-        addElement: function(){
-            $('.addComponentWrapper').toggleClass('active');
-            $('.flowWrapper').first().toggleClass('dim');
+        openAddElementWrapper: function(){
+            // $('.addElementWrapper').toggleClass('active');
+            // $('.flowWrapper').first().toggleClass('dim');
+            window.root.addElement();
         },
-        deleteElement: function(){
-            window.confirm("Are you sure you want to remove this fragment?") ? alert("true") : alert("false");
+        addElement: function(root, elemType){
+        	var newProps = this.props;
+        	newProps.data.flow.push({
+              "id": Math.random(),
+              "type": "activity",
+              "name": "test "+Math.floor((Math.random() * 100) + 1)
+            });
+        	this.setProps(newProps);
+        },
+        deleteElement: function(elemId){
+        	var newProps = this.props;
+        	newProps.data.flow = _.without(this.props.data.flow, _.findWhere(this.props.data.flow, {id: elemId}));
+        	this.setProps(newProps);
         },
       render: function() {
+
+      	if(this.props.root) window.root = this;
+
+      	var _this = this;
 
         var flowElementNodes = this.props.data.flow.map(function (flowElement) {
 
             switch(flowElement.type){
                 case "activity":
                     return (
-                      <li><Activity data={flowElement}></Activity></li>
+                      <li key={flowElement.id}><Activity data={flowElement} deleteElement={_this.deleteElement}></Activity></li>
                     );
                 case "fragment":
                     return (
-                      <li><Fragment data={flowElement}></Fragment></li>
+                      <li key={flowElement.id}><Fragment data={flowElement} deleteElement={_this.deleteElement}></Fragment></li>
                     );
                     break;
                 default:
@@ -33,7 +48,7 @@ define(["react", "components/Fragment", "components/Activity", "exports"], funct
               <ul>
                 {flowElementNodes}
               </ul>
-              <div className="flowControl panel panel-default" onClick={this.addElement}><span className="glyphicon glyphicon-plus"></span></div>
+              <div className="flowControl panel panel-default" onClick={this.openAddElementWrapper}><span className="glyphicon glyphicon-plus"></span></div>
           </div>
         );
       }

@@ -1,6 +1,9 @@
 define(["react"], function(React) {
 
   var Activity = React.createClass({
+      delete: function(){
+        
+      },
       render: function() {
         return (
           <div className="flowElement activity panel panel-default">

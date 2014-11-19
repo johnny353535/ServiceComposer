@@ -1,6 +1,12 @@
 define(["react", "require", "exports"], function(React, require, exports) {
 
     var Fragment = React.createClass({
+        deleteHandler: function(){
+            console.l
+            if(window.confirm("Are you sure you want to remove this fragment?")) {
+                window.root.deleteElement(this.props.data.id);
+            }
+        },
       render: function() {
 
         var FlowWrapper = require("components/FlowWrapper");
@@ -12,7 +18,7 @@ define(["react", "require", "exports"], function(React, require, exports) {
             first = false;
 
             return (
-              <li role="presentation" className={className}>
+              <li key={flow.name} role="presentation" className={className}>
                 <a href={"#"+flow.name} role="tab" data-toggle="tab">{flow.name} <span className="badge">{flow.flow.length}</span></a>
               </li>
             );
@@ -27,7 +33,7 @@ define(["react", "require", "exports"], function(React, require, exports) {
             require("components/FlowWrapper");
 
             return (
-                <li role="tabpanel" className={"tab-pane "+className} id={flow.name}><FlowWrapper data={flow} /></li>
+                <li key={flow.id} role="tabpanel" className={"tab-pane "+className} id={flow.name}><FlowWrapper data={flow} /></li>
             );
         });
 
@@ -60,7 +66,7 @@ define(["react", "require", "exports"], function(React, require, exports) {
             <div className="panel-heading">
                 <span className={"glyphicon "+glyphicon}></span>
                 <h3 className="panel-title">{this.props.data.name}</h3>
-                <span className="glyphicon glyphicon-trash button-delete" onClick={this.delete}></span>
+                <span className="glyphicon glyphicon-trash button-delete" onClick={this.deleteHandler}></span>
             </div>
             <div className="condition condition-top"><span>{this.props.data.condition}</span></div>
             <div className="panel-body">
