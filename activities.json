@@ -1,0 +1,18 @@
+[
+	{
+		"id": "aj9d0ajsd09a",
+		"name": "Light (kitchen)",
+		"description": "Turn light on",
+		"url": ""
+	}, {	
+		"id": "aspodjasd90",
+		"name": "Radiator (living room)",
+		"description": "Lower temperature to 18°C",
+		"url": ""
+	}, {
+		"id": "akspoda0s9d2",
+		"name": "Front door",
+		"description": "Unlock",
+		"url": ""
+	}
+]

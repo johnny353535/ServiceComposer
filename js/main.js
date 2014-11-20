@@ -20,30 +20,44 @@ requirejs.config({
 });
 
 
-require(["react", "components/FlowWrapper", "components/AddElementWrapper", "components/MainHeader", "jquery", "html5shiv", "respond", "plugins", "bootstrap"], function (React, FlowWrapper, AddElementWrapper, MainHeader) {
+require(["react", "components/MainFlow", "components/AddElementWrapper", "components/MainHeader", "jquery", "html5shiv", "respond", "plugins", "bootstrap"], function (React, MainFlow, AddElementWrapper, MainHeader) {
 
     React.initializeTouchEvents(true);
 
-    // var init = function(data) {
-    //     React.render(
-    //       <div id="mainWrapper">
-    //         <MainHeader />
-    //         <div id="contentWrapper" className="contentWrapper">
-    //           <FlowWrapper root="true" key={data.id} data={data} />
-    //           <AddElementWrapper />
-    //         </div>
-    //       </div>,
-    //       document.body
-    //     );
-    // };
+    var init = function(example_data, activities) {
 
-    var init = function(data) {
+        var example_data = example_data[0];
+        example_data = {
+            "metadata": null,
+            "flow": {
+              "id": "7c9n58qn75q",
+              "name": "mainFlow",
+              "flow": []
+            }
+        };
+
+        var activities = activities[0];
+
+        // React.render(
+        //   <div id="mainWrapper">
+        //     <MainHeader />
+        //     <div id="contentWrapper" className="contentWrapper">
+        //       <MainFlow data={example_data} />
+        //       <AddElementWrapper data={activities} />
+        //     </div>
+        //   </div>,
+        //   document.body
+        // );
+
         React.render(
-            <FlowWrapper root="true" key={data.id} data={data} />,
+            <MainFlow data={example_data} activities={activities} />,
             document.body
         );
     };
 
-    $.getJSON("data.json").done(init);
+    var url_exampleData = "exampleData.json";
+    var url_acitvites = "activities.json";
+
+    $.when($.getJSON(url_exampleData), $.getJSON(url_acitvites)).done(init);
 
 });

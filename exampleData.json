@@ -114,6 +114,7 @@
       "type": "fragment",
       "fragmentType": "loop",
       "name": "loop!",
+      "condition": "x > 12",
       "description": "this is a description",
       "flows": [
         {
