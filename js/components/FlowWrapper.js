@@ -8,8 +8,6 @@ define(["react", "components/Fragment", "components/Activity", "underscore"], fu
 
       	var _this = this;
 
-        console.log(this.props.data.flow);
-
         var flowElementNodes = this.props.data.flow.map(function (flowElement) {
 
 
