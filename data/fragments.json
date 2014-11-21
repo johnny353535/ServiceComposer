@@ -3,19 +3,18 @@
       "id":"conditional",
       "type":"fragment",
       "fragmentType":"conditional",
-      "name":"conditional!",
+      "name":"Conditional",
       "condition":"x > 42",
       "description":"Executes encapsulated activities based on a given condition",
       "glyphicon": "glyphicon-question-sign",
-      "flows":[  
-
+      "flows":[ 
       ]
    },
    {  
       "id":"parallel",
       "type":"fragment",
       "fragmentType":"parallel",
-      "name":"parallel!",
+      "name":"Parallel",
       "description":"Executes multiple activitiy flows at the same time",
       "glyphicon": "glyphicon-pause",
       "flows":[  
@@ -26,7 +25,7 @@
       "id":"loop",
       "type":"fragment",
       "fragmentType":"loop",
-      "name":"loop!",
+      "name":"Loop",
       "condition":"x > 42",
       "description":"Executes encapsulated activities as long as the provided condition yields true",
       "glyphicon": "glyphicon-retweet",

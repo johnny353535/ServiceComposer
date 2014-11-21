@@ -18,8 +18,12 @@ define(["react"], function(React) {
         $('.addElementWrapper').toggleClass('active');
         $('.flowWrapper').first().toggleClass('dim');
       },
-      addElement: function(activity){
+      addActivity: function(activity){
         window.root.insertActivity(this.state.currentRootUid, activity.id);
+        this.close();
+      },
+      addFragment: function(fragment){
+        window.root.insertFragment(this.state.currentRootUid, fragment.id);
         this.close();
       },
       close: function(){
@@ -32,16 +36,31 @@ define(["react"], function(React) {
 
         var _this = this;
 
-        var activities = this.props.data.map(function (activity) {
+        var activities = this.props.activities.map(function (activity) {
 
             return (
-              <li key={activity.id} className="media" onClick={_this.addElement.bind(null, activity)}>
+              <li key={activity.id} className="media" onClick={_this.addActivity.bind(null, activity)}>
                   <a className="media-left" href="#">
                       <img data-src="holder.js/64x64" alt="64x64" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIHZpZXdCb3g9IjAgMCA2NCA2NCIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+PGRlZnMvPjxyZWN0IHdpZHRoPSI2NCIgaGVpZ2h0PSI2NCIgZmlsbD0iI0VFRUVFRSIvPjxnPjx0ZXh0IHg9IjEzLjQ2MDkzNzUiIHk9IjMyIiBzdHlsZT0iZmlsbDojQUFBQUFBO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1mYW1pbHk6QXJpYWwsIEhlbHZldGljYSwgT3BlbiBTYW5zLCBzYW5zLXNlcmlmLCBtb25vc3BhY2U7Zm9udC1zaXplOjEwcHQ7ZG9taW5hbnQtYmFzZWxpbmU6Y2VudHJhbCI+NjR4NjQ8L3RleHQ+PC9nPjwvc3ZnPg==" data-holder-rendered="true" />
                   </a>
                   <div className="media-body">
                       <h4 className="media-heading">{activity.name}</h4>
                       <p>{activity.description}</p>
+                  </div>
+              </li>
+            )
+        });
+
+        var fragments = this.props.fragments.map(function (fragment) {
+
+            return (
+              <li key={fragment.id} className="media" onClick={_this.addFragment.bind(null, fragment)}>
+                  <a className="media-left" href="#">
+                      <span className={"glyphicon "+fragment.glyphicon}></span> 
+                  </a>
+                  <div className="media-body">
+                      <h4 className="media-heading">{fragment.name}</h4>
+                      <p>{fragment.description}</p>
                   </div>
               </li>
             )
@@ -68,33 +87,7 @@ define(["react"], function(React) {
                       </div>
                       <div role="tabpanel" className="tab-pane" id="fragments">
                           <ul className="media-list">
-                              <li className="media">
-                                  <a className="media-left" href="#">
-                                      <span className="glyphicon glyphicon-question-sign"></span> 
-                                  </a>
-                                  <div className="media-body">
-                                      <h4 className="media-heading">Conditional Fragment</h4>
-                                      <p>Executes encapsulated activities based on a given condition</p>
-                                  </div>
-                              </li>
-                              <li className="media">
-                                  <a className="media-left" href="#">
-                                      <span className="glyphicon glyphicon-pause"></span> 
-                                  </a>
-                                  <div className="media-body">
-                                      <h4 className="media-heading">Parallel Fragment</h4>
-                                      <p>Executes multiple activitiy flows at the same time</p>
-                                  </div>
-                              </li>
-                              <li className="media">
-                                  <a className="media-left" href="#">
-                                      <span className="glyphicon glyphicon-retweet"></span> 
-                                  </a>
-                                  <div className="media-body">
-                                      <h4 className="media-heading">Loop Fragment</h4>
-                                      <p>Executes encapsulated activities as long as the provided condition yields true</p>
-                                  </div>
-                              </li>
+                              {fragments}
                           </ul>
                       </div>
                   </div>

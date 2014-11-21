@@ -30,6 +30,15 @@ define(["react", "components/FlowWrapper", "components/AddElementWrapper", "comp
     		elem.type = "fragment";
     		elem.uid = window.guid();
 
+    		var standardFlow = {
+	          "uid": window.guid(),
+	          "name": "#1",
+	          "flow": [
+	          ]
+	        }
+
+    		elem.flows.push(standardFlow);
+
     		var root = window.findRootByUid(newState.flowRoot, root_uid);
     		root.flow.push(elem);
 
@@ -57,7 +66,7 @@ define(["react", "components/FlowWrapper", "components/AddElementWrapper", "comp
             		<MainHeader title={this.state.flowRoot.name}/>
             	<div id="contentWrapper" className="contentWrapper">
 					<FlowWrapper key={this.state.flowRoot.uid} data={this.state.flowRoot} />
-					<AddElementWrapper data={this.props.activities} activities={this.props.fragments} fragments={this.props.fragments} />
+					<AddElementWrapper activities={this.props.activities} fragments={this.props.fragments} />
 				</div>
           	</div>
 				
