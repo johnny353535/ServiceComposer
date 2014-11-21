@@ -1,28 +1,19 @@
 define(["react", "components/FlowWrapper", "components/AddElementWrapper", "components/MainHeader", "underscore"], function(React, FlowWrapper, AddElementWrapper, MainHeader, _) {
 
 	var MainFlow = React.createClass({
-		getInitialState: function(){
-			return {
-				flowRoot: {
-					"uid": window.guid(),
-					"name": "myFlow",
-		            "flow": []
-		        }
-	        };
-		},
 		insertActivity: function(root_uid, activity_id){
-			var newState = this.state;
+			var newProps = this.props;
 
     		var elem = jQuery.extend(true, {}, _.find(this.props.activities, {id: activity_id})); // Make deep copy
     		elem.type = "activity";
     		elem.uid = window.guid();
 
-    		var root = this.addElementToRoot(newState.flowRoot, root_uid, elem);
+    		var root = this.addElementToRoot(newProps.data, root_uid, elem);
 
-          	this.setState(newState);
+          	this.setProps(newProps);
 		},
 		insertFragment: function(root_uid, fragment_id){
-			var newState = this.state;
+			var newProps = this.props;
 
     		var elem = jQuery.extend(true, {}, _.find(this.props.fragments, {id: fragment_id})); // Make deep copy
     		elem.type = "fragment";
@@ -36,9 +27,9 @@ define(["react", "components/FlowWrapper", "components/AddElementWrapper", "comp
 
     		elem.flows.push(standardFlow);
 
-    		var root = this.addElementToRoot(newState.flowRoot, root_uid, elem);
+    		var root = this.addElementToRoot(newProps.data, root_uid, elem);
 
-          	this.setState(newState);
+          	this.setProps(newProps);
 		},
 		addElementToRoot: function(root, uid, elem) {
 
@@ -57,11 +48,11 @@ define(["react", "components/FlowWrapper", "components/AddElementWrapper", "comp
 		  return false;
 		},
 		deleteElement: function(uid){
-			var newState = this.state;
+			var newProps = this.props;
 
-        	this.deleteElementByUid(newState.flowRoot, uid);
+        	this.deleteElementByUid(newProps.data, uid);
 
-        	this.setState(newState);
+        	this.setProps(newProps);
 		},
 		deleteElementByUid: function(root, uid, elem) {
 
@@ -81,13 +72,14 @@ define(["react", "components/FlowWrapper", "components/AddElementWrapper", "comp
 		  return false;
 		},
 		render: function(){
+
 			window.root = this;
 
 			return(
 				<div id="mainWrapper" className="mainWrapper">
-            		<MainHeader title={this.state.flowRoot.name}/>
+            		<MainHeader title={this.props.data.name}/>
             	<div id="contentWrapper" className="contentWrapper">
-					<FlowWrapper key={this.state.flowRoot.uid} data={this.state.flowRoot} />
+					<FlowWrapper key={this.props.data.uid} data={this.props.data} />
 					<AddElementWrapper activities={this.props.activities} fragments={this.props.fragments} />
 				</div>
           	</div>

@@ -26,8 +26,14 @@ require(["react", "components/MainFlow", "components/AddElementWrapper", "compon
 
     var init = function(activities, fragments) {
 
+        var initialData = {
+            "uid": window.guid(),
+            "name": "myFlow",
+            "flow": []
+        }
+
         React.render(
-          <MainFlow activities={activities} fragments={fragments} />,
+          <MainFlow data={initialData} activities={activities} fragments={fragments} />,
           document.body
         );
 
