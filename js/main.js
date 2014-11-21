@@ -24,22 +24,27 @@ require(["react", "components/MainFlow", "components/AddElementWrapper", "compon
 
     React.initializeTouchEvents(true);
 
-    var init = function(activities) {
-
-        var activities = activities;
+    var init = function(activities, fragments) {
 
         React.render(
           <div id="mainWrapper" className="mainWrapper">
             <MainHeader />
-            <MainFlow activities={activities}/>
+            <MainFlow activities={activities} fragments={fragments} />
           </div>,
           document.body
         );
 
     };
 
-    var url_acitvites = "activities.json";
 
-    $.getJSON(url_acitvites, init);
+    var url_activities = "data/activities.json";
+    var url_fragments = "data/fragments.json";
+
+    $.when(
+        $.getJSON(url_activities),
+        $.getJSON(url_fragments)
+    ).done(function(activities, fragments) {
+        init(activities[0], fragments[0]);
+    });
 
 });

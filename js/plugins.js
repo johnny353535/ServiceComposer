@@ -21,10 +21,12 @@
     }
 }());
 
-// Place any jQuery/helper plugins in here.
 
 
-// http://stackoverflow.com/a/105074/1296925
+/* Place any jQuery/helper plugins in here. */
+
+
+// Modified from http://stackoverflow.com/a/105074/1296925
 window.guid = (function() {
   function s4() {
     return Math.floor((1 + Math.random()) * 0x10000)
@@ -37,17 +39,14 @@ window.guid = (function() {
 })();
 
 
-// http://stackoverflow.com/a/27054491/1296925
-window.findObjectById = function(root, uid, add) {
+// Modified from http://stackoverflow.com/a/27054491/1296925
+window.findObjectById = function(root, uid) {
     if(root.uid == uid){
       return root;
     } else if (root.flow) {
         for (var k in root.flow) {
             if (root.flow[k].uid == uid) {
-                if(add)
-                  return root.flow[k]; 
-                else 
-                   delete root.flow[k];
+              return root; 
             }
             else if (root.flow[k].flow.length) {
                 return findObjectById(root.flow[k], uid);

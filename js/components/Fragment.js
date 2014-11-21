@@ -37,22 +37,7 @@ define(["react", "require", "exports"], function(React, require, exports) {
             );
         });
 
-        var glyphicon = "";
-
-        switch (this.props.data.fragmentType){
-            case "conditional":
-                glyphicon = "glyphicon-question-sign";
-                break;
-            case "parallel":
-                glyphicon = "glyphicon-pause";
-                break;
-            case "loop":
-                glyphicon = "glyphicon-retweet";
-                break;
-            default:
-                // do nufin
-        }
-
+        var glyphicon = this.props.data.glyphicon || "glyphicon-inbox";
 
         var cx = React.addons.classSet;
         var classes = cx({

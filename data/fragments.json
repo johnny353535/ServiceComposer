@@ -1,0 +1,37 @@
+[  
+   {  
+      "id":"conditional",
+      "type":"fragment",
+      "fragmentType":"conditional",
+      "name":"conditional!",
+      "condition":"x > 42",
+      "description":"Executes encapsulated activities based on a given condition",
+      "glyphicon": "glyphicon-question-sign",
+      "flows":[  
+
+      ]
+   },
+   {  
+      "id":"parallel",
+      "type":"fragment",
+      "fragmentType":"parallel",
+      "name":"parallel!",
+      "description":"Executes multiple activitiy flows at the same time",
+      "glyphicon": "glyphicon-pause",
+      "flows":[  
+
+      ]
+   },
+   {  
+      "id":"loop",
+      "type":"fragment",
+      "fragmentType":"loop",
+      "name":"loop!",
+      "condition":"x > 42",
+      "description":"Executes encapsulated activities as long as the provided condition yields true",
+      "glyphicon": "glyphicon-retweet",
+      "flows":[  
+
+      ]
+   }
+]

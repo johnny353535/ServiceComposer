@@ -19,7 +19,7 @@ define(["react"], function(React) {
         $('.flowWrapper').first().toggleClass('dim');
       },
       addElement: function(activity){
-        window.root.insertElement(this.state.currentRootUid, activity.id);
+        window.root.insertActivity(this.state.currentRootUid, activity.id);
         this.close();
       },
       close: function(){
