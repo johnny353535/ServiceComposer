@@ -23,7 +23,7 @@ define(["react"], function(React) {
           currentRootUid: null
         });
 
-        $('.flowWrapper').first().addClass('dim');
+        $('.flowWrapper').first().removeClass('dim');
       },
       addActivity: function(activity){
         window.root.insertActivity(this.state.currentRootUid, activity.id);
