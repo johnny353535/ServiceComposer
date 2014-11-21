@@ -1,8 +1,8 @@
 define(["react", "components/Fragment", "components/Activity", "underscore"], function(React, Fragment, Activity, _) {
 
 	var FlowWrapper = React.createClass({
-      openAddElementWrapper: function(rootId){
-          window.root.openAddElementWrapper(rootId);
+      openAddElementWrapper: function(root_uid){
+          window.root.openAddElementWrapper(root_uid);
       },
       render: function() {
 
@@ -14,11 +14,11 @@ define(["react", "components/Fragment", "components/Activity", "underscore"], fu
             switch(flowElement.type){
                 case "activity":
                     return (
-                      <li key={flowElement.id}><Activity data={flowElement}></Activity></li>
+                      <li key={flowElement.uid}><Activity data={flowElement}></Activity></li>
                     );
                 case "fragment":
                     return (
-                      <li key={flowElement.id}><Fragment data={flowElement}></Fragment></li>
+                      <li key={flowElement.uid}><Fragment data={flowElement}></Fragment></li>
                     );
                     break;
                 default:

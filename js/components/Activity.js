@@ -4,7 +4,7 @@ define(["react"], function(React) {
       deleteHandler: function(){
         console.l
             if(window.confirm("Are you sure you want to remove this activity?")) {
-                window.root.deleteElement(this.props.data.id);
+                window.root.deleteElement(this.props.data.uid);
             }
       },
       render: function() {

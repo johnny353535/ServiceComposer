@@ -4,30 +4,32 @@ define(["react", "components/FlowWrapper", "components/AddElementWrapper", "unde
 		getInitialState: function(){
 			return {
 				flowRoot: {
-		            "id": Math.random()*10,
+					"uid": window.guid(),
 		            "name": "Test",
 		            "flow": []
 		        }
 	        };
 		},
-		openAddElementWrapper: function(rootId){
+		openAddElementWrapper: function(root_uid){
 			$('.addElementWrapper').toggleClass('active');
 			$('.flowWrapper').first().toggleClass('dim');
 		},
-		insertElement: function(rootId, elementId){
+		insertElement: function(root_uid, element_id){
 			var newState = this.state;
 
-    		var elem = _.find(this.props.activities, {id: elementId});
+    		var elem = jQuery.extend(true, {}, _.find(this.props.activities, {id: element_id})); // Make deep copy
     		elem.type = "activity";
+    		elem.uid = window.guid();
+
           	newState.flowRoot.flow.push(elem);
 
           	this.setState(newState);
           	this.printJSON();
 		},
-		deleteElement: function(elemId){
+		deleteElement: function(uid){
 			var newState = this.state;
-        	newState.flowRoot.flow = _.without(this.state.flowRoot.flow, _.findWhere(this.state.flowRoot.flow, {id: elemId}));
-        	
+        	newState.flowRoot.flow = _.without(this.state.flowRoot.flow, _.findWhere(this.state.flowRoot.flow, {uid: uid}));
+
         	this.setState(newState);
           	this.printJSON();
 		},
@@ -39,7 +41,7 @@ define(["react", "components/FlowWrapper", "components/AddElementWrapper", "unde
 
 			return(
 				<div id="contentWrapper" className="contentWrapper">
-					<FlowWrapper key={this.state.flowRoot.id} data={this.state.flowRoot} />
+					<FlowWrapper key={this.state.flowRoot.uid} data={this.state.flowRoot} />
 					<AddElementWrapper data={this.props.activities} />
 				</div>
 			)

@@ -4,7 +4,7 @@ define(["react", "require", "exports"], function(React, require, exports) {
         deleteHandler: function(){
             console.l
             if(window.confirm("Are you sure you want to remove this fragment?")) {
-                window.root.deleteElement(this.props.data.id);
+                window.root.deleteElement(this.props.data.uid);
             }
         },
       render: function() {
@@ -33,7 +33,7 @@ define(["react", "require", "exports"], function(React, require, exports) {
             require("components/FlowWrapper");
 
             return (
-                <li key={flow.id} role="tabpanel" className={"tab-pane "+className} id={flow.name}><FlowWrapper data={flow} /></li>
+                <li key={flow.uid} role="tabpanel" className={"tab-pane "+className} id={flow.name}><FlowWrapper data={flow} /></li>
             );
         });
 
