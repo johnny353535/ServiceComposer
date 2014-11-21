@@ -2,8 +2,24 @@ define(["react"], function(React) {
 
 
 	var AddElementWrapper = React.createClass({
+      getInitialState: function(){
+        return {
+          active: false,
+          currentRootUid: null
+        };
+      },
+      open: function(root_uid){
+
+        this.setState({
+          active: true,
+          currentRootUid: root_uid
+        });
+
+        $('.addElementWrapper').toggleClass('active');
+        $('.flowWrapper').first().toggleClass('dim');
+      },
       addElement: function(activity){
-        window.root.insertElement(null, activity.id);
+        window.root.insertElement(this.state.currentRootUid, activity.id);
         this.close();
       },
       close: function(){
@@ -11,6 +27,8 @@ define(["react"], function(React) {
         $('.flowWrapper').first().toggleClass('dim');
       },
       render: function() {
+
+        window.AddElementWrapper = this;
 
         var _this = this;
 

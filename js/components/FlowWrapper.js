@@ -1,8 +1,9 @@
 define(["react", "components/Fragment", "components/Activity", "underscore"], function(React, Fragment, Activity, _) {
 
 	var FlowWrapper = React.createClass({
-      openAddElementWrapper: function(root_uid){
-          window.root.openAddElementWrapper(root_uid);
+      openAddElementWrapper: function(){
+        var uid = this.props.data.uid;
+        window.AddElementWrapper.open(uid);
       },
       render: function() {
 

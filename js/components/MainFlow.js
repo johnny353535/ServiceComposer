@@ -5,36 +5,45 @@ define(["react", "components/FlowWrapper", "components/AddElementWrapper", "unde
 			return {
 				flowRoot: {
 					"uid": window.guid(),
-		            "name": "Test",
 		            "flow": []
 		        }
 	        };
 		},
-		openAddElementWrapper: function(root_uid){
-			$('.addElementWrapper').toggleClass('active');
-			$('.flowWrapper').first().toggleClass('dim');
-		},
-		insertElement: function(root_uid, element_id){
+		insertActivity: function(root_uid, activity_id){
 			var newState = this.state;
 
-    		var elem = jQuery.extend(true, {}, _.find(this.props.activities, {id: element_id})); // Make deep copy
+    		var elem = jQuery.extend(true, {}, _.find(this.props.activities, {id: activity_id})); // Make deep copy
     		elem.type = "activity";
     		elem.uid = window.guid();
 
-          	newState.flowRoot.flow.push(elem);
+    		var root = window.findObjectById(newState.flowRoot, root_uid, true);
+    		root.flow.push(elem);
 
           	this.setState(newState);
-          	this.printJSON();
+          	console.dir(this.state.flowRoot); // Print current structure
+		},
+		insertFragment: function(root_uid, fragment_id){
+			var newState = this.state;
+
+    		var elem = jQuery.extend(true, {}, _.find(this.props.fragments, {id: fragment_id})); // Make deep copy
+    		elem.type = "fragment";
+    		elem.uid = window.guid();
+
+    		var root = window.findObjectById(newState.flowRoot, root_uid, true);
+    		root.flow.push(elem);
+
+          	this.setState(newState);
+          	console.dir(this.state.flowRoot); // Print current structure
 		},
 		deleteElement: function(uid){
 			var newState = this.state;
-        	newState.flowRoot.flow = _.without(this.state.flowRoot.flow, _.findWhere(this.state.flowRoot.flow, {uid: uid}));
+
+        	//newState.flowRoot.flow = _.without(this.state.flowRoot.flow, _.findWhere(this.state.flowRoot.flow, {uid: uid}));
+        	window.findObjectById(newState.flowRoot, uid, false)
+
 
         	this.setState(newState);
-          	this.printJSON();
-		},
-		printJSON: function(){
-			console.dir(this.state.flowRoot);
+          	console.dir(this.state.flowRoot); // Print current structure
 		},
 		render: function(){
 			window.root = this;

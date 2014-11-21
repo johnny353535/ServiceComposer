@@ -32,7 +32,26 @@ window.guid = (function() {
                .substring(1);
   }
   return function() {
-    return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
-           s4() + '-' + s4() + s4() + s4();
+    return s4() + s4() + s4() + s4();
   };
 })();
+
+
+// http://stackoverflow.com/a/27054491/1296925
+window.findObjectById = function(root, uid, add) {
+    if(root.uid == uid){
+      return root;
+    } else if (root.flow) {
+        for (var k in root.flow) {
+            if (root.flow[k].uid == uid) {
+                if(add)
+                  return root.flow[k]; 
+                else 
+                   delete root.flow[k];
+            }
+            else if (root.flow[k].flow.length) {
+                return findObjectById(root.flow[k], uid);
+            }
+        }
+    }
+};
