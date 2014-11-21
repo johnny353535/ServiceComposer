@@ -15,8 +15,15 @@ define(["react"], function(React) {
           currentRootUid: root_uid
         });
 
-        $('.addElementWrapper').toggleClass('active');
-        $('.flowWrapper').first().toggleClass('dim');
+        $('.flowWrapper').first().addClass('dim');
+      },
+      close: function(){
+        this.setState({
+          active: false,
+          currentRootUid: null
+        });
+
+        $('.flowWrapper').first().addClass('dim');
       },
       addActivity: function(activity){
         window.root.insertActivity(this.state.currentRootUid, activity.id);
@@ -25,10 +32,6 @@ define(["react"], function(React) {
       addFragment: function(fragment){
         window.root.insertFragment(this.state.currentRootUid, fragment.id);
         this.close();
-      },
-      close: function(){
-        $('.addElementWrapper').toggleClass('active');
-        $('.flowWrapper').first().toggleClass('dim');
       },
       render: function() {
 
@@ -66,9 +69,14 @@ define(["react"], function(React) {
             )
         });
 
+        var cx = React.addons.classSet;
+        var classes = cx({
+          'addElementWrapper': true,
+          'active': this.state.active
+        });
 
         return (
-          <div className="addElementWrapper">
+          <div className={classes}>
               <div className="navWrapper">
                   <ul className="nav nav-tabs mobile-nav-tabs" role="tablist">
                       <li role="presentation" className="active"><a href="#activities" role="tab" data-toggle="tab">
