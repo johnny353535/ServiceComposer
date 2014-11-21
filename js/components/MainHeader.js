@@ -4,7 +4,7 @@ define(["react"], function(React) {
 		render: function(){
 			return (
 				<header className="mainHeader">
-			        <h3 className="title">Activity flow</h3>
+			        <h3 className="title">{this.props.title}</h3>
 			    </header>
 			);
 		}

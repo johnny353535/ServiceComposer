@@ -40,7 +40,7 @@ window.guid = (function() {
 
 
 // Modified from http://stackoverflow.com/a/27054491/1296925
-window.findObjectById = function(root, uid) {
+window.findRootByUid = function(root, uid) {
     if(root.uid == uid){
       return root;
     } else if (root.flow) {

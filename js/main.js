@@ -27,10 +27,7 @@ require(["react", "components/MainFlow", "components/AddElementWrapper", "compon
     var init = function(activities, fragments) {
 
         React.render(
-          <div id="mainWrapper" className="mainWrapper">
-            <MainHeader />
-            <MainFlow activities={activities} fragments={fragments} />
-          </div>,
+          <MainFlow activities={activities} fragments={fragments} />,
           document.body
         );
 
