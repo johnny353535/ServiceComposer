@@ -17,11 +17,9 @@ define(["react", "components/FlowWrapper", "components/AddElementWrapper", "comp
     		elem.type = "activity";
     		elem.uid = window.guid();
 
-    		var root = window.findRootByUid(newState.flowRoot, root_uid);
-    		root.flow.push(elem);
+    		var root = this.addElementToRoot(newState.flowRoot, root_uid, elem);
 
           	this.setState(newState);
-          	console.dir(this.state.flowRoot); // Print current structure
 		},
 		insertFragment: function(root_uid, fragment_id){
 			var newState = this.state;
@@ -33,30 +31,54 @@ define(["react", "components/FlowWrapper", "components/AddElementWrapper", "comp
     		var standardFlow = {
 	          "uid": window.guid(),
 	          "name": "#1",
-	          "flow": [
-	          ]
+	          "flow": []
 	        }
 
     		elem.flows.push(standardFlow);
 
-    		var root = window.findRootByUid(newState.flowRoot, root_uid);
-    		root.flow.push(elem);
+    		var root = this.addElementToRoot(newState.flowRoot, root_uid, elem);
 
           	this.setState(newState);
-          	console.dir(this.state.flowRoot); // Print current structure
+		},
+		addElementToRoot: function(root, uid, elem) {
+
+		  if(root.uid == uid){
+		  	console.log("added", elem.uid);
+		    root.flow.push(elem); // Found it!
+		    return true;
+		  } else if(root.flow) {
+		    for(var i = 0; i<root.flow.length; i++)
+		      if(root.flow[i].flows) return this.addElementToRoot(root.flow[i], uid, elem);
+		  } else if (root.flows) {
+		    for(var i = 0; i<root.flows.length; i++)
+		      return this.addElementToRoot(root.flows[i], uid, elem);
+		  }
+
+		  return false;
 		},
 		deleteElement: function(uid){
 			var newState = this.state;
 
-        	//newState.flowRoot.flow = _.without(this.state.flowRoot.flow, _.findWhere(this.state.flowRoot.flow, {uid: uid}));
-        	var root = window.findRootByUid(newState.flowRoot, uid);
-        	
-        	for( i=root.flow.length-1; i>=0; i--) {
-			    if( root.flow[i].uid == uid) root.flow.splice(i,1);
-			}
+        	this.deleteElementByUid(newState.flowRoot, uid);
 
         	this.setState(newState);
-          	console.dir(this.state.flowRoot); // Print current structure
+		},
+		deleteElementByUid: function(root, uid, elem) {
+
+		  if(root.flow) { // we are in a flowWrapper
+		    for(var i = 0; i<root.flow.length; i++){
+		      if(root.flow[i].uid == uid) {
+		        console.log("deleted", uid);
+		        root.flow.splice(i,1); // delete element
+		        return true;
+		      } else this.deleteElementByUid(root.flow[i], uid, elem);
+		    }
+		  } else if (root.flows) { // we are in a fragment with multiple flowWrappers
+		    for(var i = 0; i<root.flows.length; i++)
+		      this.deleteElementByUid(root.flows[i], uid, elem);
+		  }
+
+		  return false;
 		},
 		render: function(){
 			window.root = this;
