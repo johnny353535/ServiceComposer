@@ -20,13 +20,16 @@ define(["react", "components/UiDispatcher"], function(React, UiDispatcher) {
           currentRootUid: null
         });
       },
+      emitClose: function(){
+        UiDispatcher.dispatch({ actionType: 'toggleAddElementWrapper', open: false })
+      },
       addActivity: function(activity){
         window.root.insertActivity(this.state.currentRootUid, activity.id);
-        this.close();
+        this.emitClose();
       },
       addFragment: function(fragment){
         window.root.insertFragment(this.state.currentRootUid, fragment.id);
-        this.close();
+        this.emitClose();
       },
       render: function() {
 
@@ -79,8 +82,6 @@ define(["react", "components/UiDispatcher"], function(React, UiDispatcher) {
           'active': this.state.active
         });
 
-        var emitClose = function(){ UiDispatcher.dispatch({ actionType: 'toggleAddElementWrapper', open: false }) };
-
         return (
           <div className={classes}>
               <div className="navWrapper">
@@ -91,7 +92,7 @@ define(["react", "components/UiDispatcher"], function(React, UiDispatcher) {
                       <li role="presentation">
                           <a href="#fragments" role="tab" data-toggle="tab"><span className="glyphicon glyphicon-list-alt"></span>Fragments</a>
                       </li>
-                      <button type="button" className="btn btn-default" id="closeAddElementWrapper" onClick={emitClose}><span className="glyphicon glyphicon-remove"></span></button>
+                      <button type="button" className="btn btn-default" id="closeAddElementWrapper" onClick={this.  emitClose}><span className="glyphicon glyphicon-remove"></span></button>
                   </ul>
                   <div className="tab-content mobile-nav-content">
                       <div role="tabpanel" className="tab-pane active" id="activities">
