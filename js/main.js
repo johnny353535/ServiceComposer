@@ -12,6 +12,7 @@ requirejs.config({
         respond: '../bower_components/respond/dest/respond.src',
         react: '../bower_components/react/react-with-addons',
         underscore: '../bower_components/underscore/underscore',
+        flux: "../bower_components/flux/dist/Flux",
         plugins: 'plugins'
     },
     packages: [
@@ -20,9 +21,12 @@ requirejs.config({
 });
 
 
-require(["react", "components/MainFlow", "components/AddElementWrapper", "components/MainHeader", "jquery", "html5shiv", "respond", "plugins", "bootstrap"], function (React, MainFlow, AddElementWrapper, MainHeader) {
+require(["react", "components/MainFlow", "components/AddElementWrapper", "components/MainHeader", "flux", "jquery", "html5shiv", "respond", "plugins", "bootstrap"], function (React, MainFlow, AddElementWrapper, MainHeader, Flux) {
 
     React.initializeTouchEvents(true);
+
+    window.uiDispatcher = new Flux.Dispatcher();
+
 
     var init = function(activities, fragments) {
 

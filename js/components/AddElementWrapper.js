@@ -9,21 +9,16 @@ define(["react"], function(React) {
         };
       },
       open: function(root_uid){
-
         this.setState({
           active: true,
           currentRootUid: root_uid
         });
-
-        $('.flowWrapper').first().addClass('dim');
       },
       close: function(){
         this.setState({
           active: false,
           currentRootUid: null
         });
-
-        $('.flowWrapper').first().removeClass('dim');
       },
       addActivity: function(activity){
         window.root.insertActivity(this.state.currentRootUid, activity.id);
@@ -38,6 +33,18 @@ define(["react"], function(React) {
         window.AddElementWrapper = this;
 
         var _this = this;
+
+        window.uiDispatcher.register(
+            function(payload) {
+                if (payload.actionType === 'toggleAddElementWrapper') {
+                    if(payload.open) {
+                      _this.open(payload.rootUid);
+                    } else {
+                      _this.close();
+                    }
+                }
+            }
+        );
 
         var activities = this.props.activities.map(function (activity) {
 
@@ -85,7 +92,7 @@ define(["react"], function(React) {
                       <li role="presentation">
                           <a href="#fragments" role="tab" data-toggle="tab"><span className="glyphicon glyphicon-list-alt"></span>Fragments</a>
                       </li>
-                      <button type="button" className="btn btn-default" id="closeAddElementWrapper" onClick={this.close}><span className="glyphicon glyphicon-remove"></span></button>
+                      <button type="button" className="btn btn-default" id="closeAddElementWrapper" onClick={function(){ window.uiDispatcher.dispatch({ actionType: 'toggleAddElementWrapper', open: false });} }><span className="glyphicon glyphicon-remove"></span></button>
                   </ul>
                   <div className="tab-content mobile-nav-content">
                       <div role="tabpanel" className="tab-pane active" id="activities">

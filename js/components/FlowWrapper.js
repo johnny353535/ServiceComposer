@@ -1,13 +1,35 @@
 define(["react", "components/Fragment", "components/Activity", "underscore"], function(React, Fragment, Activity, _) {
 
 	var FlowWrapper = React.createClass({
+      getInitialState: function(){
+        return {
+          hidden: false
+        }
+      },
       openAddElementWrapper: function(){
-        var uid = this.props.data.uid;
-        window.AddElementWrapper.open(uid);
+        window.uiDispatcher.dispatch({ actionType: 'toggleAddElementWrapper', open: true, rootUid: this.props.data.uid});
+      },
+      hide: function(){
+        this.setState({hidden: true});
+      },
+      show: function(){
+        this.setState({hidden: false});
       },
       render: function() {
 
       	var _this = this;
+
+        window.uiDispatcher.register(
+            function(payload) {
+                if (payload.actionType === 'toggleAddElementWrapper') {
+                    if(payload.open) {
+                      _this.hide();
+                    } else {
+                      _this.show();
+                    }
+                }
+            }
+        );
 
         var flowElementNodes = this.props.data.flow.map(function (flowElement) {
 
@@ -28,10 +50,14 @@ define(["react", "components/Fragment", "components/Activity", "underscore"], fu
         });
 
 
-        this.props;
+        var cx = React.addons.classSet;
+        var classes = cx({
+          'flowWrapper': true,
+          'hidden': this.state.hidden
+        });
 
         return (
-          <div className="flowWrapper">
+          <div className={classes}>
               <ul>
                 {flowElementNodes}
               </ul>
