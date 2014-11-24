@@ -1,4 +1,4 @@
-define(["react"], function(React) {
+define(["react", "components/UiDispatcher"], function(React, UiDispatcher) {
 
 
 	var AddElementWrapper = React.createClass({
@@ -30,21 +30,18 @@ define(["react"], function(React) {
       },
       render: function() {
 
-        window.AddElementWrapper = this;
-
         var _this = this;
 
-        window.uiDispatcher.register(
-            function(payload) {
-                if (payload.actionType === 'toggleAddElementWrapper') {
-                    if(payload.open) {
-                      _this.open(payload.rootUid);
-                    } else {
-                      _this.close();
-                    }
-                }
-            }
-        );
+        UiDispatcher.register(
+          function(payload) {
+              if (payload.actionType === 'toggleAddElementWrapper') {
+                  if(payload.open) {
+                    _this.open(payload.rootUid);
+                  } else {
+                    _this.close();
+                  }
+              }
+          })
 
         var activities = this.props.activities.map(function (activity) {
 
@@ -82,6 +79,8 @@ define(["react"], function(React) {
           'active': this.state.active
         });
 
+        var emitClose = function(){ UiDispatcher.dispatch({ actionType: 'toggleAddElementWrapper', open: false }) };
+
         return (
           <div className={classes}>
               <div className="navWrapper">
@@ -92,7 +91,7 @@ define(["react"], function(React) {
                       <li role="presentation">
                           <a href="#fragments" role="tab" data-toggle="tab"><span className="glyphicon glyphicon-list-alt"></span>Fragments</a>
                       </li>
-                      <button type="button" className="btn btn-default" id="closeAddElementWrapper" onClick={function(){ window.uiDispatcher.dispatch({ actionType: 'toggleAddElementWrapper', open: false });} }><span className="glyphicon glyphicon-remove"></span></button>
+                      <button type="button" className="btn btn-default" id="closeAddElementWrapper" onClick={emitClose}><span className="glyphicon glyphicon-remove"></span></button>
                   </ul>
                   <div className="tab-content mobile-nav-content">
                       <div role="tabpanel" className="tab-pane active" id="activities">

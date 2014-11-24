@@ -25,8 +25,6 @@ require(["react", "components/MainFlow", "components/AddElementWrapper", "compon
 
     React.initializeTouchEvents(true);
 
-    window.uiDispatcher = new Flux.Dispatcher();
-
 
     var init = function(activities, fragments) {
 
