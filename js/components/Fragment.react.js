@@ -1,15 +1,20 @@
-define(["react", "require", "exports"], function(React, require, exports) {
+define(["react", "require", "dispatchers/AppDispatcher"], function(React, require, AppDispatcher) {
 
     var Fragment = React.createClass({
         deleteHandler: function(){
-            console.l
-            if(window.confirm("Are you sure you want to remove this fragment?")) {
-                window.root.deleteElement(this.props.data.uid);
+            if(window.confirm("Are you sure you want to remove this activity?1")) {
+                //window.root.deleteElement(this.props.data.uid);
+                AppDispatcher.dispatch({
+                  actionType: "DELETE_ELEMENT",
+                  data: {
+                    uid: this.props.data.uid
+                  }
+                });
             }
         },
       render: function() {
 
-        var FlowWrapper = require("components/FlowWrapper");
+        var FlowWrapper = require("components/FlowWrapper.react");
 
         var first = true;
         var fragmentTabNav = this.props.data.flows.map(function (flow) {
@@ -30,7 +35,7 @@ define(["react", "require", "exports"], function(React, require, exports) {
             var className = first ? "active" : "";
             first = false;
 
-            require("components/FlowWrapper");
+            require("components/FlowWrapper.react");
 
             return (
                 <li key={flow.uid} role="tabpanel" className={"tab-pane "+className} id={flow.name}><FlowWrapper data={flow} /></li>

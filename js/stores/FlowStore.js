@@ -1,72 +1,112 @@
-define(["react", "AppDispatcher/AppDispatcher", "underscore"], function(React, AppDispatcher, _) {
+define(["react", "dispatchers/AppDispatcher", "underscore", "minivents"], function(React, AppDispatcher, _) {
 
-	var CHANGE_EVENT = 'change';
-
-	var _activities = {}; // collection of todo items
-
-	$.getJSON("../../data/activities.json", function(data){
-		_activities = data;
-		this.emit(CHANGE_EVENT);
-	});
+	var _flow = {
+        "uid": Date.now(),
+        "name": "myFlow",
+        "flow": []
+    }
 
 
-	/**
-	 * Create a TODO item.
-	 * @param {string} text The content of the TODO
-	 */
+    function insertActivity(root_uid, activity){
 
-	function create(text) { // Using the current timestamp in place of a real id.
-		var id = Date.now();
-		_todos[id] = { id: id, complete: false, text: text };
+		var elem = jQuery.extend(true, {}, activity); // Make deep copy
+		elem.type = "activity";
+		elem.uid = window.guid();
+
+		addElementToRoot(_flow, root_uid, elem);
+      	FlowStore.emitChange();
+	}
+
+	function insertFragment(root_uid, fragment){
+
+		var elem = jQuery.extend(true, {}, fragment); // Make deep copy
+		elem.type = "fragment";
+		elem.uid = window.guid();
+
+		var standardFlow = {
+          "uid": window.guid(),
+          "name": "#1",
+          "flow": []
+        }
+
+		elem.flows.push(standardFlow);
+
+		addElementToRoot(_flow, root_uid, elem);
+      	FlowStore.emitChange();
+
+      	console.log(_flow);
+	}
+
+	function addElementToRoot(root, uid, elem) {
+
+	  if(root.uid == uid){
+	  	console.log("added", elem.uid);
+	    root.flow.push(elem); // Found it!
+	    return true;
+	  } else if(root.flow) {
+	    for(var i = 0; i<root.flow.length; i++)
+	      if(root.flow[i].flows) return addElementToRoot(root.flow[i], uid, elem);
+	  } else if (root.flows) {
+	    for(var i = 0; i<root.flows.length; i++)
+	      return addElementToRoot(root.flows[i], uid, elem);
+	  }
+
+	  return false;
 	}
 
 
-	/**
-	  * Delete a TODO item.
-	  * @param {string} id
-	  */
+	function deleteElementByUid(root, uid, elem){
+		if(root.flow) { // we are in a flowWrapper
+		    for(var i = 0; i<root.flow.length; i++){
+		      if(root.flow[i].uid == uid) {
+		        console.log("deleted", uid);
+		        root.flow.splice(i,1); // delete element
 
-	function destroy(id) {
+		        FlowStore.emitChange();
 
-		delete _todos[id];
+		        return true;
+		      } else deleteElementByUid(root.flow[i], uid, elem);
+		    }
+		  } else if (root.flows) { // we are in a fragment with multiple flowWrappers
+		    for(var i = 0; i<root.flows.length; i++)
+		      deleteElementByUid(root.flows[i], uid, elem);
+		  }
+
+		  return false;
 	}
 
-	var ActivityStore = {
+	var FlowStore = {
 
-		/** * Get the entire collection of TODOs. * @return {object} */
 		getAll: function() {
-			return _todos;
+			return _flow;
 		},
 		emitChange: function() {
-			this.emit(CHANGE_EVENT);
+			//console.info('FlowStore changed', _flow);
+			this.events.emit('CHANGE');
 		},
 
-		/** * @param {function} callback */
 		addChangeListener: function(callback) {
-			this.on(CHANGE_EVENT, callback);
+			this.events.on('CHANGE', callback);
 		},
 
-		/** * @param {function} callback */
 		removeChangeListener: function(callback) {
-			this.removeListener(CHANGE_EVENT, callback);
+			this.events.off('CHANGE', callback);
 		},
+
+		events: new Events(),
 
 		dispatcherIndex: AppDispatcher.register(function(payload) {
-			var action = payload.action;
-			var text;
 
-			switch(action.actionType) {
-				case TodoConstants.TODO_CREATE:
-					text = action.text.trim();
-					if (text !== '') {
-						create(text); TodoStore.emitChange();
-					}
+			switch(payload.actionType) {
+				case "ADD_ACTIVITY":
+					insertActivity(payload.data.rootUid, payload.data.activity);
 					break;
-				case TodoConstants.TODO_DESTROY:
-					destroy(action.id);
-					TodoStore.emitChange();
+				case "ADD_FRAGMENT":
+					insertFragment(payload.data.rootUid, payload.data.fragment);
 					break;
-				// add more cases for other actionTypes, like TODO_UPDATE, etc.
+				case "DELETE_ELEMENT":
+					deleteElementByUid(_flow, payload.data.uid);
+					break;
 			}
 
 			return true; // No errors. Needed by promise in Dispatcher.
@@ -75,7 +115,7 @@ define(["react", "AppDispatcher/AppDispatcher", "underscore"], function(React, A
 	};
 	
 
-	return ActivityStore;
+	return FlowStore;
 
 
 });

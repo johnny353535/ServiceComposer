@@ -1,11 +1,15 @@
-define(["react"], function(React) {
+define(["react", "dispatchers/AppDispatcher"], function(React, AppDispatcher) {
 
   var Activity = React.createClass({
       deleteHandler: function(){
-        console.l
-            if(window.confirm("Are you sure you want to remove this activity?")) {
-                window.root.deleteElement(this.props.data.uid);
-            }
+        if(window.confirm("Are you sure you want to remove this activity?")) {
+            AppDispatcher.dispatch({
+              actionType: "DELETE_ELEMENT",
+              data: {
+                uid: this.props.data.uid
+              }
+            });
+        }
       },
       render: function() {
         return (

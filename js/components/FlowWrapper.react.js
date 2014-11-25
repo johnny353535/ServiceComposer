@@ -1,4 +1,4 @@
-define(["react", "components/Fragment", "components/Activity", "dispatchers/AppDispatcher", "underscore"], function(React, Fragment, Activity, AppDispatcher, _) {
+define(["react", "components/Fragment.react", "components/Activity.react", "dispatchers/AppDispatcher", "underscore"], function(React, Fragment, Activity, AppDispatcher, _) {
 
 	var FlowWrapper = React.createClass({
       getInitialState: function(){
@@ -32,7 +32,6 @@ define(["react", "components/Fragment", "components/Activity", "dispatchers/AppD
         );
 
         var flowElementNodes = this.props.data.flow.map(function (flowElement) {
-
 
             switch(flowElement.type){
                 case "activity":

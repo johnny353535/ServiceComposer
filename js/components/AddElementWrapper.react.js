@@ -24,11 +24,27 @@ define(["react", "dispatchers/AppDispatcher"], function(React, AppDispatcher) {
         AppDispatcher.dispatch({ actionType: 'toggleAddElementWrapper', open: false })
       },
       addActivity: function(activity){
-        window.root.insertActivity(this.state.currentRootUid, activity.id);
+
+        AppDispatcher.dispatch({
+          actionType: 'ADD_ACTIVITY',
+          data: {
+            rootUid: this.state.currentRootUid,
+            activity: activity
+          }
+        });
+
         this.emitClose();
       },
       addFragment: function(fragment){
-        window.root.insertFragment(this.state.currentRootUid, fragment.id);
+
+        AppDispatcher.dispatch({
+          actionType: 'ADD_FRAGMENT',
+          data: {
+            rootUid: this.state.currentRootUid,
+            fragment: fragment
+          }
+        });
+
         this.emitClose();
       },
       render: function() {

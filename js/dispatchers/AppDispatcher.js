@@ -1,5 +1,11 @@
 define(["flux"], function(Flux) {
 
-    return new Flux.Dispatcher();
+	var AppDispatcher = new Flux.Dispatcher();
+
+	AppDispatcher.register(function(payload){
+		//console.info("event", payload)
+	});
+
+    return AppDispatcher;
 
 })
