@@ -1,4 +1,4 @@
-define(["react", "components/AppDispatcher", "underscore"], function(React, AppDispatcher, _) {
+define(["react", "AppDispatcher/AppDispatcher", "underscore"], function(React, AppDispatcher, _) {
 
 	var CHANGE_EVENT = 'change';
 
