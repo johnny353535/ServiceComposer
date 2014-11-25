@@ -7,9 +7,7 @@ requirejs.config({
     },
     paths: {
         jquery: '../bower_components/jquery/dist/jquery',
-        html5shiv: '../bower_components/html5shiv/dist/html5shiv',
         bootstrap: '../bower_components/bootstrap/dist/js/bootstrap',
-        respond: '../bower_components/respond/dest/respond.src',
         react: '../bower_components/react/react-with-addons',
         underscore: '../bower_components/underscore/underscore',
         flux: "../bower_components/flux/dist/Flux",
@@ -21,7 +19,7 @@ requirejs.config({
 });
 
 
-require(["react", "components/MainFlow", "components/AddElementWrapper", "components/MainHeader", "flux", "jquery", "html5shiv", "respond", "plugins", "bootstrap"], function (React, MainFlow, AddElementWrapper, MainHeader, Flux) {
+require(["react", "components/MainFlow", "components/AddElementWrapper", "components/MainHeader", "flux", "jquery", "plugins", "bootstrap"], function (React, MainFlow, AddElementWrapper, MainHeader, Flux) {
 
     React.initializeTouchEvents(true);
 
