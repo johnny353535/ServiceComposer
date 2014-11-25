@@ -1,4 +1,4 @@
-define(["react", "components/FlowWrapper", "components/AddElementWrapper", "components/MainHeader", "underscore"], function(React, FlowWrapper, AddElementWrapper, MainHeader, _) {
+define(["react", "components/FlowWrapper.react", "components/AddElementWrapper.react", "components/MainHeader.react", "underscore"], function(React, FlowWrapper, AddElementWrapper, MainHeader, _) {
 
 	var MainFlow = React.createClass({
 		insertActivity: function(root_uid, activity_id){
