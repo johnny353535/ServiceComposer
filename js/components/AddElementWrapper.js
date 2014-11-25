@@ -1,4 +1,4 @@
-define(["react", "components/UiDispatcher"], function(React, UiDispatcher) {
+define(["react", "components/AppDispatcher"], function(React, AppDispatcher) {
 
 
 	var AddElementWrapper = React.createClass({
@@ -21,7 +21,7 @@ define(["react", "components/UiDispatcher"], function(React, UiDispatcher) {
         });
       },
       emitClose: function(){
-        UiDispatcher.dispatch({ actionType: 'toggleAddElementWrapper', open: false })
+        AppDispatcher.dispatch({ actionType: 'toggleAddElementWrapper', open: false })
       },
       addActivity: function(activity){
         window.root.insertActivity(this.state.currentRootUid, activity.id);
@@ -35,7 +35,7 @@ define(["react", "components/UiDispatcher"], function(React, UiDispatcher) {
 
         var _this = this;
 
-        UiDispatcher.register(
+        AppDispatcher.register(
           function(payload) {
               if (payload.actionType === 'toggleAddElementWrapper') {
                   if(payload.open) {

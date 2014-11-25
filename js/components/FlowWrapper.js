@@ -1,4 +1,4 @@
-define(["react", "components/Fragment", "components/Activity", "components/UiDispatcher", "underscore"], function(React, Fragment, Activity, UiDispatcher, _) {
+define(["react", "components/Fragment", "components/Activity", "components/AppDispatcher", "underscore"], function(React, Fragment, Activity, AppDispatcher, _) {
 
 	var FlowWrapper = React.createClass({
       getInitialState: function(){
@@ -7,7 +7,7 @@ define(["react", "components/Fragment", "components/Activity", "components/UiDis
         }
       },
       openAddElementWrapper: function(){
-        UiDispatcher.dispatch({ actionType: 'toggleAddElementWrapper', open: true, rootUid: this.props.data.uid});
+        AppDispatcher.dispatch({ actionType: 'toggleAddElementWrapper', open: true, rootUid: this.props.data.uid});
       },
       hide: function(){
         this.setState({hidden: true});
@@ -19,7 +19,7 @@ define(["react", "components/Fragment", "components/Activity", "components/UiDis
 
       	var _this = this;
 
-        UiDispatcher.register(
+        AppDispatcher.register(
             function(payload) {
                 if (payload.actionType === 'toggleAddElementWrapper') {
                     if(payload.open) {
