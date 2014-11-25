@@ -1,4 +1,4 @@
-define(["react", "components/AppDispatcher"], function(React, AppDispatcher) {
+define(["react", "dispatchers/AppDispatcher"], function(React, AppDispatcher) {
 
 
 	var AddElementWrapper = React.createClass({

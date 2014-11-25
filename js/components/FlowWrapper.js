@@ -1,4 +1,4 @@
-define(["react", "components/Fragment", "components/Activity", "components/AppDispatcher", "underscore"], function(React, Fragment, Activity, AppDispatcher, _) {
+define(["react", "components/Fragment", "components/Activity", "dispatchers/AppDispatcher", "underscore"], function(React, Fragment, Activity, AppDispatcher, _) {
 
 	var FlowWrapper = React.createClass({
       getInitialState: function(){
