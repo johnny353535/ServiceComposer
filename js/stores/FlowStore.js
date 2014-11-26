@@ -33,11 +33,11 @@ define(["react", "dispatchers/AppDispatcher", "underscore", "minivents"], functi
 
 		addElementToRoot(_flow, root_uid, elem);
       	FlowStore.emitChange();
-
-      	console.log(_flow);
 	}
 
 	function addElementToRoot(root, uid, elem) {
+
+		console.log(root)
 
 	  if(root.uid == uid){
 	  	console.log("added", elem.uid);
@@ -45,10 +45,10 @@ define(["react", "dispatchers/AppDispatcher", "underscore", "minivents"], functi
 	    return true;
 	  } else if(root.flow) {
 	    for(var i = 0; i<root.flow.length; i++)
-	      if(root.flow[i].flows) return addElementToRoot(root.flow[i], uid, elem);
+	      if(root.flow[i].flows) addElementToRoot(root.flow[i], uid, elem);
 	  } else if (root.flows) {
 	    for(var i = 0; i<root.flows.length; i++)
-	      return addElementToRoot(root.flows[i], uid, elem);
+	      addElementToRoot(root.flows[i], uid, elem);
 	  }
 
 	  return false;
