@@ -1,5 +1,14 @@
 define(["react", "components/Fragment.react", "components/Activity.react", "dispatchers/AppDispatcher", "underscore"], function(React, Fragment, Activity, AppDispatcher, _) {
 
+  function hide(){
+    FlowWrapper.hide();
+  }
+
+  function show(){
+    FlowWrapper.show();
+  }
+
+
 	var FlowWrapper = React.createClass({
       getInitialState: function(){
         return {
@@ -15,21 +24,23 @@ define(["react", "components/Fragment.react", "components/Activity.react", "disp
       show: function(){
         this.setState({hidden: false});
       },
-      render: function() {
-
-      	var _this = this;
-
-        AppDispatcher.register(
+      dispatcherIndex: AppDispatcher.register(
             function(payload) {
                 if (payload.actionType === 'toggleAddElementWrapper') {
                     if(payload.open) {
-                      _this.hide();
+                      hide();
                     } else {
-                      _this.show();
+                      show();
                     }
                 }
             }
-        );
+        ),
+      componentWillUnmount: function() {
+        AppDispatcher.unregister(this.dispatcherIndex);
+      },
+      render: function() {
+
+      	var _this = this;
 
         var flowElementNodes = this.props.data.flow.map(function (flowElement) {
 
@@ -60,7 +71,7 @@ define(["react", "components/Fragment.react", "components/Activity.react", "disp
               <ul>
                 {flowElementNodes}
               </ul>
-              <div className="flowControl panel panel-default" onClick={this.openAddElementWrapper}><span className="glyphicon glyphicon-plus"></span></div>
+              <div className="flowControl panel panel-default btn btn-default" onClick={this.openAddElementWrapper}><span className="glyphicon glyphicon-plus"></span></div>
           </div>
         );
       }
