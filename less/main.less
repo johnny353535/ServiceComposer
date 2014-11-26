@@ -120,6 +120,7 @@ header.mainHeader {
 
 	
 	.flowControl {
+		width: 100%;
 		padding: 10px;
 		text-align: center;
 		border-style: dashed;
@@ -216,16 +217,14 @@ header.mainHeader {
 
 
 .mobile-nav-tabs.nav-tabs {
-	margin-bottom: 0;
+
 	display: inline-block;
+	position: relative;
 	width: 100%;
-	margin-bottom: -4px;
+
 	margin-top: 6px;
-
-	li:first-child {
-		margin-left: 10px;
-	}
-
+	margin-bottom: -4px;
+	padding: 0 10px;
 
 	&>li {
 
@@ -248,6 +247,12 @@ header.mainHeader {
 		.badge.empty {
 			background-color: red;
 		}
+	}
+
+	.addConditionalBranch {
+		position: absolute;
+		right: 10px;
+		top: 4px;
 	}
 }
 
