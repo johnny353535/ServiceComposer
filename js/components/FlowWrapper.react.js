@@ -63,11 +63,13 @@ define(["react", "components/Fragment.react", "components/Activity.react", "disp
         var cx = React.addons.classSet;
         var classes = cx({
           'flowWrapper': true,
-          'hidden': this.state.hidden
+          'hidden': this.state.hidden,
+          'isEmpty': !flowElementNodes.length
         });
 
         return (
           <div className={classes}>
+              <p className="empty">This conditional branch is empty</p>
               <ul>
                 {flowElementNodes}
               </ul>

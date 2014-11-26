@@ -102,6 +102,23 @@ header.mainHeader {
 		pointer-events: none;
 	}
 
+	&>.empty {
+		display: none;
+
+		margin: 5px 0 15px 0;
+
+		text-align: center;
+		font-weight: lighter;
+		font-size: 90%;
+		color: #aaa;
+	}
+
+	&.isEmpty {
+		&>.empty {
+			display: block;
+		}
+	}
+
 
 	&>ul {
 	
