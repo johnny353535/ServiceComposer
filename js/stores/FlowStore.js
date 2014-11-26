@@ -6,6 +6,19 @@ define(["react", "dispatchers/AppDispatcher", "underscore", "minivents"], functi
         "flow": []
     }
 
+    // Testdata
+    _flow = {"uid":1417008370951,"name":"Homecoming","flow":[{"id":"aj9d0ajsd09a","name":"Light","description":"Turn light on","url":"","type":"activity","uid":"ee1bfa08376bf242"},{"id":"conditional","type":"fragment","fragmentType":"conditional","name":"Conditional","condition":"x > 42","description":"Executes encapsulated activities based on a given condition","glyphicon":"glyphicon-question-sign","flows":[{"uid":"965d00576be41d7c","name":"q965d00576be41d7c","flow":[]}],"uid":"28750ae1918926f1"},{"id":"aj9d0ajsd09a","name":"Light","description":"Turn light on","url":"","type":"activity","uid":"8742a9b2d0282678"}]};
+
+    function getFlow(){
+    	var uid = window.guid();
+
+    	return {
+          "uid": uid,
+          "name": uid,
+          "type": "flow",
+          "flow": []
+        }
+    }
 
     function insertActivity(root_uid, activity){
 
@@ -23,11 +36,7 @@ define(["react", "dispatchers/AppDispatcher", "underscore", "minivents"], functi
 		elem.type = "fragment";
 		elem.uid = window.guid();
 
-		var standardFlow = {
-          "uid": window.guid(),
-          "name": "#1",
-          "flow": []
-        }
+		var standardFlow = getFlow();
 
 		elem.flows.push(standardFlow);
 
@@ -35,20 +44,26 @@ define(["react", "dispatchers/AppDispatcher", "underscore", "minivents"], functi
       	FlowStore.emitChange();
 	}
 
-	function addElementToRoot(root, uid, elem) {
+	function insertFlow(root_uid){
 
-		console.log(root)
+		addElementToRoot(_flow, root_uid, getFlow(), true);
+      	FlowStore.emitChange();
+	}
+
+	function addElementToRoot(root, uid, elem, addFlow) {
 
 	  if(root.uid == uid){
 	  	console.log("added", elem.uid);
-	    root.flow.push(elem); // Found it!
+	  	if(addFlow)
+	     root.flows.push(elem);
+	 	else root.flow.push(elem);
 	    return true;
 	  } else if(root.flow) {
 	    for(var i = 0; i<root.flow.length; i++)
-	      if(root.flow[i].flows) addElementToRoot(root.flow[i], uid, elem);
+	      if(root.flow[i].flows) addElementToRoot(root.flow[i], uid, elem, addFlow);
 	  } else if (root.flows) {
 	    for(var i = 0; i<root.flows.length; i++)
-	      addElementToRoot(root.flows[i], uid, elem);
+	      addElementToRoot(root.flows[i], uid, elem, addFlow);
 	  }
 
 	  return false;
@@ -74,6 +89,7 @@ define(["react", "dispatchers/AppDispatcher", "underscore", "minivents"], functi
 
 		  return false;
 	}
+
 
 	var FlowStore = {
 
@@ -103,6 +119,9 @@ define(["react", "dispatchers/AppDispatcher", "underscore", "minivents"], functi
 					break;
 				case "ADD_FRAGMENT":
 					insertFragment(payload.data.rootUid, payload.data.fragment);
+					break;
+				case "ADD_FLOW":
+					insertFlow(payload.data.rootUid);
 					break;
 				case "DELETE_ELEMENT":
 					deleteElementByUid(_flow, payload.data.uid);

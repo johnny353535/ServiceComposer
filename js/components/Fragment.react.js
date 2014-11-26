@@ -12,6 +12,14 @@ define(["react", "require", "dispatchers/AppDispatcher"], function(React, requir
                 });
             }
         },
+        addFlowHandler: function(){
+            AppDispatcher.dispatch({
+              actionType: "ADD_FLOW",
+              data: {
+                rootUid: this.props.data.uid
+              }
+            });
+        },
       render: function() {
 
         var FlowWrapper = require("components/FlowWrapper.react");
@@ -66,6 +74,9 @@ define(["react", "require", "dispatchers/AppDispatcher"], function(React, requir
                 {/*Tab navigation*/}
                 <ul className="nav nav-tabs mobile-nav-tabs" role="tablist">
                     {fragmentTabNav}
+                    <button type="button" className="btn btn-default btn-sm addConditionalBranch" onClick={this.addFlowHandler}>
+                      <span className="glyphicon glyphicon-plus"></span>
+                    </button>
                 </ul>
                 {/* Tab contents */}
                 <ul className="tab-content mobile-nav-content">
