@@ -21,7 +21,7 @@ define(["react", "dispatchers/AppDispatcher"], function(React, AppDispatcher) {
         });
       },
       emitClose: function(){
-        AppDispatcher.dispatch({ actionType: 'toggleAddElementWrapper', open: false })
+        AppDispatcher.dispatch({ actionType: 'TOGGLE_ADDELEMENTWRAPPER', open: false })
       },
       addActivity: function(activity){
 
@@ -53,7 +53,7 @@ define(["react", "dispatchers/AppDispatcher"], function(React, AppDispatcher) {
 
         AppDispatcher.register(
           function(payload) {
-              if (payload.actionType === 'toggleAddElementWrapper') {
+              if (payload.actionType === 'TOGGLE_ADDELEMENTWRAPPER') {
                   if(payload.open) {
                     _this.open(payload.rootUid);
                   } else {
