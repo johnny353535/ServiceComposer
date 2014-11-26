@@ -4,7 +4,7 @@
       "type":"fragment",
       "fragmentType":"conditional",
       "name":"Conditional",
-      "condition":"x > 42",
+      "condition":"Weather",
       "description":"Executes encapsulated activities based on a given condition",
       "glyphicon": "glyphicon-question-sign",
       "flows":[ 
