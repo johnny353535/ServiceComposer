@@ -36,9 +36,9 @@ define(["react", "dispatchers/AppDispatcher", "underscore", "minivents"], functi
 		elem.type = "fragment";
 		elem.uid = window.guid();
 
-		var standardFlow = getFlow();
+		// var standardFlow = getFlow();
 
-		elem.flows.push(standardFlow);
+		// elem.flows.push(standardFlow);
 
 		addElementToRoot(_flow, root_uid, elem);
       	FlowStore.emitChange();
