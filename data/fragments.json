@@ -32,5 +32,34 @@
       "flows":[  
 
       ]
+   },
+   {  
+      "id":"weather",
+      "type":"fragment",
+      "fragmentType":"conditional",
+      "name":"Weather",
+      "description":"Reacts based on the weather condition",
+      "glyphicon": "glyphicon-cloud",
+      "conditions": [
+         {
+            "name": "sunny",
+            "icon": "glyphicon-certificate"
+         },
+         {
+            "name": "cloudy",
+            "icon": "glyphicon-cloud"
+         },
+         {
+            "name": "rainy",
+            "icon": "glyphicon-tint"
+         },
+         {
+            "name": "windy",
+            "icon": "glyphicon-flag"
+         }
+      ],
+      "flows":[  
+
+      ]
    }
 ]
