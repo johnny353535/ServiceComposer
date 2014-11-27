@@ -17,9 +17,11 @@ define(["react", "components/Fragment.react", "components/Activity.react", "disp
       },
       openAddElementWrapper: function(){
         AppDispatcher.dispatch({
-          actionType: 'TOGGLE_ADDELEMENTWRAPPER',
-          open: true,
-          rootUid: this.props.data.uid
+          actionType: 'TOGGLE_SLIDE',
+          data: {
+            open: true,
+            rootUid: this.props.data.uid
+          }
         });
       },
       hide: function(){
@@ -34,8 +36,8 @@ define(["react", "components/Fragment.react", "components/Activity.react", "disp
 
         this.dispatcherIndex = AppDispatcher.register(
           function(payload) {
-              if (payload.actionType === 'TOGGLE_ADDELEMENTWRAPPER') {
-                  if(payload.open) {
+              if (payload.actionType === 'TOGGLE_SLIDE') {
+                  if(payload.data.open) {
                     _this.hide();
                   } else {
                     _this.show();
@@ -78,7 +80,7 @@ define(["react", "components/Fragment.react", "components/Activity.react", "disp
 
         return (
           <div className={classes}>
-              <p className="empty">This conditional branch is empty</p>
+              <p className="empty">This branch is empty</p>
               <ul>
                 {flowElementNodes}
               </ul>

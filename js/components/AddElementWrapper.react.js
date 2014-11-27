@@ -4,26 +4,36 @@ define(["react", "dispatchers/AppDispatcher"], function(React, AppDispatcher) {
 	var AddElementWrapper = React.createClass({
       getInitialState: function(){
         return {
-          active: false,
-          currentRootUid: null
+          currentRootUid: this.props.data.rootUid,
+          activities: [],
+          fragments: []
         };
       },
-      open: function(root_uid){
-        this.setState({
-          active: true,
-          currentRootUid: root_uid
-        });
-      },
-      close: function(){
-        this.setState({
-          active: false,
-          currentRootUid: null
+      componentDidMount: function () {
+
+        var _this = this;
+
+        var url_activities = "data/activities.json";
+        var url_fragments = "data/fragments.json";
+
+        $.when(
+            $.getJSON(url_activities),
+            $.getJSON(url_fragments)
+        ).done(function(activities, fragments) {
+            _this.setState({
+              "activities": activities[0],
+              "fragments": fragments[0]
+            });
         });
       },
       emitClose: function(){
-        AppDispatcher.dispatch({ actionType: 'TOGGLE_ADDELEMENTWRAPPER', open: false })
+        AppDispatcher.dispatch({
+          actionType: 'TOGGLE_SLIDE',
+          data: { open: false }
+        });
       },
       addActivity: function(activity){
+        console.log('add')
 
         AppDispatcher.dispatch({
           actionType: 'ADD_ACTIVITY',
@@ -51,18 +61,7 @@ define(["react", "dispatchers/AppDispatcher"], function(React, AppDispatcher) {
 
         var _this = this;
 
-        AppDispatcher.register(
-          function(payload) {
-              if (payload.actionType === 'TOGGLE_ADDELEMENTWRAPPER') {
-                  if(payload.open) {
-                    _this.open(payload.rootUid);
-                  } else {
-                    _this.close();
-                  }
-              }
-          })
-
-        var activities = this.props.activities.map(function (activity) {
+        var activities = this.state.activities.map(function (activity) {
 
             return (
               <li key={activity.id} className="media" onClick={_this.addActivity.bind(null, activity)}>
@@ -77,7 +76,7 @@ define(["react", "dispatchers/AppDispatcher"], function(React, AppDispatcher) {
             )
         });
 
-        var fragments = this.props.fragments.map(function (fragment) {
+        var fragments = this.state.fragments.map(function (fragment) {
 
             return (
               <li key={fragment.id} className="media" onClick={_this.addFragment.bind(null, fragment)}>
@@ -92,14 +91,9 @@ define(["react", "dispatchers/AppDispatcher"], function(React, AppDispatcher) {
             )
         });
 
-        var cx = React.addons.classSet;
-        var classes = cx({
-          'addElementWrapper': true,
-          'active': this.state.active
-        });
 
         return (
-          <div className={classes}>
+          <div className="addElementWrapper">
               <div className="navWrapper">
                   <ul className="nav nav-tabs mobile-nav-tabs" role="tablist">
                       <li role="presentation" className="active"><a href="#activities" role="tab" data-toggle="tab">
@@ -108,7 +102,7 @@ define(["react", "dispatchers/AppDispatcher"], function(React, AppDispatcher) {
                       <li role="presentation">
                           <a href="#fragments" role="tab" data-toggle="tab"><span className="glyphicon glyphicon-list-alt"></span>Fragments</a>
                       </li>
-                      <button type="button" className="btn btn-default" id="closeAddElementWrapper" onClick={this.  emitClose}><span className="glyphicon glyphicon-remove"></span></button>
+                      <button type="button" className="btn btn-default" id="closeAddElementWrapper" onClick={this.emitClose}><span className="glyphicon glyphicon-remove"></span></button>
                   </ul>
                   <div className="tab-content mobile-nav-content">
                       <div role="tabpanel" className="tab-pane active" id="activities">
