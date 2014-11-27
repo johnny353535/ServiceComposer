@@ -66,11 +66,11 @@ define(["react", "require", "dispatchers/AppDispatcher"], function(React, requir
                 <h3 className="panel-title">{this.props.data.name}</h3>
                 <span className="glyphicon glyphicon-trash button-delete" onClick={this.deleteHandler}></span>
             </div>
-            <div className="condition condition-top"><span>{this.props.data.condition}</span></div>
             <div className="panel-body">
                 <div>{this.props.data.description}</div>
             </div>
             <div className="fragmentWrapper">
+
                 {/*Tab navigation*/}
                 <ul className="nav nav-tabs mobile-nav-tabs" role="tablist">
                     {fragmentTabNav}
