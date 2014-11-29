@@ -3,6 +3,7 @@ define(["react", "dispatchers/AppDispatcher"], function(React, AppDispatcher) {
 
 	var AddElementWrapper = React.createClass({
       getInitialState: function(){
+        console.log(this.props.data.rootUid)
         return {
           currentRootUid: this.props.data.rootUid,
           activities: [],
@@ -24,12 +25,6 @@ define(["react", "dispatchers/AppDispatcher"], function(React, AppDispatcher) {
               "activities": activities[0],
               "fragments": fragments[0]
             });
-        });
-      },
-      emitClose: function(){
-        AppDispatcher.dispatch({
-          actionType: 'TOGGLE_SLIDE',
-          data: { open: false }
         });
       },
       addActivity: function(activity){
@@ -102,7 +97,6 @@ define(["react", "dispatchers/AppDispatcher"], function(React, AppDispatcher) {
                       <li role="presentation">
                           <a href="#fragments" role="tab" data-toggle="tab"><span className="glyphicon glyphicon-list-alt"></span><span className="tabName">Fragments</span></a>
                       </li>
-                      <button type="button" className="btn btn-default" id="closeAddElementWrapper" onClick={this.emitClose}><span className="glyphicon glyphicon-remove"></span></button>
                   </ul>
                   <div className="tab-content mobile-nav-content">
                       <div role="tabpanel" className="tab-pane active" id="activities">

@@ -20,6 +20,7 @@ define(["react", "components/Fragment.react", "components/Activity.react", "disp
         actionType: 'TOGGLE_SLIDE',
         data: {
           open: true,
+          type: "AddElement",
           rootUid: this.props.data.uid
         }
       });

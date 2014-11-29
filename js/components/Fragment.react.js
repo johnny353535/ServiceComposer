@@ -20,6 +20,15 @@ define(["react", "require", "dispatchers/AppDispatcher"], function(React, requir
               }
             });
         },
+        addFlowDialog: function(){
+            AppDispatcher.dispatch({
+                actionType: 'TOGGLE_SLIDE',
+                data: {
+                  open: true,
+                  type: "WeatherConfig"
+                }
+              });
+        },
       render: function() {
 
         var FlowWrapper = require("components/FlowWrapper.react");
@@ -74,7 +83,7 @@ define(["react", "require", "dispatchers/AppDispatcher"], function(React, requir
                 {/*Tab navigation*/}
                 <ul className="nav nav-tabs mobile-nav-tabs" role="tablist">
                     {fragmentTabNav}
-                    <button type="button" className="btn btn-default btn-sm addConditionalBranch" onClick={this.addFlowHandler}>
+                    <button type="button" className="btn btn-default btn-sm addConditionalBranch" onClick={this.addFlowDialog}>
                       <span className="glyphicon glyphicon-plus"></span>
                     </button>
                 </ul>

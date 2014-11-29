@@ -330,25 +330,6 @@ header.mainHeader {
 
 .addElementWrapper {
 	height: 100%;
-
-	.navWrapper {	
-
-		border: 1px solid #ddd;
-		border-bottom: 0;
-
-		background-color: #f7f7f9;
-
-		border-radius: 4px 4px 0 0;
-
-		width: 100%;
-		height: 100%;
-
-
-		#closeAddElementWrapper {
-			float: right;
-			margin-right: 10px;
-		}
-	}
 }
 
 
@@ -356,6 +337,13 @@ header.mainHeader {
 
 	display: inline-block;
 	position: fixed;
+
+	border: 1px solid #ddd;
+	border-bottom: 0;
+
+	background-color: #f7f7f9;
+
+	border-radius: 4px 4px 0 0;
 
 	height: 100%;
 
@@ -379,6 +367,11 @@ header.mainHeader {
 
 	&.slide-leave-active {
 		top: 100%;
+	}
+
+	.closeSlide {
+		float: right;
+		margin: 10px;
 	}
 }
 
