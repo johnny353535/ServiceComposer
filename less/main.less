@@ -259,6 +259,23 @@ header.mainHeader {
 			font-weight: bold;
 		}
 
+		.tabName {
+			display: inline-block;
+			margin-bottom: -4px;
+			
+			&.short {
+				overflow: hidden;
+				//text-overflow: ellipsis;
+				max-width: 60px;
+				margin-bottom: -6px;
+			}
+		}
+
+		.badge {
+			vertical-align: top;
+			margin-left: 6px;
+		}
+
 		.badge.empty {
 			background-color: red;
 		}

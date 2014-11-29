@@ -32,7 +32,7 @@ define(["react", "require", "dispatchers/AppDispatcher"], function(React, requir
 
             return (
               <li key={flow.name} role="presentation" className={className}>
-                <a href={"#"+flow.name} role="tab" data-toggle="tab">{flow.name} <span className={!flow.flow.length ? "badge empty" : "badge"}>{flow.flow.length}</span></a>
+                <a href={"#"+flow.name} role="tab" data-toggle="tab"><span className="tabName short">{flow.name}</span><span className={!flow.flow.length ? "badge empty" : "badge"}>{flow.flow.length}</span></a>
               </li>
             );
         });

@@ -97,10 +97,10 @@ define(["react", "dispatchers/AppDispatcher"], function(React, AppDispatcher) {
               <div className="navWrapper">
                   <ul className="nav nav-tabs mobile-nav-tabs" role="tablist">
                       <li role="presentation" className="active"><a href="#activities" role="tab" data-toggle="tab">
-                          <span className="glyphicon glyphicon-cog"></span>Activities</a>
+                          <span className="glyphicon glyphicon-cog"></span><span className="tabName">Activities</span></a>
                       </li>
                       <li role="presentation">
-                          <a href="#fragments" role="tab" data-toggle="tab"><span className="glyphicon glyphicon-list-alt"></span>Fragments</a>
+                          <a href="#fragments" role="tab" data-toggle="tab"><span className="glyphicon glyphicon-list-alt"></span><span className="tabName">Fragments</span></a>
                       </li>
                       <button type="button" className="btn btn-default" id="closeAddElementWrapper" onClick={this.emitClose}><span className="glyphicon glyphicon-remove"></span></button>
                   </ul>
