@@ -1,5 +1,7 @@
 define(["react", "components/FlowWrapper.react", "components/Slide.react", "components/MainHeader.react", "stores/FlowStore", "dispatchers/AppDispatcher", "underscore"], function(React, FlowWrapper, Slide, MainHeader, FlowStore, AppDispatcher, _) {
 
+	var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
+
 	var MainFlow = React.createClass({
 		getInitialState: function(){
 			return {
@@ -47,14 +49,16 @@ define(["react", "components/FlowWrapper.react", "components/Slide.react", "comp
 
 			
 
-	        var slide = this.state.slide ? <Slide data={this.state.slide} /> : null;
+	        var slide = this.state.slide ? <Slide key="slide" data={this.state.slide} /> : null;
 
 			return(
 				<div id="mainWrapper" className="mainWrapper">
             		<MainHeader title={this.props.data.name}/>
             	<div id="contentWrapper" className="contentWrapper">
 					<FlowWrapper key={this.props.data.uid} data = {this.props.data} />
-					{slide}
+					<ReactCSSTransitionGroup transitionName="slide">
+						{slide}
+					</ReactCSSTransitionGroup>
 				</div>
           	</div>
 				
