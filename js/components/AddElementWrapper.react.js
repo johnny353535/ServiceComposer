@@ -52,6 +52,12 @@ define(["react", "dispatchers/AppDispatcher"], function(React, AppDispatcher) {
 
         this.emitClose();
       },
+      emitClose: function(){
+        AppDispatcher.dispatch({
+          actionType: 'TOGGLE_SLIDE',
+          data: { open: false }
+        });
+      },
       render: function() {
 
         var _this = this;
