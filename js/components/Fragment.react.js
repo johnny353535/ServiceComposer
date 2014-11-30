@@ -69,14 +69,14 @@ define(["react", "require", "dispatchers/AppDispatcher"], function(React, requir
         });
 
         return (
-          <div className={"flowElement fragment panel "+classes}>
-            <div className="panel-heading">
+          <div className={"flowElement fragment "+classes}>
+            <header>
                 <span className={"glyphicon "+glyphicon}></span>
-                <h3 className="panel-title">{this.props.data.name}</h3>
+                <h2 className="panel-title">{this.props.data.name}</h2>
                 <span className="glyphicon glyphicon-trash button-delete" onClick={this.deleteHandler}></span>
-            </div>
-            <div className="panel-body">
-                <div>{this.props.data.description}</div>
+            </header>
+            <div className="content">
+                <p>{this.props.data.description}</p>
             </div>
             <div className="fragmentWrapper">
 

@@ -85,7 +85,7 @@ define(["react", "components/Fragment.react", "components/Activity.react", "disp
             <ul>
               {flowElementNodes}
             </ul>
-            <div className="flowControl panel panel-default btn btn-default" onClick={this.openAddElementWrapper}><span className="glyphicon glyphicon-plus"></span></div>
+            <div className="flowControl" onClick={this.openAddElementWrapper}><span className="glyphicon glyphicon-plus"></span></div>
         </div>
       );
     }

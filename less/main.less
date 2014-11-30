@@ -1,6 +1,7 @@
 // Your styles here
 
 @base-color: rgb(51, 51, 51);
+@base-color: white;
 
 
 * {
@@ -20,6 +21,11 @@ body {
 
 section {
 	position: relative;
+}
+
+p {
+	color: rgb(51, 51, 51);
+	margin: 0;
 }
 
 
@@ -42,8 +48,6 @@ header.mainHeader {
 		margin: 0;
 		line-height: 30px;
 		display: inline-block;
-
-		color: white;
 	}
 
 	.navBtnWrapper {
@@ -85,15 +89,21 @@ header.mainHeader {
 	padding-top: 50px;
 	height: 100%;
 	overflow-y: scroll;
+
+	background-color: #f7f7f9;
 }
 
 .contentWrapper>.flowWrapper:first-child {
 	background-color: white;
 }
 
+.contentWrapper>.flowWrapper {
+	padding: 0;
+}
+
 .flowWrapper {
 
-	padding: 15px 10px;
+	padding: 20px;
 
 	transition: 0.3s opacity;
 
@@ -110,7 +120,6 @@ header.mainHeader {
 		text-align: center;
 		font-weight: lighter;
 		font-size: 90%;
-		color: #aaa;
 	}
 
 	&.isEmpty {
@@ -128,7 +137,7 @@ header.mainHeader {
 		list-style: none;
 
 		&>li:last-child {
-			&>.flowElement {
+			&>li {
 				//margin-bottom: 0;
 			}
 		}
@@ -148,26 +157,65 @@ header.mainHeader {
 
 
 .flowElement {
-	margin-bottom: 15px;
 
-	.panel-heading {
+	color: white;
 
-		.panel-title {
-			display: inline-block;
-		}
+	margin-bottom: 0;
+	border-radius: 0;
+	border: 0;
+
+	background-color: blue;
+
+	position: relative;
+
+	header {
+
+		padding: 20px;
+		padding-bottom: 10px;
+
+		color: white;
 
 		.glyphicon {
-			color: inherit;
 			margin-right: 6px;
+			color: inherit;
+		}
+
+		h2 {
+			display: inline-block;
+			margin: 0;
+			color: inherit;
+
+			font-size: 18px;
 		}
 
 		.button-delete {
 			float: right;
-			margin: 0;
-			color: @base-color;
+			color: inherit;
 		}
 	}
+
+	.content {
+		padding: 20px;
+		padding-top: 10px;
+	}
 }
+
+
+.flowElement:after {
+	top: 100%;
+	left: 50%;
+	border: solid transparent;
+	content: " ";
+	height: 0;
+	width: 0;
+	position: absolute;
+	pointer-events: none;
+	border-top-color: inherit;
+	border-width: 12px;
+	margin-left: -12px;
+	z-index: 1;
+}
+
 
 .activity {
 
@@ -182,6 +230,10 @@ header.mainHeader {
 
 			li.active>a {
 				background-color: #f7f7f9;
+			}
+
+			.btn {
+				border:0;
 			}
 		}
 
@@ -227,6 +279,50 @@ header.mainHeader {
 
 }
 
+li:nth-child(1) .flowElement {
+	background-color: #5cb85c;
+	border-color: #5cb85c;
+
+	.mobile-nav-tabs.nav-tabs > li, .flowWrapper, .btn {
+		background-color: #4cae4c;
+	}
+}
+
+li:nth-child(2) .flowElement {
+	background-color: #5bc0de;
+	border-color: #5bc0de;
+
+	.mobile-nav-tabs.nav-tabs > li, .flowWrapper, .btn {
+		background-color: #46b8da;
+	}
+}
+
+li:nth-child(3) .flowElement {
+	background-color: #f0ad4e;
+	border-color: #f0ad4e;
+
+	.mobile-nav-tabs.nav-tabs > li, .flowWrapper, .btn {
+		background-color: #eea236;
+	}
+}
+
+li:nth-child(4) .flowElement {
+	background-color: #d9534f;
+	border-color: #d9534f;
+
+	.mobile-nav-tabs.nav-tabs > li, .flowWrapper, .btn {
+		background-color: #d43f3a;
+	}
+}
+
+li:nth-child(5) .flowElement {
+	background-color: #337ab7;
+	border-color: #337ab7;
+
+	.mobile-nav-tabs.nav-tabs > li, .flowWrapper, .btn {
+		background-color: #2e6da4;
+	}
+}
 
 
 .mobile-nav-tabs.nav-tabs {
@@ -235,18 +331,20 @@ header.mainHeader {
 	position: relative;
 	width: 100%;
 
-	height: 44px;
-
-	margin-top: 6px;
-	margin-bottom: -4px;
-	padding: 0 10px;
+	padding: 0 14px;
+	border: 0;
 
 	&>li {
 
 		display: inline-block;
+		background-color: inherit;
+
+		padding: 10px 14px;
 
 		&>a {
 			text-decoration: none;
+			background-color: inherit;
+			border: 0;
 
 			.glyphicon {
 				color: inherit;
@@ -257,6 +355,7 @@ header.mainHeader {
 		&.active>a {
 			color: @base-color;
 			font-weight: bold;
+			background-color: inherit !important;
 		}
 
 		.tabName {
@@ -266,7 +365,7 @@ header.mainHeader {
 			&.short {
 				overflow: hidden;
 				//text-overflow: ellipsis;
-				max-width: 60px;
+				//max-width: 60px;
 				margin-bottom: -6px;
 			}
 		}
@@ -283,7 +382,7 @@ header.mainHeader {
 
 	.addConditionalBranch {
 		position: absolute;
-		right: 10px;
+		right: 14px;
 		top: 4px;
 	}
 }
@@ -291,6 +390,8 @@ header.mainHeader {
 .mobile-nav-content.tab-content {
 	background-color: #f7f7f9;
 	padding: 0;
+
+	border: 0;
 
 	.tab-pane {
 

@@ -13,16 +13,16 @@ define(["react", "dispatchers/AppDispatcher"], function(React, AppDispatcher) {
       },
       render: function() {
         return (
-          <div className="flowElement activity panel panel-default">
-            <div className="panel-heading">
+          <div className={"flowElement activity"}>
+            <header>
                 <span className="glyphicon glyphicon-cog"></span>
-                <h3 className="panel-title">{this.props.data.name}</h3>
+                <h2 className="panel-title">{this.props.data.name}</h2>
                 <span className="glyphicon glyphicon-trash button-delete" onClick={this.deleteHandler}></span>
+            </header>
+            <div className="content">
+                <p>{this.props.data.description}</p>
             </div>
-            <div className="panel-body">
-                {this.props.data.description}
-            </div>
-          </div>
+        </div>
         );
       }
     });
