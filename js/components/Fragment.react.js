@@ -83,9 +83,7 @@ define(["react", "require", "dispatchers/AppDispatcher"], function(React, requir
                 {/*Tab navigation*/}
                 <ul className="nav nav-tabs mobile-nav-tabs" role="tablist">
                     {fragmentTabNav}
-                    <button type="button" className="btn btn-default btn-sm addConditionalBranch" onClick={this.addFlowDialog}>
-                      <span className="glyphicon glyphicon-plus"></span>
-                    </button>
+                    <span className="btn glyphicon glyphicon-plus addConditionalBranch" onClick={this.addFlowDialog}></span>
                 </ul>
                 {/* Tab contents */}
                 <ul className="tab-content mobile-nav-content">
