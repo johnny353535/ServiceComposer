@@ -1,7 +1,13 @@
 // Your styles here
 
-@base-color: rgb(51, 51, 51);
 @base-color: white;
+
+@black: rgb(51, 51, 51);
+@green: rgb(76, 174, 76);
+@light-blue: rgb(70, 184, 218);
+@orange: rgb(238, 162, 54);
+@red: rgb(212, 63, 58);
+@blue: rgb(46, 109, 164);
 
 
 * {
@@ -32,13 +38,13 @@ p {
 header.mainHeader {
 
 	text-align: center;
-	padding: 10px;
+	padding: 20px;
 
 	position: fixed;
 	width: 100%;
 	z-index: 1;
 
-	background-color: #337ab7;
+	background-color: lighten(@black, 8%);
 
 	div {
 		display: inline-block;
@@ -46,8 +52,8 @@ header.mainHeader {
 
 	.title {
 		margin: 0;
-		line-height: 30px;
 		display: inline-block;
+		line-height: 20px;
 	}
 
 	.navBtnWrapper {
@@ -86,7 +92,7 @@ header.mainHeader {
 	position: relative;
 	overflow: hidden;
 
-	padding-top: 50px;
+	padding-top: 60px;
 	height: 100%;
 	overflow-y: scroll;
 
@@ -146,12 +152,14 @@ header.mainHeader {
 
 	
 	.flowControl {
+		background-color: lighten(@black, 10%);
+
 		width: 100%;
-		padding: 10px;
+		padding: 20px;
 		text-align: center;
-		border-style: dashed;
 		border-width: 1px;
 		margin-bottom: 0;
+		
 	}
 }
 
@@ -171,7 +179,6 @@ header.mainHeader {
 	header {
 
 		padding: 20px;
-		padding-bottom: 10px;
 
 		color: white;
 
@@ -186,17 +193,23 @@ header.mainHeader {
 			color: inherit;
 
 			font-size: 18px;
+			line-height: 20px;
+		}
+
+		.button-configure {
+			float: right;
+			margin-right: 10px;
 		}
 
 		.button-delete {
 			float: right;
-			color: inherit;
+			margin: 0;
 		}
 	}
 
 	.content {
 		padding: 20px;
-		padding-top: 10px;
+		padding-top: 0px;
 	}
 }
 
@@ -279,48 +292,69 @@ header.mainHeader {
 
 }
 
-li:nth-child(1) .flowElement {
-	background-color: #5cb85c;
-	border-color: #5cb85c;
 
-	.mobile-nav-tabs.nav-tabs > li, .flowWrapper, .btn {
-		background-color: #4cae4c;
+li:nth-child(1) .flowElement {
+	background-color: @green;
+	border-color: @green;
+
+	.flowControl {
+		background-color: @green;
+	}
+
+	.mobile-nav-tabs.nav-tabs > li, .flowWrapper {
+		background-color: lighten(@green, 8%);
 	}
 }
 
 li:nth-child(2) .flowElement {
-	background-color: #5bc0de;
-	border-color: #5bc0de;
+	background-color: @light-blue;
+	border-color: @light-blue;
 
-	.mobile-nav-tabs.nav-tabs > li, .flowWrapper, .btn {
-		background-color: #46b8da;
+	.flowControl {
+		background-color: @light-blue;
+	}
+
+	.mobile-nav-tabs.nav-tabs > li, .flowWrapper {
+		background-color: lighten(@light-blue, 8%);
 	}
 }
 
 li:nth-child(3) .flowElement {
-	background-color: #f0ad4e;
-	border-color: #f0ad4e;
+	background-color: @orange;
+	border-color: @orange;
 
-	.mobile-nav-tabs.nav-tabs > li, .flowWrapper, .btn {
-		background-color: #eea236;
+	.flowControl {
+		background-color: @orange;
+	}
+
+	.mobile-nav-tabs.nav-tabs > li, .flowWrapper {
+		background-color: lighten(@orange, 8%);
 	}
 }
 
 li:nth-child(4) .flowElement {
-	background-color: #d9534f;
-	border-color: #d9534f;
+	background-color: @red;
+	border-color: @red;
 
-	.mobile-nav-tabs.nav-tabs > li, .flowWrapper, .btn {
-		background-color: #d43f3a;
+	.flowControl {
+		background-color: @orange;
+	}
+
+	.mobile-nav-tabs.nav-tabs > li, .flowWrapper {
+		background-color: lighten(@red, 8%);
 	}
 }
 
 li:nth-child(5) .flowElement {
-	background-color: #337ab7;
-	border-color: #337ab7;
+	background-color: @blue;
+	border-color: @blue;
 
-	.mobile-nav-tabs.nav-tabs > li, .flowWrapper, .btn {
-		background-color: #2e6da4;
+	.flowControl {
+		background-color: @blue;
+	}
+
+	.mobile-nav-tabs.nav-tabs > li, .flowWrapper {
+		background-color: lighten(@blue, 8%);
 	}
 }
 
@@ -340,6 +374,7 @@ li:nth-child(5) .flowElement {
 		background-color: inherit;
 
 		padding: 10px 14px;
+		border-radius: 4px 4px 0 0;
 
 		&>a {
 			text-decoration: none;
@@ -376,19 +411,18 @@ li:nth-child(5) .flowElement {
 		}
 
 		.badge.empty {
-			background-color: red;
+			background-color: @red;
 		}
 	}
 
 	.addConditionalBranch {
 		position: absolute;
-		right: 14px;
-		top: 4px;
+		right: 20px;
+		top: 8px;
 	}
 }
 
 .mobile-nav-content.tab-content {
-	background-color: #f7f7f9;
 	padding: 0;
 
 	border: 0;
