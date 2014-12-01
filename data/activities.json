@@ -3,16 +3,19 @@
 		"id": "aj9d0ajsd09a",
 		"name": "Light",
 		"description": "Turn light on",
+		"glyphicon": "glyphicon-certificate",
 		"url": ""
 	}, {	
 		"id": "aspodjasd90",
 		"name": "Radiator",
 		"description": "Lower temperature to 18°C",
+		"glyphicon": "glyphicon-dashboard",
 		"url": ""
 	}, {
 		"id": "akspoda0s9d2",
 		"name": "Door",
 		"description": "Unlock",
+		"glyphicon": "glyphicon-home",
 		"url": ""
 	}
 ]
