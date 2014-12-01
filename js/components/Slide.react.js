@@ -25,7 +25,10 @@ define(["react", "dispatchers/AppDispatcher", "components/AddElementWrapper.reac
 
         return (
           <div key="slide" className="slide">
-          	<button type="button" className="btn btn-default closeSlide" onClick={this.emitClose}><span className="glyphicon glyphicon-remove"></span></button>
+          	<header className="header">
+          		<h3 className="title">Title</h3>
+          		<span className="glyphicon glyphicon-remove right" onClick={this.emitClose}></span>
+          	</header>
           	{content}
           </div>
         );
