@@ -15,6 +15,22 @@ define(["react", "components/Fragment.react", "components/Activity.react", "disp
       componentWillUnmount: function() {
         //AppDispatcher.unregister(this.dispatcherIndex);
       },
+      emitAddFlow: function(){
+        AppDispatcher.dispatch({
+          actionType: 'ADD_FLOW',
+          data: {
+            rootUid: this.props.data.rootUid
+          }
+        });
+
+        this.emitClose();
+      },
+      emitClose: function(){
+        AppDispatcher.dispatch({
+          actionType: 'TOGGLE_SLIDE',
+          data: { open: false }
+        });
+      },
       render: function() {
 
       	var _this = this;
@@ -22,7 +38,7 @@ define(["react", "components/Fragment.react", "components/Activity.react", "disp
 
         return (
           <div className="weather-config">
-            Weather!!
+            <span onClick={this.emitAddFlow}>Add Weather-Branch</span>
           </div>
         );
       }

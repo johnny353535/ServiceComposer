@@ -26,7 +26,8 @@ define(["react", "require", "dispatchers/AppDispatcher"], function(React, requir
                 data: {
                   open: true,
                   title: "Configure a weather fragment",
-                  type: "WeatherConfig"
+                  type: "WeatherConfig",
+                  rootUid: this.props.data.uid
                 }
               });
         },
