@@ -41,7 +41,7 @@ define(["react", "require", "dispatchers/AppDispatcher"], function(React, requir
 
             return (
               <li key={flow.name} role="presentation" className={className}>
-                <a href={"#"+flow.name} role="tab" data-toggle="tab"><span className="tabName short">{flow.name}</span><span className={!flow.flow.length ? "badge empty" : "badge"}>{flow.flow.length}</span></a>
+                <a href={"#"+flow.name} role="tab" data-toggle="tab"><span className={"glyphicon "+flow.glyphicon}></span><span className="tabName short">{flow.name}</span><span className={!flow.flow.length ? "badge empty" : "badge"}>{flow.flow.length}</span></a>
               </li>
             );
         });
@@ -75,9 +75,6 @@ define(["react", "require", "dispatchers/AppDispatcher"], function(React, requir
                 <h2 className="panel-title">{this.props.data.name}</h2>
                 <span className="glyphicon glyphicon-trash button-delete" onClick={this.deleteHandler}></span>
             </header>
-            <div className="content">
-                <p>{this.props.data.description}</p>
-            </div>
             <div className="fragmentWrapper">
 
                 {/*Tab navigation*/}

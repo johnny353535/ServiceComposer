@@ -84,8 +84,8 @@ define(["react", "components/Fragment.react", "components/Activity.react", "disp
             <p className="empty">This branch is empty</p>
             <ul>
               {flowElementNodes}
+              <li key="flowControl"><div className="flowElement flowControl" onClick={this.openAddElementWrapper}><span className="glyphicon glyphicon-plus"></span></div></li>
             </ul>
-            <div className="flowControl" onClick={this.openAddElementWrapper}><span className="glyphicon glyphicon-plus"></span></div>
         </div>
       );
     }

@@ -96,11 +96,15 @@ header.mainHeader {
 	height: 100%;
 	overflow-y: scroll;
 
-	background-color: #f7f7f9;
+	background-color: @black;
 }
 
 .contentWrapper>.flowWrapper:first-child {
-	background-color: white;
+	background-color: @black;
+
+	&>ul {
+		border-radius: 0;
+	}
 }
 
 .contentWrapper>.flowWrapper {
@@ -109,7 +113,7 @@ header.mainHeader {
 
 .flowWrapper {
 
-	padding: 20px;
+	padding: 18px 14px;
 
 	transition: 0.3s opacity;
 
@@ -140,6 +144,9 @@ header.mainHeader {
 		margin: 0;
 		padding: 0;
 
+		border-radius: 4px;
+		overflow: hidden;
+
 		list-style: none;
 
 		&>li:last-child {
@@ -155,6 +162,8 @@ header.mainHeader {
 		background-color: lighten(@black, 10%);
 
 		width: 100%;
+		height: 60px;
+
 		padding: 20px;
 		text-align: center;
 		border-width: 1px;
@@ -229,6 +238,14 @@ header.mainHeader {
 	z-index: 1;
 }
 
+.flowWrapper>ul>li:last-child>.flowElement:after {
+	display: none;
+}
+
+.flowWrapper:after {
+	z-index: 2;
+}
+
 
 .activity {
 
@@ -293,68 +310,53 @@ header.mainHeader {
 }
 
 
-li:nth-child(1) .flowElement {
+.flowWrapper>ul>li:nth-child(1n+1) .flowElement {
 	background-color: @green;
 	border-color: @green;
 
-	.flowControl {
-		background-color: @green;
-	}
-
 	.mobile-nav-tabs.nav-tabs > li, .flowWrapper {
 		background-color: lighten(@green, 8%);
+		border-color: lighten(@green, 8%);;
 	}
 }
 
-li:nth-child(2) .flowElement {
+.flowWrapper>ul>li:nth-child(2n+1) .flowElement {
 	background-color: @light-blue;
 	border-color: @light-blue;
 
-	.flowControl {
-		background-color: @light-blue;
-	}
-
 	.mobile-nav-tabs.nav-tabs > li, .flowWrapper {
 		background-color: lighten(@light-blue, 8%);
+		border-color: lighten(@light-blue, 8%);
 	}
 }
 
-li:nth-child(3) .flowElement {
+.flowWrapper>ul>li:nth-child(3n+1) .flowElement {
 	background-color: @orange;
 	border-color: @orange;
 
-	.flowControl {
-		background-color: @orange;
-	}
-
 	.mobile-nav-tabs.nav-tabs > li, .flowWrapper {
 		background-color: lighten(@orange, 8%);
+		border-color: lighten(@orange, 8%);;
 	}
 }
 
-li:nth-child(4) .flowElement {
+.flowWrapper>ul>li:nth-child(4n+1) .flowElement {
 	background-color: @red;
 	border-color: @red;
 
-	.flowControl {
-		background-color: @orange;
-	}
-
 	.mobile-nav-tabs.nav-tabs > li, .flowWrapper {
 		background-color: lighten(@red, 8%);
+		border-color: lighten(@red, 8%);
 	}
 }
 
-li:nth-child(5) .flowElement {
+.flowWrapper>ul>li:nth-child(5n+1) .flowElement {
 	background-color: @blue;
 	border-color: @blue;
 
-	.flowControl {
-		background-color: @blue;
-	}
-
 	.mobile-nav-tabs.nav-tabs > li, .flowWrapper {
 		background-color: lighten(@blue, 8%);
+		border-color: lighten(@blue, 8%);
 	}
 }
 
@@ -363,9 +365,10 @@ li:nth-child(5) .flowElement {
 
 	display: inline-block;
 	position: relative;
+
 	width: 100%;
 
-	padding: 0 14px;
+	padding: 0 20px;
 	border: 0;
 
 	&>li {
@@ -393,6 +396,10 @@ li:nth-child(5) .flowElement {
 			background-color: inherit !important;
 		}
 
+		.glyphicon {
+			vertical-align: middle;
+		}
+
 		.tabName {
 			display: inline-block;
 			margin-bottom: -4px;
@@ -416,9 +423,9 @@ li:nth-child(5) .flowElement {
 	}
 
 	.addConditionalBranch {
-		position: absolute;
-		right: 20px;
-		top: 8px;
+		padding: 11px 0;
+		display: inline-block;
+		float: right;
 	}
 }
 
