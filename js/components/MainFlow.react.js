@@ -53,8 +53,12 @@ define(["react", "components/FlowWrapper.react", "components/Slide.react", "comp
 
 			return(
 				<div id="mainWrapper" className="mainWrapper">
-            		<MainHeader title={this.props.data.name}/>
+            		<MainHeader title="HomeAutomator"/>
             	<div id="contentWrapper" className="contentWrapper">
+            		<header className="header flowHeader">
+            			<h3 className="title">{this.props.data.name}</h3>
+            			<span className="glyphicon glyphicon-floppy-disk right"></span>
+            		</header>
 					<FlowWrapper key={this.props.data.uid} data = {this.props.data} />
 					<ReactCSSTransitionGroup transitionName="slide">
 						{slide}
