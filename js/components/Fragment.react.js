@@ -25,6 +25,7 @@ define(["react", "require", "dispatchers/AppDispatcher"], function(React, requir
                 actionType: 'TOGGLE_SLIDE',
                 data: {
                   open: true,
+                  title: "Configure a weather fragment",
                   type: "WeatherConfig"
                 }
               });

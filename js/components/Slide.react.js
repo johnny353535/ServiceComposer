@@ -26,7 +26,7 @@ define(["react", "dispatchers/AppDispatcher", "components/AddElementWrapper.reac
         return (
           <div key="slide" className="slide">
           	<header className="header">
-          		<h3 className="title">Title</h3>
+          		<h3 className="title">{this.props.data.title}</h3>
           		<span className="glyphicon glyphicon-remove right" onClick={this.emitClose}></span>
           	</header>
           	{content}

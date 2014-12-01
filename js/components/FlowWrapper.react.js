@@ -21,6 +21,7 @@ define(["react", "components/Fragment.react", "components/Activity.react", "disp
         data: {
           open: true,
           type: "AddElement",
+          title: "Add Element",
           rootUid: this.props.data.uid
         }
       });
