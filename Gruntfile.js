@@ -43,6 +43,10 @@ module.exports = function (grunt) {
             less: {
                 files: ['less/**/*.less'],
                 tasks: ['less:dev']
+            },
+            react: {
+                files: ['js/**/*.js'],
+                tasks: ['react']
             }
         },
 
@@ -90,6 +94,19 @@ module.exports = function (grunt) {
             ]
 
         },
+
+        react: {
+            dynamic_mappings: {
+              files: [
+                {
+                  expand: true,
+                  cwd: 'js',
+                  src: ['**/*.js'],
+                  dest: 'build'
+                }
+              ]
+            }
+          },
 
         // Empties the /dist directory
         clean: {
@@ -196,6 +213,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-autoprefixer');
     grunt.loadNpmTasks('grunt-bower-requirejs');
     grunt.loadNpmTasks('grunt-processhtml');
+    grunt.loadNpmTasks('grunt-react');
 
 
     /**
@@ -205,7 +223,7 @@ module.exports = function (grunt) {
      */
 
     grunt.registerTask('default', ['dev']); // The default task just runs the dev task
-    grunt.registerTask('dev', ['less:dev', 'connect', 'watch']);
+    grunt.registerTask('dev', ['less:dev', 'react', 'connect', 'watch']);
     grunt.registerTask('build', ['clean:dist', 'copy:dist', 'requirejs', 'less:dist', 'autoprefixer:dist', 'processhtml:dist']);
 
 };
