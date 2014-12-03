@@ -30,7 +30,6 @@ section {
 }
 
 p {
-	color: rgb(51, 51, 51);
 	margin: 0;
 }
 
@@ -100,14 +99,6 @@ p {
 	background-color: @black;
 }
 
-.contentWrapper>.flowWrapper:first-child {
-	background-color: @black;
-
-	&>ul {
-		border-radius: 0;
-	}
-}
-
 .flowHeader {
 	padding: 20px 20px 0px 20px;
 }
@@ -125,6 +116,8 @@ p {
 
 	&>.empty {
 		display: none;
+
+		color: fadeout(@base-color, 40%);
 
 		margin: 5px 0 15px 0;
 
@@ -183,6 +176,7 @@ p {
 	border: 0;
 
 	background-color: blue;
+	border-top: 1px solid;
 
 	position: relative;
 
@@ -239,6 +233,10 @@ p {
 	z-index: 1;
 }
 
+.flowWrapper>ul>li:first-child>.flowElement {
+	border-top: 0;
+}
+
 .flowWrapper>ul>li:last-child>.flowElement:after {
 	display: none;
 }
@@ -290,19 +288,23 @@ p {
 }
 
 
-.flowWrapper>ul>li:nth-child(1n+1) .flowElement {
+.flowWrapper>ul>li:nth-child(1n+1)>.flowElement {
 	background-color: @green;
+
 	border-color: @green;
+	border-top-color: darken(@green, 4%);
 
 	.mobile-nav-tabs.nav-tabs > li, .flowWrapper {
 		background-color: lighten(@green, 8%);
-		border-color: lighten(@green, 8%);;
+		border-color: lighten(@green, 8%);
 	}
 }
 
-.flowWrapper>ul>li:nth-child(2n+1) .flowElement {
+.flowWrapper>ul>li:nth-child(2n+1)>.flowElement {
 	background-color: @light-blue;
+
 	border-color: @light-blue;
+	border-top-color: darken(@light-blue, 4%);
 
 	.mobile-nav-tabs.nav-tabs > li, .flowWrapper {
 		background-color: lighten(@light-blue, 8%);
@@ -310,9 +312,11 @@ p {
 	}
 }
 
-.flowWrapper>ul>li:nth-child(3n+1) .flowElement {
+.flowWrapper>ul>li:nth-child(3n+1)>.flowElement {
 	background-color: @orange;
+
 	border-color: @orange;
+	border-top-color: darken(@orange, 4%);
 
 	.mobile-nav-tabs.nav-tabs > li, .flowWrapper {
 		background-color: lighten(@orange, 8%);
@@ -320,9 +324,11 @@ p {
 	}
 }
 
-.flowWrapper>ul>li:nth-child(4n+1) .flowElement {
+.flowWrapper>ul>li:nth-child(4n+1)>.flowElement {
 	background-color: @red;
+
 	border-color: @red;
+	border-top-color: darken(@red, 4%);
 
 	.mobile-nav-tabs.nav-tabs > li, .flowWrapper {
 		background-color: lighten(@red, 8%);
@@ -330,9 +336,11 @@ p {
 	}
 }
 
-.flowWrapper>ul>li:nth-child(5n+1) .flowElement {
+.flowWrapper>ul>li:nth-child(5n+1)>.flowElement {
 	background-color: @blue;
+
 	border-color: @blue;
+	border-top-color: darken(@blue, 4%);
 
 	.mobile-nav-tabs.nav-tabs > li, .flowWrapper {
 		background-color: lighten(@blue, 8%);
@@ -463,18 +471,6 @@ p {
 	}
 }
 
-.addElementWrapper {
-	* {
-		color: @black;
-	}
-
-	height: 100%;
-	padding-top: 10px;
-
-	background-color: #f7f7f9;
-
-}
-
 
 .slide {
 
@@ -519,3 +515,32 @@ p {
 	}
 }
 
+.addElementWrapper {
+	* {
+		color: @black;
+	}
+
+	height: 100%;
+	padding-top: 10px;
+
+	background-color: #f7f7f9;
+
+}
+
+.fragmentConfig {
+
+	* {
+		color: @black;
+	}
+
+	text-align: center;
+
+	padding: 50px 20px;
+
+	height: 100%;
+	background-color: #f7f7f9;
+
+	span {
+		margin: 0 10px;
+	}
+}

@@ -3,7 +3,6 @@ define(["react", "dispatchers/AppDispatcher"], function(React, AppDispatcher) {
 
 	var AddElementWrapper = React.createClass({
       getInitialState: function(){
-        console.log(this.props.data.rootUid)
         return {
           currentRootUid: this.props.data.rootUid,
           activities: [],

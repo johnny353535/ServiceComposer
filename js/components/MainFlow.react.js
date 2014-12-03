@@ -53,7 +53,7 @@ define(["react", "components/FlowWrapper.react", "components/Slide.react", "comp
 
 			return(
 				<div id="mainWrapper" className="mainWrapper">
-            		<MainHeader title="HomeAutomator"/>
+            		<MainHeader title="Home Automator"/>
             	<div id="contentWrapper" className="contentWrapper">
             		<header className="header flowHeader">
             			<h3 className="title">{this.props.data.name}</h3>

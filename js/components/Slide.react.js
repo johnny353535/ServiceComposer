@@ -1,4 +1,4 @@
-define(["react", "dispatchers/AppDispatcher", "components/AddElementWrapper.react", "components/Weather.config.react"], function(React, AppDispatcher, AddElementWrapper, WeatherConfig) {
+define(["react", "dispatchers/AppDispatcher", "components/AddElementWrapper.react", "components/FragmentConfig.react"], function(React, AppDispatcher, AddElementWrapper, FragmentConfig) {
 
 	var Slide = React.createClass({
 	  emitClose: function(){
@@ -13,8 +13,8 @@ define(["react", "dispatchers/AppDispatcher", "components/AddElementWrapper.reac
 
       	var content = null;
       	switch(this.props.data.type){
-      		case("WeatherConfig"):
-      			content = <WeatherConfig data={this.props.data} />
+      		case("FragmentConfig"):
+      			content = <FragmentConfig data={this.props.data} />
       			break;
       		case("AddElement"):
       			content = <AddElementWrapper data={this.props.data} />;

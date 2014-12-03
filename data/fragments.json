@@ -40,7 +40,8 @@
       "name":"Weather",
       "description":"Reacts based on the weather condition",
       "glyphicon": "glyphicon-cloud",
-      "conditions": [
+      "sentence": "If the weather is",
+      "options": [
          {
             "name": "sunny",
             "icon": "glyphicon-certificate"
@@ -56,6 +57,38 @@
          {
             "name": "windy",
             "icon": "glyphicon-flag"
+         }
+      ],
+      "flows":[  
+
+      ]
+   },
+   {  
+      "id":"temperature",
+      "type":"fragment",
+      "fragmentType":"conditional",
+      "name":"Outside Temperature",
+      "description":"Reacts based on the outside temperature",
+      "glyphicon": "glyphicon-dashboard",
+      "sentence": "If the outside temperature is",
+      "options": [
+         {
+            "name": "< 0"
+         },
+         {
+            "name": "0 - 9"
+         },
+         {
+            "name": "10- 19"
+         },
+         {
+            "name": "20 - 29"
+         },
+         {
+            "name": "30 - 40"
+         },
+         {
+            "name": "> 40"
          }
       ],
       "flows":[  

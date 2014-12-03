@@ -25,9 +25,9 @@ define(["react", "require", "dispatchers/AppDispatcher"], function(React, requir
                 actionType: 'TOGGLE_SLIDE',
                 data: {
                   open: true,
-                  title: "Configure a weather fragment",
-                  type: "WeatherConfig",
-                  rootUid: this.props.data.uid
+                  title: "Configure a conditional fragment",
+                  type: "FragmentConfig",
+                  payload: this.props.data
                 }
               });
         },
