@@ -1,4 +1,4 @@
-define(["react", "dispatchers/AppDispatcher", "components/AddElementWrapper.react", "components/FragmentConfig.react"], function(React, AppDispatcher, AddElementWrapper, FragmentConfig) {
+define(["react", "dispatchers/AppDispatcher", "components/AddElementWrapper.react", "components/FragmentConfig.react", "components/MyActivities.react"], function(React, AppDispatcher, AddElementWrapper, FragmentConfig, MyActivities) {
 
 	var Slide = React.createClass({
 	  emitClose: function(){
@@ -9,16 +9,17 @@ define(["react", "dispatchers/AppDispatcher", "components/AddElementWrapper.reac
       },
       render: function() {
 
-      	console.log(this.props)
-
       	var content = null;
       	switch(this.props.data.type){
       		case("FragmentConfig"):
       			content = <FragmentConfig data={this.props.data} />
       			break;
       		case("AddElement"):
-      			content = <AddElementWrapper data={this.props.data} />;
-      			break
+      			content = <AddElementWrapper rootUid={this.props.data.rootUid} fragments={this.props.data.fragments} activities={this.props.data.activities} />;
+      			break;
+      		case("MyActivities"):
+      			content = <MyActivities myActivities={this.props.data.myActivities}/>;
+      			break;
       		default: 
       			//Nufin
       	}

@@ -1,11 +1,6 @@
 define(["react", "dispatchers/AppDispatcher", "underscore", "minivents"], function(React, AppDispatcher, _) {
 
-	var _flow = {
-        "uid": Date.now(),
-        "name": "myFlow "+Date.now(),
-        "flow": []
-    }
-
+	var _flow = getFlow();
     var _uid = _flow.uid;
 
     var _myActivities = localStorage.getItem('myActivities') ? JSON.parse(localStorage.getItem('myActivities')) : {};
@@ -17,7 +12,7 @@ define(["react", "dispatchers/AppDispatcher", "underscore", "minivents"], functi
 
     	return {
           "uid": uid,
-          "name": name ? name : uid,
+          "name": name ? name : "myFlow "+uid,
           "type": "flow",
           "flow": []
         }
@@ -93,8 +88,8 @@ define(["react", "dispatchers/AppDispatcher", "underscore", "minivents"], functi
 
 	var FlowStore = {
 
-		getAll: function() {
-			return _flow;
+		getMyActivities: function() {
+			return _myActivities;
 		},
 		emitChange: function() {
 			_myActivities[_flow.uid] = _flow;

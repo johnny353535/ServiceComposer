@@ -1,39 +1,5 @@
 [  
    {  
-      "id":"conditional",
-      "type":"fragment",
-      "fragmentType":"conditional",
-      "name":"Conditional",
-      "condition":"Weather",
-      "description":"Executes encapsulated activities based on a given condition",
-      "glyphicon": "glyphicon-question-sign",
-      "flows":[ 
-      ]
-   },
-   {  
-      "id":"parallel",
-      "type":"fragment",
-      "fragmentType":"parallel",
-      "name":"Parallel",
-      "description":"Executes multiple activitiy flows at the same time",
-      "glyphicon": "glyphicon-pause",
-      "flows":[  
-
-      ]
-   },
-   {  
-      "id":"loop",
-      "type":"fragment",
-      "fragmentType":"loop",
-      "name":"Loop",
-      "condition":"x > 42",
-      "description":"Executes encapsulated activities as long as the provided condition yields true",
-      "glyphicon": "glyphicon-retweet",
-      "flows":[  
-
-      ]
-   },
-   {  
       "id":"weather",
       "type":"fragment",
       "fragmentType":"conditional",
@@ -73,24 +39,64 @@
       "sentence": "If the outside temperature is",
       "options": [
          {
-            "name": "< 0"
+            "name": "< 0",
+            "id": "0"
          },
          {
-            "name": "0 - 9"
+            "name": "0 - 9",
+            "id": "09"
          },
          {
-            "name": "10- 19"
+            "name": "10- 19",
+            "id": "1019"
          },
          {
-            "name": "20 - 29"
+            "name": "20 - 29",
+            "id": "2029"
          },
          {
-            "name": "30 - 40"
+            "name": "30 - 40",
+            "id": "3040"
          },
          {
-            "name": "> 40"
+            "name": "> 40",
+            "id": "40"
          }
       ],
+      "flows":[  
+
+      ]
+   },
+   {  
+      "id":"conditional",
+      "type":"fragment",
+      "fragmentType":"conditional",
+      "name":"Conditional",
+      "condition":"Weather",
+      "description":"Executes encapsulated activities based on a given condition",
+      "glyphicon": "glyphicon-question-sign",
+      "flows":[ 
+      ]
+   },
+   {  
+      "id":"parallel",
+      "type":"fragment",
+      "fragmentType":"parallel",
+      "name":"Parallel",
+      "description":"Executes multiple activitiy flows at the same time",
+      "glyphicon": "glyphicon-pause",
+      "flows":[  
+
+      ]
+   },
+   {  
+      "id":"loop",
+      "type":"fragment",
+      "fragmentType":"loop",
+      "name":"Loop",
+      "condition":"x > 42",
+      "description":"Executes encapsulated activities as long as the provided condition yields true",
+      "glyphicon": "glyphicon-retweet",
       "flows":[  
 
       ]

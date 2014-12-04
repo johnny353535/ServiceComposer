@@ -4,30 +4,15 @@ define(["react", "dispatchers/AppDispatcher"], function(React, AppDispatcher) {
 	var AddElementWrapper = React.createClass({
       getInitialState: function(){
         return {
-          currentRootUid: this.props.data.rootUid,
-          activities: [],
-          fragments: []
+          currentRootUid: this.props.rootUid
         };
       },
       componentDidMount: function () {
 
         var _this = this;
 
-        var url_activities = "data/activities.json";
-        var url_fragments = "data/fragments.json";
-
-        $.when(
-            $.getJSON(url_activities),
-            $.getJSON(url_fragments)
-        ).done(function(activities, fragments) {
-            _this.setState({
-              "activities": activities[0],
-              "fragments": fragments[0]
-            });
-        });
       },
       addActivity: function(activity){
-        console.log('add')
 
         AppDispatcher.dispatch({
           actionType: 'ADD_ACTIVITY',
@@ -60,8 +45,9 @@ define(["react", "dispatchers/AppDispatcher"], function(React, AppDispatcher) {
       render: function() {
 
         var _this = this;
+        console.log(this.props)
 
-        var activities = this.state.activities.map(function (activity) {
+        var activities = this.props.activities.map(function (activity) {
 
             return (
               <li key={activity.id} className="media" onClick={_this.addActivity.bind(null, activity)}>
@@ -76,7 +62,8 @@ define(["react", "dispatchers/AppDispatcher"], function(React, AppDispatcher) {
             )
         });
 
-        var fragments = this.state.fragments.map(function (fragment) {
+
+        var fragments = this.props.fragments.map(function (fragment) {
 
             return (
               <li key={fragment.id} className="media" onClick={_this.addFragment.bind(null, fragment)}>
@@ -96,14 +83,28 @@ define(["react", "dispatchers/AppDispatcher"], function(React, AppDispatcher) {
           <div className="addElementWrapper">
               <div className="navWrapper">
                   <ul className="nav nav-tabs mobile-nav-tabs" role="tablist">
-                      <li role="presentation" className="active"><a href="#activities" role="tab" data-toggle="tab">
-                          <span className="glyphicon glyphicon-cog"></span><span className="tabName">Activities</span></a>
+                      <li role="presentation">
+                          <a href="#myActivities" role="tab" data-toggle="tab">
+                            <span className="glyphicon glyphicon-book"></span><span className="tabName">My Activities</span>
+                          </a>
+                      </li>
+                      <li role="presentation" className="active">
+                        <a href="#activities" role="tab" data-toggle="tab">
+                          <span className="glyphicon glyphicon-cog"></span><span className="tabName">Activities</span>
+                        </a>
                       </li>
                       <li role="presentation">
-                          <a href="#fragments" role="tab" data-toggle="tab"><span className="glyphicon glyphicon-list-alt"></span><span className="tabName">Fragments</span></a>
+                          <a href="#fragments" role="tab" data-toggle="tab">
+                            <span className="glyphicon glyphicon-list-alt"></span><span className="tabName">Fragments</span>
+                          </a>
                       </li>
                   </ul>
                   <div className="tab-content mobile-nav-content">
+                      <div role="tabpanel" className="tab-pane" id="myActivities">
+                          <ul className="media-list">
+                            empty
+                          </ul>
+                      </div>
                       <div role="tabpanel" className="tab-pane active" id="activities">
                           <ul className="media-list">
                               {activities}
