@@ -11,8 +11,7 @@ requirejs.config({
         react: '../bower_components/react/react-with-addons',
         underscore: '../bower_components/underscore/underscore',
         flux: "../bower_components/flux/dist/Flux",
-        minivents: '../bower_components/minivents-cuzzo/minivents.min',
-        plugins: 'plugins'
+        minivents: '../bower_components/minivents-cuzzo/minivents.min'
     },
     packages: [
  
@@ -20,7 +19,7 @@ requirejs.config({
 });
 
 
-require(["react", "components/MainFlow.react", "components/AddElementWrapper.react", "components/MainHeader.react", "flux", "jquery", "plugins", "bootstrap", "minivents"], function (React, MainFlow, AddElementWrapper, MainHeader, Flux) {
+require(["react", "components/MainFlow.react", "components/AddElementWrapper.react", "components/MainHeader.react", "flux", "jquery", "bootstrap", "minivents"], function (React, MainFlow, AddElementWrapper, MainHeader, Flux) {
 
     React.initializeTouchEvents(true)
 

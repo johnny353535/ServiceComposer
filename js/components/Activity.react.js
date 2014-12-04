@@ -12,7 +12,6 @@ define(["react", "dispatchers/AppDispatcher"], function(React, AppDispatcher) {
         }
       },
       render: function() {
-        console.log(this.props.data);
         return (
           <div className={"flowElement activity"}>
             <header>
