@@ -1,15 +1,19 @@
 define(["react", "dispatchers/AppDispatcher", "underscore", "minivents"], function(React, AppDispatcher, _) {
 
-	var newFlow = {
+	var _flow = {
         "uid": Date.now(),
-        "name": "myFlow",
+        "name": "myFlow "+Date.now(),
         "flow": []
     }
 
-    var _flow = localStorage.getItem('flow') ? JSON.parse(localStorage.getItem('flow')) : newFlow;
+    var _uid = _flow.uid;
+
+    var _myActivities = localStorage.getItem('myActivities') ? JSON.parse(localStorage.getItem('myActivities')) : {};
+    _flow = _myActivities[1417697902033];
+    
 
     function getFlow(name){
-    	var uid = window.guid();
+    	var uid = Date.now();
 
     	return {
           "uid": uid,
@@ -23,7 +27,7 @@ define(["react", "dispatchers/AppDispatcher", "underscore", "minivents"], functi
 
 		var elem = jQuery.extend(true, {}, activity); // Make deep copy
 		elem.type = "activity";
-		elem.uid = window.guid();
+		elem.uid = Date.now();
 
 		addElementToRoot(_flow, root_uid, elem);
       	FlowStore.emitChange();
@@ -33,11 +37,7 @@ define(["react", "dispatchers/AppDispatcher", "underscore", "minivents"], functi
 
 		var elem = jQuery.extend(true, {}, fragment); // Make deep copy
 		elem.type = "fragment";
-		elem.uid = window.guid();
-
-		// var standardFlow = getFlow();
-
-		// elem.flows.push(standardFlow);
+		elem.uid = Date.now();
 
 		addElementToRoot(_flow, root_uid, elem);
       	FlowStore.emitChange();
@@ -97,7 +97,10 @@ define(["react", "dispatchers/AppDispatcher", "underscore", "minivents"], functi
 			return _flow;
 		},
 		emitChange: function() {
-			localStorage.setItem('flow', JSON.stringify(_flow));
+			_myActivities[_flow.uid] = _flow;
+
+			localStorage.setItem('myActivities', JSON.stringify(_myActivities));
+			console.log(_myActivities);
 			this.events.emit('CHANGE');
 		},
 
