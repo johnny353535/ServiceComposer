@@ -49,7 +49,7 @@ define(["react", "components/Fragment.react", "components/Activity.react", "disp
             <select id="options" name="options" onChange={this.handleChange}>
              {options}
             </select>
-            <span onClick={this.emitAddFlow}>Add flow</span>
+            <button onClick={this.emitAddFlow} className="addFlowBtn"><span>Add flow</span></button>
           </div>
         );
       }

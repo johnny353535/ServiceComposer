@@ -98,7 +98,9 @@ define(["react", "dispatchers/AppDispatcher", "underscore", "minivents"], functi
 	}
 
 	function saveActivity(){
-		_myActivities[_flow.id].push(flow);
+		_myActivities[_flow.uid] = _flow;
+		localStorage.setItem('myActivities', JSON.stringify(_myActivities));
+
 		FlowStore.emitChange();
 	}
 
@@ -112,9 +114,6 @@ define(["react", "dispatchers/AppDispatcher", "underscore", "minivents"], functi
 			return _flow;
 		},
 		emitChange: function() {
-			_myActivities[_flow.uid] = _flow;
-
-			localStorage.setItem('myActivities', JSON.stringify(_myActivities));
 			this.events.emit('CHANGE');
 		},
 
@@ -137,8 +136,8 @@ define(["react", "dispatchers/AppDispatcher", "underscore", "minivents"], functi
 				case "CREATE_ACTIVITY":
 					createActivity(payload.data.name);
 					break;
-				case "ADD_ACTIVITY":
-					insertActivity(payload.data.rootUid, payload.data.activity);
+				case "SAVE_ACTIVITY":
+					saveActivity();
 					break;
 				case "ADD_ACTIVITY":
 					insertActivity(payload.data.rootUid, payload.data.activity);
