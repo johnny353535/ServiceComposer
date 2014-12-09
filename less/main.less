@@ -533,11 +533,12 @@ ul.media-list {
 	border-radius: 4px 4px 0 0;
 	overflow: hidden;
 
-	height: 80%;
+	height: 100%;
 
 	transition: bottom 0.5s;
 
-	bottom: 0;
+	bottom: -70px;
+	padding-bottom: 70px;
 	left: 10px;
 	right: 10px;
 
@@ -546,11 +547,11 @@ ul.media-list {
 	}
 
 	&.slide-enter-active {
-		bottom: 0;
+		bottom: -70px;
 	}
 
 	&.slide-leave {
-		bottom: 0;
+		bottom: -70px;
 	}
 
 	&.slide-leave-active {
