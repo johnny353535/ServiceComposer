@@ -49,6 +49,7 @@ define(["react", "components/FlowWrapper.react", "components/Slide.react", "comp
 				  			case("AddElement"):
 				  				payload.data.activities = _this.props.activities;
 				  				payload.data.fragments = _this.props.fragments;
+				  				payload.data.myActivities = _this.props.myActivities;
 				  				break;
 				  			case("MyActivities"):
 				  				payload.data.myActivities = _this.props.myActivities;

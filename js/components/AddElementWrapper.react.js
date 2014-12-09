@@ -24,6 +24,17 @@ define(["react", "dispatchers/AppDispatcher"], function(React, AppDispatcher) {
 
         this.emitClose();
       },
+      addUserActivity: function(activity){
+        AppDispatcher.dispatch({
+          actionType: 'ADD_USER_ACTIVITY',
+          data: {
+            rootUid: this.state.currentRootUid,
+            activity: activity
+          }
+        });
+
+        this.emitClose();
+      },
       addFragment: function(fragment){
 
         AppDispatcher.dispatch({
@@ -45,7 +56,25 @@ define(["react", "dispatchers/AppDispatcher"], function(React, AppDispatcher) {
       render: function() {
 
         var _this = this;
-        console.log(this.props)
+
+        var myActivities = [];
+
+        for (activityUid in this.props.myActivities){
+
+          var activity = this.props.myActivities[activityUid];
+          var elem =
+            <li key={activity.uid} className="media" onClick={_this.addActivity.bind(null, activity)}>
+              <a className="media-left" href="#">
+                <span className={"glyphicon "+activity.glyphicon}></span> 
+              </a>
+              <div className="media-body">
+                <h4 className="media-heading">{activity.name}</h4>
+                <p>{activity.description}</p>
+              </div>
+            </li>;
+
+          myActivities.push(elem);
+        }
 
         var activities = this.props.activities.map(function (activity) {
 
@@ -102,7 +131,7 @@ define(["react", "dispatchers/AppDispatcher"], function(React, AppDispatcher) {
                   <div className="tab-content mobile-nav-content">
                       <div role="tabpanel" className="tab-pane" id="myActivities">
                           <ul className="media-list">
-                            empty
+                            {myActivities}
                           </ul>
                       </div>
                       <div role="tabpanel" className="tab-pane active" id="activities">

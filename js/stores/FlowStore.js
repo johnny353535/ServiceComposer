@@ -140,6 +140,9 @@ define(["react", "dispatchers/AppDispatcher", "underscore", "minivents"], functi
 				case "ADD_ACTIVITY":
 					insertActivity(payload.data.rootUid, payload.data.activity);
 					break;
+				case "ADD_ACTIVITY":
+					insertActivity(payload.data.rootUid, payload.data.activity);
+					break;
 				case "ADD_FRAGMENT":
 					insertFragment(payload.data.rootUid, payload.data.fragment);
 					break;

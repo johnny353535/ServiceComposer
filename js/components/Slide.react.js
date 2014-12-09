@@ -15,7 +15,7 @@ define(["react", "dispatchers/AppDispatcher", "components/AddElementWrapper.reac
       			content = <FragmentConfig data={this.props.data} />
       			break;
       		case("AddElement"):
-      			content = <AddElementWrapper rootUid={this.props.data.rootUid} fragments={this.props.data.fragments} activities={this.props.data.activities} />;
+      			content = <AddElementWrapper rootUid={this.props.data.rootUid} fragments={this.props.data.fragments} activities={this.props.data.activities} myActivities={this.props.data.myActivities}/>;
       			break;
       		case("MyActivities"):
       			content = <MyActivities myActivities={this.props.data.myActivities}/>;
