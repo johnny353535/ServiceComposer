@@ -13,7 +13,7 @@ define(["react", "dispatchers/AppDispatcher"], function(React, AppDispatcher) {
               });
 		},
 		emitNewActivity: function(){
-			var name = window.prompt("Name","myFlow "+Date.now());
+			var name = window.prompt("Enter a name for the activity","myFlow "+Date.now());
 			if(name){
 				AppDispatcher.dispatch({
 			        actionType: 'CREATE_ACTIVITY',

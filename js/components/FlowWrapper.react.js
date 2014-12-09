@@ -1,20 +1,7 @@
 define(["react", "components/Fragment.react", "components/Activity.react", "dispatchers/AppDispatcher", "underscore"], function(React, Fragment, Activity, AppDispatcher, _) {
 
-  function hide(){
-    FlowWrapper.hide();
-  }
-
-  function show(){
-    FlowWrapper.show();
-  }
-
 
 	var FlowWrapper = React.createClass({
-    getInitialState: function(){
-      return {
-        hidden: false
-      }
-    },
     openAddElementWrapper: function(){
       AppDispatcher.dispatch({
         actionType: 'TOGGLE_SLIDE',
@@ -26,27 +13,9 @@ define(["react", "components/Fragment.react", "components/Activity.react", "disp
         }
       });
     },
-    hide: function(){
-      this.setState({hidden: true});
-    },
-    show: function(){
-      this.setState({hidden: false});
-    },
     dispatcherIndex: null,
     componentDidMount: function() {
       var _this = this;
-
-      this.dispatcherIndex = AppDispatcher.register(
-        function(payload) {
-            if (payload.actionType === 'TOGGLE_SLIDE') {
-                if(payload.data.open) {
-                  _this.hide();
-                } else {
-                  _this.show();
-                }
-            }
-        }
-      )
     },
     componentWillUnmount: function() {
       AppDispatcher.unregister(this.dispatcherIndex);
@@ -76,7 +45,6 @@ define(["react", "components/Fragment.react", "components/Activity.react", "disp
       var cx = React.addons.classSet;
       var classes = cx({
         'flowWrapper': true,
-        'hidden': this.state.hidden,
         'isEmpty': !flowElementNodes.length
       });
 
