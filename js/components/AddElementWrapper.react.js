@@ -112,12 +112,12 @@ define(["react", "dispatchers/AppDispatcher"], function(React, AppDispatcher) {
           <div className="addElementWrapper">
               <div className="navWrapper">
                   <ul className="nav nav-tabs mobile-nav-tabs" role="tablist">
-                      <li role="presentation">
+                      <li role="presentation" className="active">
                           <a href="#myActivities" role="tab" data-toggle="tab" className="button">
                             <span className="glyphicon glyphicon-book"></span><span className="tabName">MyActivities</span>
                           </a>
                       </li>
-                      <li role="presentation" className="active">
+                      <li role="presentation">
                         <a href="#activities" role="tab" data-toggle="tab" className="button">
                           <span className="glyphicon glyphicon-cog"></span><span className="tabName">Activities</span>
                         </a>
@@ -129,12 +129,12 @@ define(["react", "dispatchers/AppDispatcher"], function(React, AppDispatcher) {
                       </li>
                   </ul>
                   <div className="tab-content mobile-nav-content">
-                      <div role="tabpanel" className="tab-pane" id="myActivities">
+                      <div role="tabpanel" className="tab-pane active" id="myActivities">
                           <ul className="media-list">
                             {myActivities}
                           </ul>
                       </div>
-                      <div role="tabpanel" className="tab-pane active" id="activities">
+                      <div role="tabpanel" className="tab-pane" id="activities">
                           <ul className="media-list">
                               {activities}
                           </ul>
