@@ -75,6 +75,7 @@ define(["react", "components/FlowWrapper.react", "components/Slide.react", "comp
 			AppDispatcher.dispatch({
 	          actionType: 'SAVE_ACTIVITY'
 	        });
+	        alert("Saved "+this.props.flow.name);
 		},
 		_onChange: function(){
 			this.setProps({

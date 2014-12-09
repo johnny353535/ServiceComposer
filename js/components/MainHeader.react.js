@@ -12,12 +12,23 @@ define(["react", "dispatchers/AppDispatcher"], function(React, AppDispatcher) {
                 }
               });
 		},
+		emitNewActivity: function(){
+			var name = window.prompt("Name","myFlow "+Date.now());
+			if(name){
+				AppDispatcher.dispatch({
+			        actionType: 'CREATE_ACTIVITY',
+			        data: {
+			        	name: name
+			        }
+			      });
+			}
+		},
 		render: function(){
 			return (
 				<header className="header mainHeader">
 					<span className="glyphicon glyphicon-book left" onClick={this.emitOpenMyActivities}></span>
 			        <h3 className="title">{this.props.title}</h3>
-			        <span className="glyphicon glyphicon-plus-sign right"></span>
+			        <span className="glyphicon glyphicon-plus-sign right" onClick={this.emitNewActivity}></span>
 			    </header>
 			);
 		}

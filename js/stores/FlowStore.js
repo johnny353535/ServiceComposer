@@ -1,7 +1,11 @@
 define(["react", "dispatchers/AppDispatcher", "underscore", "minivents"], function(React, AppDispatcher, _) {
 
     var _myActivities = localStorage.getItem('myActivities') ? JSON.parse(localStorage.getItem('myActivities')) : {};
-	var _flow = getFlow();    
+	var _flow = getFlow(); 
+
+	window.clearMyActivites = function(){
+		localStorage.setItem('myActivities', "{}");
+	}
 
     function getFlow(name){
     	var uid = Date.now();
@@ -83,6 +87,11 @@ define(["react", "dispatchers/AppDispatcher", "underscore", "minivents"], functi
 		  return false;
 	}
 
+	function createActivity(name){
+		_flow = getFlow(name);
+		FlowStore.emitChange();
+	}
+
 	function loadActivity(uid){
 		_flow = _myActivities[uid];
 		FlowStore.emitChange();
@@ -124,6 +133,9 @@ define(["react", "dispatchers/AppDispatcher", "underscore", "minivents"], functi
 			switch(payload.actionType) {
 				case "LOAD_ACTIVITY":
 					loadActivity(payload.data.uid);
+					break;
+				case "CREATE_ACTIVITY":
+					createActivity(payload.data.name);
 					break;
 				case "ADD_ACTIVITY":
 					insertActivity(payload.data.rootUid, payload.data.activity);
