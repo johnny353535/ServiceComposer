@@ -308,6 +308,10 @@ p {
 		background-color: @green;
 		border-top-color: darken(@green, 8%);
 	}
+
+	&:after {
+		border-top-color: @green;
+	}
 }
 
 .contentWrapper>.flowWrapper>ul>li:nth-child(2n+1)>.flowElement {
@@ -324,6 +328,10 @@ p {
 	.flowElement {
 		background-color: @light-blue;
 		border-top-color: darken(@light-blue, 8%);
+	}
+
+	&:after {
+		border-top-color: @light-blue;
 	}
 }
 
@@ -342,6 +350,10 @@ p {
 		background-color: @orange;
 		border-top-color: darken(@orange, 8%);
 	}
+
+	&:after {
+		border-top-color: @orange;
+	}
 }
 
 .contentWrapper>.flowWrapper>ul>li:nth-child(4n+1)>.flowElement {
@@ -359,6 +371,10 @@ p {
 		background-color: @red;
 		border-top-color: darken(@red, 8%);
 	}
+
+	&:after {
+		border-top-color: @red;
+	}
 }
 
 .contentWrapper>.flowWrapper>ul>li:nth-child(5n+1)>.flowElement {
@@ -375,6 +391,10 @@ p {
 	.flowElement {
 		background-color: @blue;
 		border-top-color: darken(@blue, 8%);
+	}
+
+	&:after {
+		border-top-color: @blue;
 	}
 }
 
@@ -473,34 +493,34 @@ p {
 			display: block;
 			visibility: visible;
 		}
+	}
+}
 
-		ul.media-list {
-			margin: 0;
+ul.media-list {
+	margin: 0;
 
-			li.media {
-				padding: 15px;
-				margin-top: 0;
-				cursor: pointer;
+	li.media {
+		padding: 15px;
+		margin-top: 0;
+		cursor: pointer;
 
-				.media-body {
+		.media-body {
 
-					padding-left: 8px;	
+			padding-left: 8px;	
 
-					p {
-						margin: 0;
-						font-size: 14px;
-					}
-				}
-			}
-
-			li:nth-child(odd) {
-				background-color: white;
-			}
-
-			li:nth-child(even) {
-				
+			p {
+				margin: 0;
+				font-size: 14px;
 			}
 		}
+	}
+
+	li:nth-child(odd) {
+		background-color: white;
+	}
+
+	li:nth-child(even) {
+		
 	}
 }
 
@@ -582,8 +602,6 @@ p {
 	* {
 		color: @black;
 	}
-
-	padding: 20px;
 
 	height: 100%;
 	background-color: #f7f7f9;

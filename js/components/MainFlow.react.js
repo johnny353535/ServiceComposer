@@ -10,8 +10,10 @@ define(["react", "components/FlowWrapper.react", "components/Slide.react", "comp
 		},
 		getDefaultProps: function(){
 			return {
-				uid: 1417697902033,
-				myActivities: FlowStore.getMyActivities()
+				flow: FlowStore.getFlow(),
+				myActivities: FlowStore.getMyActivities(),
+				activities: null,
+				fragments: null
 			};
 		},
 		dispatcherIndex: null,
@@ -28,7 +30,7 @@ define(["react", "components/FlowWrapper.react", "components/Slide.react", "comp
             $.getJSON(url_fragments)
 	        ).done(function(activities, fragments) {
 	            _this.setProps({
-	            	"uid": 1417697902033,
+	            	"flow": FlowStore.getFlow(),
 					"myActivities": FlowStore.getMyActivities(),
 	              	"activities": activities[0],
 	              	"fragments": fragments[0]
@@ -69,24 +71,34 @@ define(["react", "components/FlowWrapper.react", "components/Slide.react", "comp
 			FlowStore.removeChangeListener(this._onChange);
 			AppDispatcher.unregister(this.dispatcherIndex);
 		},
+		saveActivity: function(){
+			AppDispatcher.dispatch({
+	          actionType: 'SAVE_ACTIVITY'
+	        });
+		},
 		_onChange: function(){
-			this.setProps(FlowStore.getMyActivities());
+			this.setProps({
+	        	"flow": FlowStore.getFlow(),
+				"myActivities": FlowStore.getMyActivities(),
+	          	"activities": this.props.activities,
+	          	"fragments": this.props.fragments
+	        });
 		},
 		render: function(){
 
 	        var slide = this.state.slide ? <Slide key="slide" data={this.state.slide} /> : null;
 
 	        var currentUid = this.props.uid;
-	        var currentElement = this.props.myActivities[currentUid];
+	        var currentElement = this.props.flow;
 
 			return(
 				<div id="mainWrapper" className="mainWrapper">
             		<MainHeader title="Home Automator"/>
             	<div id="contentWrapper" className="contentWrapper">
             		<header className="header flowHeader">
-            			<span className="glyphicon glyphicon-cog"></span>
+            			<span className={"glyphicon "+currentElement.glyphicon}></span>
             			<h3 className="title">{currentElement.name}</h3>
-            			<span className="glyphicon glyphicon-floppy-disk right"></span>
+            			<span className="glyphicon glyphicon-floppy-disk right" onClick={this.saveActivity}></span>
             		</header>
 					<FlowWrapper key={this.props.currentUid} data = {currentElement} />
 					<ReactCSSTransitionGroup transitionName="slide">

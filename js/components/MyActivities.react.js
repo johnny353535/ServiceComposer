@@ -11,10 +11,13 @@ define(["react", "components/Fragment.react", "components/Activity.react", "disp
         //AppDispatcher.unregister(this.dispatcherIndex);
       },
       emitLoadActivity: function(e){
+
+        var activityUid = e;
+
         AppDispatcher.dispatch({
           actionType: 'LOAD_ACTIVITY',
           data: {
-            activityId: e
+            uid: activityUid
           }
         });
 
@@ -33,13 +36,26 @@ define(["react", "components/Fragment.react", "components/Activity.react", "disp
         var myActivities = [];
 
         for (activityUid in this.props.myActivities){
-          myActivities.push(<li key={activityUid}>{this.props.myActivities[activityUid].name}</li>);
+
+          var activity = this.props.myActivities[activityUid];
+          var elem =
+            <li key={activity.uid} className="media" onClick={_this.emitLoadActivity.bind(null, activityUid)}>
+              <a className="media-left" href="#">
+                <span className={"glyphicon "+activity.glyphicon}></span> 
+              </a>
+              <div className="media-body">
+                <h4 className="media-heading">{activity.name}</h4>
+                <p>{activity.description}</p>
+              </div>
+            </li>;
+
+          myActivities.push(elem);
         }
 
         return (
           <div className="myActivities">
-            <ul>
-              {myActivities}
+            <ul className="media-list">
+                {myActivities}
             </ul>
           </div>
         );

@@ -90,7 +90,7 @@ define(["react", "require", "dispatchers/AppDispatcher"], function(React, requir
                 </ul>
             </div>
             <div className="condition condition-bottom"><span>{this.props.data.condition}</span></div>
-        </div>
+          </div>
         );
       }
     });

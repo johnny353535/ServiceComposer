@@ -1,11 +1,7 @@
 define(["react", "dispatchers/AppDispatcher", "underscore", "minivents"], function(React, AppDispatcher, _) {
 
-	var _flow = getFlow();
-    var _uid = _flow.uid;
-
     var _myActivities = localStorage.getItem('myActivities') ? JSON.parse(localStorage.getItem('myActivities')) : {};
-    _flow = _myActivities[1417697902033];
-    
+	var _flow = getFlow();    
 
     function getFlow(name){
     	var uid = Date.now();
@@ -14,6 +10,8 @@ define(["react", "dispatchers/AppDispatcher", "underscore", "minivents"], functi
           "uid": uid,
           "name": name ? name : "myFlow "+uid,
           "type": "flow",
+          "glyphicon": "glyphicon-asterisk",
+          "description": "kein text",
           "flow": []
         }
     }
@@ -85,17 +83,29 @@ define(["react", "dispatchers/AppDispatcher", "underscore", "minivents"], functi
 		  return false;
 	}
 
+	function loadActivity(uid){
+		_flow = _myActivities[uid];
+		FlowStore.emitChange();
+	}
+
+	function saveActivity(){
+		_myActivities[_flow.id].push(flow);
+		FlowStore.emitChange();
+	}
+
 
 	var FlowStore = {
 
 		getMyActivities: function() {
 			return _myActivities;
 		},
+		getFlow: function(){
+			return _flow;
+		},
 		emitChange: function() {
 			_myActivities[_flow.uid] = _flow;
 
 			localStorage.setItem('myActivities', JSON.stringify(_myActivities));
-			console.log(_myActivities);
 			this.events.emit('CHANGE');
 		},
 
@@ -112,6 +122,9 @@ define(["react", "dispatchers/AppDispatcher", "underscore", "minivents"], functi
 		dispatcherIndex: AppDispatcher.register(function(payload) {
 
 			switch(payload.actionType) {
+				case "LOAD_ACTIVITY":
+					loadActivity(payload.data.uid);
+					break;
 				case "ADD_ACTIVITY":
 					insertActivity(payload.data.rootUid, payload.data.activity);
 					break;
