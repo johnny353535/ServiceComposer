@@ -395,25 +395,31 @@ button, .button {
 	padding: 0;
 	padding-left: 2%;
 	margin: 0;
+	margin-bottom: -4px;
 	border: 0;
 
 
 	&>li {
 
 		display: inline-block;
-		width: 33%;
+		width: 30%;
 
 		padding: 0;
+		margin-bottom: -4px;
+		margin-right: 1%;
 
 		border-radius: 4px 4px 0 0;
 
 		text-align: center;
+		overflow: hidden;
 
 
 		&>a {
 			text-decoration: none;
 			background-color: inherit;
 			border: 0;
+
+			width: 100%;
 
 			.glyphicon {
 				color: inherit;
@@ -422,13 +428,16 @@ button, .button {
 		}
 
 		&.active {
-
 			background-color: white;
 
 			&>a {
 				font-weight: bold;
 				background-color: inherit;
 			}
+		}
+
+		&:not(.active) {
+			opacity: 0.8;
 		}
 
 		.glyphicon {
