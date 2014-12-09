@@ -28,9 +28,11 @@ define(["react", "dispatchers/AppDispatcher", "components/AddElementWrapper.reac
           <div key="slide" className="slide">
           	<header className="header">
           		<h3 className="title">{this.props.data.title}</h3>
-          		<span className="glyphicon glyphicon-remove right" onClick={this.emitClose}></span>
+          		<button className="right" onClick={this.emitClose}><span className="glyphicon glyphicon-remove"></span></button>
           	</header>
-          	{content}
+          	<div className="slideContent">
+          		{content}
+          	</div>
           </div>
         );
         

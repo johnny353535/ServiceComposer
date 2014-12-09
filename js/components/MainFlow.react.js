@@ -95,12 +95,12 @@ define(["react", "components/FlowWrapper.react", "components/Slide.react", "comp
 
 			return(
 				<div id="mainWrapper" className="mainWrapper">
-            		<MainHeader title="Home Automator"/>
+            		<MainHeader title="Service Composer"/>
             	<div id="contentWrapper" className="contentWrapper">
             		<header className="header flowHeader">
-            			<span className={"glyphicon "+currentElement.glyphicon}></span>
+            			<button className="left"><span className={"glyphicon "+currentElement.glyphicon}></span></button>
             			<h3 className="title">{currentElement.name}</h3>
-            			<span className="glyphicon glyphicon-floppy-disk right" onClick={this.saveActivity}></span>
+            			<button className="right"><span className="glyphicon glyphicon-floppy-disk" onClick={this.saveActivity}></span></button>
             		</header>
 					<FlowWrapper key={this.props.currentUid} data = {currentElement} />
 					<ReactCSSTransitionGroup transitionName="slide">

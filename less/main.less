@@ -14,6 +14,9 @@
 	color: @base-color;
 
 	box-sizing: border-box;
+
+	-webkit-tap-highlight-color: rgba(51, 51, 51, 0.3);
+	outline: none;
 }
 
 html {
@@ -33,6 +36,17 @@ p {
 	margin: 0;
 }
 
+button, .button {
+	padding: 20px 14px;
+	border: 0;
+	background: none;
+
+	line-height: 20px;
+	display: inline-block;
+
+	-webkit-tap-highlight-color: rgba(51, 51, 51, 0.2);
+}
+
 .mainHeader {
 	position: fixed;
 	width: 100%;
@@ -44,23 +58,35 @@ p {
 
 .header {
 
+	display: inline-block;
+	width: 100%;
+
 	text-align: center;
-	padding: 20px;
+	padding: 0;
 
 	div {
 		display: inline-block;
+	}
+
+	&>* {
+		padding: 20px;
+		margin: 0;
 	}
 
 	.title {
 		margin: 0;
 		display: inline-block;
 		line-height: 20px;
+		padding: 20px 0;
+	}
+
+	.container {
+		padding: 0;
 	}
 
 	.left {
 		float: left;
 	}
-
 
 	.right {
 		float: right;
@@ -94,23 +120,14 @@ p {
 
 	padding-top: 60px;
 	height: 100%;
-	overflow-y: scroll;
+	overflow-y: auto;
 
 	background-color: @black;
 }
 
-.flowHeader {
-	padding: 20px 20px 0px 20px;
-	text-align: left;
-
-	.glyphicon {
-		margin-right: 6px;
-	}
-}
-
 .flowWrapper {
 
-	padding: 18px 14px;
+	padding: 10px;
 
 	transition: 0.3s opacity;
 
@@ -124,11 +141,11 @@ p {
 
 		color: fadeout(@base-color, 40%);
 
-		margin: 5px 0 15px 0;
+		line-height: 20px;
+		margin: 20px;
 
 		text-align: center;
 		font-weight: lighter;
-		font-size: 90%;
 	}
 
 	&.isEmpty {
@@ -184,37 +201,6 @@ p {
 	border-top: 1px solid;
 
 	position: relative;
-
-	header {
-
-		padding: 20px;
-
-		color: white;
-
-		.glyphicon {
-			margin-right: 6px;
-			color: inherit;
-		}
-
-		h2 {
-			display: inline-block;
-			margin: 0;
-			color: inherit;
-
-			font-size: 18px;
-			line-height: 20px;
-		}
-
-		.button-configure {
-			float: right;
-			margin-right: 10px;
-		}
-
-		.button-delete {
-			float: right;
-			margin: 0;
-		}
-	}
 
 	.content {
 		padding: 20px;
@@ -406,7 +392,8 @@ p {
 
 	width: 100%;
 
-	padding: 0 20px;
+	padding: 0;
+	padding-left: 2%;
 	margin: 0;
 	border: 0;
 
@@ -414,11 +401,13 @@ p {
 	&>li {
 
 		display: inline-block;
+		width: 33%;
 
-		padding: 10px 14px;
-		margin-right: 6px;
+		padding: 0;
 
 		border-radius: 4px 4px 0 0;
+
+		text-align: center;
 
 
 		&>a {
@@ -428,7 +417,7 @@ p {
 
 			.glyphicon {
 				color: inherit;
-				margin-right: 6px;
+				margin-right: 8px;
 			}
 		}
 
@@ -469,7 +458,6 @@ p {
 	}
 
 	.addConditionalBranch {
-		padding: 11px 0;
 		display: inline-block;
 		float: right;
 	}
@@ -527,8 +515,15 @@ ul.media-list {
 
 .slide {
 
+	position: relative;
+
 	&>header {
 		background-color: @blue;
+		position: absolute;
+		top: 0;
+		width: 100%;
+
+		z-index: 1;
 	}
 
 
@@ -538,28 +533,28 @@ ul.media-list {
 	border-radius: 4px 4px 0 0;
 	overflow: hidden;
 
-	height: 100%;
+	height: 80%;
 
-	transition: top 0.5s;
+	transition: bottom 0.5s;
 
-	top: 70px;
+	bottom: 0;
 	left: 10px;
 	right: 10px;
 
 	&.slide-enter {
-		top: 100%;
+		bottom: -100%;
 	}
 
 	&.slide-enter-active {
-		top: 70px;
+		bottom: 0;
 	}
 
 	&.slide-leave {
-		top: 70px;
+		bottom: 0;
 	}
 
 	&.slide-leave-active {
-		top: 100%;
+		bottom: -100%;
 	}
 
 	.closeSlide {
@@ -568,30 +563,29 @@ ul.media-list {
 	}
 }
 
-.addElementWrapper {
+.slideContent {
 	* {
 		color: @black;
 	}
 
+	padding-top: 60px;
 	height: 100%;
-	padding-top: 10px;
+	overflow-y: auto;
 
 	background-color: #f7f7f9;
+}
+
+.addElementWrapper {
+	padding-top: 10px;
 
 }
 
 .fragmentConfig {
 
-	* {
-		color: @black;
-	}
-
 	text-align: center;
 
 	padding: 50px 20px;
 
-	height: 100%;
-	background-color: #f7f7f9;
 
 	span {
 		margin: 0 10px;
@@ -599,10 +593,5 @@ ul.media-list {
 }
 
 .myActivities {
-	* {
-		color: @black;
-	}
-
-	height: 100%;
-	background-color: #f7f7f9;
+	
 }

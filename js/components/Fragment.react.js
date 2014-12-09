@@ -43,7 +43,7 @@ define(["react", "require", "dispatchers/AppDispatcher"], function(React, requir
 
             return (
               <li key={flow.name} role="presentation" className={className}>
-                <a href={"#"+flow.name} role="tab" data-toggle="tab"><span className={"glyphicon "+flow.glyphicon}></span><span className="tabName short">{flow.name}</span><span className={!flow.flow.length ? "badge empty" : "badge"}>{flow.flow.length}</span></a>
+                <a href={"#"+flow.name} role="tab" data-toggle="tab" className="button"><span className={"glyphicon "+flow.glyphicon}></span><span className="tabName short">{flow.name}</span><span className={!flow.flow.length ? "badge empty" : "badge"}>{flow.flow.length}</span></a>
               </li>
             );
         });
@@ -72,17 +72,22 @@ define(["react", "require", "dispatchers/AppDispatcher"], function(React, requir
 
         return (
           <div className={"flowElement fragment "+classes}>
-            <header>
-                <span className={"glyphicon "+glyphicon}></span>
-                <h2 className="panel-title">{this.props.data.name}</h2>
-                <span className="glyphicon glyphicon-trash button-delete" onClick={this.deleteHandler}></span>
+            <header className="header">
+                <div className="container left">
+                  <button><span className={"glyphicon "+(this.props.data.glyphicon ? this.props.data.glyphicon : "glyphicon-asterisk")}></span></button>
+                  <h3 className="title">{this.props.data.name}</h3>
+                </div>
+                <div className="container right">
+                  <button className="button-configure"><span className="glyphicon glyphicon-cog"></span></button>
+                  <button className="button-delete" onClick={this.deleteHandler}><span className="glyphicon glyphicon-trash"></span></button>
+                </div>
             </header>
             <div className="fragmentWrapper">
 
                 {/*Tab navigation*/}
                 <ul className="nav nav-tabs mobile-nav-tabs" role="tablist">
                     {fragmentTabNav}
-                    <span className="btn glyphicon glyphicon-plus addConditionalBranch" onClick={this.addFlowDialog}></span>
+                    <button className="addConditionalBranch" onClick={this.addFlowDialog}><span className="glyphicon glyphicon-plus"></span></button>
                 </ul>
                 {/* Tab contents */}
                 <ul className="tab-content mobile-nav-content">

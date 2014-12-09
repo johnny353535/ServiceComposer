@@ -26,9 +26,9 @@ define(["react", "dispatchers/AppDispatcher"], function(React, AppDispatcher) {
 		render: function(){
 			return (
 				<header className="header mainHeader">
-					<span className="glyphicon glyphicon-book left" onClick={this.emitOpenMyActivities}></span>
+					<button className="left" onClick={this.emitOpenMyActivities}><span className="glyphicon glyphicon-book"></span></button>
 			        <h3 className="title">{this.props.title}</h3>
-			        <span className="glyphicon glyphicon-plus-sign right" onClick={this.emitNewActivity}></span>
+			        <button className="right" onClick={this.emitNewActivity}><span className="glyphicon glyphicon-plus-sign"></span></button>
 			    </header>
 			);
 		}

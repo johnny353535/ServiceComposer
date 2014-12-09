@@ -14,11 +14,15 @@ define(["react", "dispatchers/AppDispatcher"], function(React, AppDispatcher) {
       render: function() {
         return (
           <div className={"flowElement activity"}>
-            <header>
-                <span className={"glyphicon "+(this.props.data.glyphicon ? this.props.data.glyphicon : "glyphicon-asterisk")}></span>
-                <h2 className="panel-title">{this.props.data.name}</h2>
-                <span className="glyphicon glyphicon-trash button-delete" onClick={this.deleteHandler}></span>
-                <span className="glyphicon glyphicon-cog button-configure"></span>
+            <header className="header">
+                <div className="container left">
+                  <button><span className={"glyphicon "+(this.props.data.glyphicon ? this.props.data.glyphicon : "glyphicon-asterisk")}></span></button>
+                  <h3 className="title">{this.props.data.name}</h3>
+                </div>
+                <div className="container right">
+                  <button className="button-configure"><span className="glyphicon glyphicon-cog"></span></button>
+                  <button className="button-delete" onClick={this.deleteHandler}><span className="glyphicon glyphicon-trash"></span></button>
+                </div>
             </header>
         </div>
         );
