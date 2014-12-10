@@ -68,17 +68,6 @@
       ]
    },
    {  
-      "id":"conditional",
-      "type":"fragment",
-      "fragmentType":"conditional",
-      "name":"Conditional",
-      "condition":"Weather",
-      "description":"Executes encapsulated activities based on a given condition",
-      "glyphicon": "glyphicon-question-sign",
-      "flows":[ 
-      ]
-   },
-   {  
       "id":"parallel",
       "type":"fragment",
       "fragmentType":"parallel",

@@ -64,7 +64,7 @@ define(["react", "dispatchers/AppDispatcher"], function(React, AppDispatcher) {
           var activity = this.props.myActivities[activityUid];
           var elem =
             <li key={activity.uid} className="media" onClick={_this.addActivity.bind(null, activity)}>
-              <a className="media-left" href="#">
+              <a className="media-left media-middle" href="#">
                 <span className={"glyphicon "+activity.glyphicon}></span> 
               </a>
               <div className="media-body">
@@ -80,7 +80,7 @@ define(["react", "dispatchers/AppDispatcher"], function(React, AppDispatcher) {
 
             return (
               <li key={activity.id} className="media" onClick={_this.addActivity.bind(null, activity)}>
-                  <a className="media-left" href="#">
+                  <a className="media-left media-middle" href="#">
                     <span className={"glyphicon "+activity.glyphicon}></span> 
                   </a>
                   <div className="media-body">
@@ -96,7 +96,7 @@ define(["react", "dispatchers/AppDispatcher"], function(React, AppDispatcher) {
 
             return (
               <li key={fragment.id} className="media" onClick={_this.addFragment.bind(null, fragment)}>
-                  <a className="media-left" href="#">
+                  <a className="media-left media-middle" href="#">
                       <span className={"glyphicon "+fragment.glyphicon}></span> 
                   </a>
                   <div className="media-body">
