@@ -24,10 +24,26 @@ define(["react", "components/Fragment.react", "components/Activity.react", "disp
         this.emitClose();
       },
       emitClose: function(){
+        
         AppDispatcher.dispatch({
           actionType: 'TOGGLE_SLIDE',
           data: { open: false }
         });
+
+      },
+      deleteActivity: function(id, e){
+
+        e.stopPropagation();
+
+
+        if(confirm("Are you sure you want to delete this")) {
+          AppDispatcher.dispatch({
+            actionType: 'DELETE_ACTIVITY',
+            data: { id: id }
+          });
+
+          alert("Deleted activity");
+        }
       },
       render: function() {
 
@@ -40,13 +56,16 @@ define(["react", "components/Fragment.react", "components/Activity.react", "disp
           var activity = this.props.myActivities[activityUid];
           var elem =
             <li key={activity.uid} className="media" onClick={_this.emitLoadActivity.bind(null, activityUid)}>
-              <a className="media-left" href="#">
+              <span className="media-left media-middle">
                 <span className={"glyphicon "+activity.glyphicon}></span> 
-              </a>
+              </span>
               <div className="media-body">
                 <h4 className="media-heading">{activity.name}</h4>
                 <p>{activity.description}</p>
               </div>
+              <a href="#" className="media-right" onClick={_this.deleteActivity.bind(null, activity.uid)}>
+                <span className="glyphicon glyphicon-trash"></span> 
+              </a>
             </li>;
 
           myActivities.push(elem);

@@ -104,6 +104,12 @@ define(["react", "dispatchers/AppDispatcher", "underscore", "minivents"], functi
 		FlowStore.emitChange();
 	}
 
+	function deleteActivity(id){
+		delete _myActivities[id];
+
+		FlowStore.emitChange();
+	}
+
 
 	var FlowStore = {
 
@@ -139,6 +145,9 @@ define(["react", "dispatchers/AppDispatcher", "underscore", "minivents"], functi
 				case "SAVE_ACTIVITY":
 					saveActivity();
 					break;
+				 case "DELETE_ACTIVITY":
+				 	deleteActivity(payload.data.id);
+				 	break;
 				case "ADD_ACTIVITY":
 					insertActivity(payload.data.rootUid, payload.data.activity);
 					break;

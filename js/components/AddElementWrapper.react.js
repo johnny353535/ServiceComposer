@@ -64,9 +64,9 @@ define(["react", "dispatchers/AppDispatcher"], function(React, AppDispatcher) {
           var activity = this.props.myActivities[activityUid];
           var elem =
             <li key={activity.uid} className="media" onClick={_this.addActivity.bind(null, activity)}>
-              <a className="media-left media-middle" href="#">
+              <span className="media-left media-middle" href="#">
                 <span className={"glyphicon "+activity.glyphicon}></span> 
-              </a>
+              </span>
               <div className="media-body">
                 <h4 className="media-heading">{activity.name}</h4>
                 <p>{activity.description}</p>
@@ -80,9 +80,9 @@ define(["react", "dispatchers/AppDispatcher"], function(React, AppDispatcher) {
 
             return (
               <li key={activity.id} className="media" onClick={_this.addActivity.bind(null, activity)}>
-                  <a className="media-left media-middle" href="#">
+                  <span className="media-left media-middle" href="#">
                     <span className={"glyphicon "+activity.glyphicon}></span> 
-                  </a>
+                  </span>
                   <div className="media-body">
                       <h4 className="media-heading">{activity.name}</h4>
                       <p>{activity.description}</p>
@@ -96,9 +96,9 @@ define(["react", "dispatchers/AppDispatcher"], function(React, AppDispatcher) {
 
             return (
               <li key={fragment.id} className="media" onClick={_this.addFragment.bind(null, fragment)}>
-                  <a className="media-left media-middle" href="#">
+                  <span className="media-left media-middle" href="#">
                       <span className={"glyphicon "+fragment.glyphicon}></span> 
-                  </a>
+                  </span>
                   <div className="media-body">
                       <h4 className="media-heading">{fragment.name}</h4>
                       <p>{fragment.description}</p>
