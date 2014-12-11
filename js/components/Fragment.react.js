@@ -1,6 +1,9 @@
 define(["react", "require", "dispatchers/AppDispatcher"], function(React, require, AppDispatcher) {
 
     var Fragment = React.createClass({
+        componentDidMount: function(){
+            this.addFlowDialog();
+        },
         deleteHandler: function(){
             if(window.confirm("Are you sure you want to remove this activity?1")) {
                 //window.root.deleteElement(this.props.data.uid);
@@ -41,9 +44,11 @@ define(["react", "require", "dispatchers/AppDispatcher"], function(React, requir
             var className = first ? "active" : "";
             first = false;
 
+            console.log(flow)
+
             return (
               <li key={flow.name} role="presentation" className={className}>
-                <a href={"#"+flow.name} role="tab" data-toggle="tab" className="button"><span className={"glyphicon "+flow.glyphicon}></span><span className="tabName short">{flow.name}</span><span className={!flow.flow.length ? "badge empty" : "badge"}>{flow.flow.length}</span></a>
+                <a href={"#"+flow.name} role="tab" data-toggle="tab" className={!flow.flow.length ? "button empty" : "button"}>{flow.glyphicon ? <span className={"glyphicon "+flow.glyphicon}></span> : null}<span className="tabName short">{flow.name}</span></a>
               </li>
             );
         });
@@ -87,7 +92,7 @@ define(["react", "require", "dispatchers/AppDispatcher"], function(React, requir
                 {/*Tab navigation*/}
                 <ul className="nav nav-tabs mobile-nav-tabs" role="tablist">
                     {fragmentTabNav}
-                    <button className="addConditionalBranch" onClick={this.addFlowDialog}><span className="glyphicon glyphicon-plus"></span></button>
+                    <li key="addFlow"className="tab-pane addFlow"><button onClick={this.addFlowDialog}><span className="glyphicon glyphicon-plus"></span></button></li>
                 </ul>
                 {/* Tab contents */}
                 <ul className="tab-content mobile-nav-content">

@@ -10,19 +10,19 @@
       "options": [
          {
             "name": "sunny",
-            "icon": "glyphicon-certificate"
+            "glyphicon": "glyphicon-certificate"
          },
          {
             "name": "cloudy",
-            "icon": "glyphicon-cloud"
+            "glyphicon": "glyphicon-cloud"
          },
          {
             "name": "rainy",
-            "icon": "glyphicon-tint"
+            "glyphicon": "glyphicon-tint"
          },
          {
             "name": "windy",
-            "icon": "glyphicon-flag"
+            "glyphicon": "glyphicon-flag"
          }
       ],
       "flows":[  

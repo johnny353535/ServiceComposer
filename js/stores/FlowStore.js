@@ -7,14 +7,14 @@ define(["react", "dispatchers/AppDispatcher", "underscore", "minivents"], functi
 		localStorage.setItem('myActivities', "{}");
 	}
 
-    function getFlow(name){
+    function getFlow(name, glyphicon){
     	var uid = Date.now();
 
     	return {
           "uid": uid,
           "name": name ? name : "myFlow "+uid,
           "type": "flow",
-          "glyphicon": "glyphicon-asterisk",
+          "glyphicon": glyphicon ? glyphicon : "glyphicon-asterisk",
           "description": "kein text",
           "flow": []
         }
@@ -40,10 +40,10 @@ define(["react", "dispatchers/AppDispatcher", "underscore", "minivents"], functi
       	FlowStore.emitChange();
 	}
 
-	function insertFlow(root_uid, name){
+	function insertFlow(root_uid, name, glyphicon){
 		console.log('insertFlow', root_uid, name)
 
-		addElementToRoot(_flow, root_uid, getFlow(name), true);
+		addElementToRoot(_flow, root_uid, getFlow(name, glyphicon), true);
       	FlowStore.emitChange();
 	}
 
@@ -120,7 +120,7 @@ define(["react", "dispatchers/AppDispatcher", "underscore", "minivents"], functi
 			return _flow;
 		},
 		emitChange: function() {
-			this.events.emit('CHANGE');
+			this.events.emit('CHANGE'); 
 		},
 
 		addChangeListener: function(callback) {
@@ -155,7 +155,7 @@ define(["react", "dispatchers/AppDispatcher", "underscore", "minivents"], functi
 					insertFragment(payload.data.rootUid, payload.data.fragment);
 					break;
 				case "ADD_FLOW":
-					insertFlow(payload.data.rootUid, payload.data.name);
+					insertFlow(payload.data.rootUid, payload.data.name, payload.data.glyphicon);
 					break;
 				case "DELETE_ELEMENT":
 					deleteElementByUid(_flow, payload.data.uid);

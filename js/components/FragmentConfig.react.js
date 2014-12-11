@@ -4,7 +4,10 @@ define(["react", "components/Fragment.react", "components/Activity.react", "disp
 
 	var FragmentConfig = React.createClass({
       getInitialState: function(){
-        return { value: this.props.data.payload.options[0].name }
+        return {
+          name: this.props.data.payload.options[0].name,
+          glyphicon: this.props.data.payload.options[0].glyphicon
+        }
       },
       componentDidMount: function() {
         var _this = this;
@@ -18,7 +21,8 @@ define(["react", "components/Fragment.react", "components/Activity.react", "disp
           actionType: 'ADD_FLOW',
           data: {
             rootUid: this.props.data.payload.uid,
-            name: this.state.value
+            name: this.state.name,
+            glyphicon: this.state.glyphicon
           }
         });
 
@@ -31,15 +35,19 @@ define(["react", "components/Fragment.react", "components/Activity.react", "disp
         });
       },
       handleChange: function(event) {
-        this.setState({value: event.target.value});
+        this.setState(JSON.parse(event.target.value));
       },
       render: function() {
 
       	var _this = this;
 
         var options = this.props.data.payload.options.map(function (option) {
-
-          return (<option key={option.name} value={option.name}>{option.name}</option>);
+          console.log(option)
+          var value = {
+            name: option.name,
+            glyphicon: option.glyphicon
+          }
+          return (<option key={option.name} value={JSON.stringify(value)}>{option.name}</option>);
 
         });
 
