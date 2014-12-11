@@ -275,6 +275,18 @@ button, .button {
 
 }
 
+.fragmentWrapper {
+	.mobile-nav-tabs.nav-tabs {
+
+		li.addFlow {
+			min-width: 0;
+		}
+
+		li:not(.active) {
+			background-color: transparent !important;
+		}
+	}
+}
 
 .contentWrapper>.flowWrapper>ul>li:nth-child(1n+1)>.flowElement {
 	background-color: @green;
@@ -394,16 +406,19 @@ button, .button {
 	margin-bottom: -4px;
 	border: 0;
 
+	padding-left: 10px;
+
 
 	&>li {
 
 		display: inline-block;
-		width: 33%;
 
 		padding: 0;
 		margin-bottom: -4px;
+		margin-right: 1%;
 
 		text-align: center;
+		border-radius: 4px 4px 0 0;
 		overflow: hidden;
 
 		&:focus {
@@ -422,6 +437,10 @@ button, .button {
 				color: inherit;
 				margin-right: 8px;
 			}
+			
+			&.empty .tabName {
+				color: @red;
+			}
 		}
 
 		&.active {
@@ -432,6 +451,7 @@ button, .button {
 				background-color: inherit;
 			}
 		}
+
 
 		&:not(.active) {
 			//opacity: 0.8;
@@ -453,14 +473,6 @@ button, .button {
 			}
 		}
 
-		.badge {
-			vertical-align: top;
-			margin-left: 6px;
-		}
-
-		.badge.empty {
-			background-color: @red;
-		}
 	}
 
 	.addConditionalBranch {
@@ -522,6 +534,7 @@ ul.media-list {
 .slide {
 
 	position: relative;
+	z-index: 999;
 
 	&>header {
 		background-color: @blue;
@@ -583,7 +596,7 @@ ul.media-list {
 }
 
 .addElementWrapper {
-
+	padding-top: 10px;
 }
 
 .fragmentConfig {
