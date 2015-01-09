@@ -47,6 +47,16 @@ button, .button {
 	-webkit-tap-highlight-color: rgba(51, 51, 51, 0.2);
 }
 
+p.empty {	
+	color: fadeout(@base-color, 40%);
+
+	line-height: 20px;
+	margin: 20px;
+
+	text-align: center;
+	font-weight: lighter;
+}
+
 
 .header {
 
@@ -135,14 +145,6 @@ button, .button {
 
 	&>.empty {
 		display: none;
-
-		color: fadeout(@base-color, 40%);
-
-		line-height: 20px;
-		margin: 20px;
-
-		text-align: center;
-		font-weight: lighter;
 	}
 
 	&.isEmpty {
@@ -288,7 +290,7 @@ button, .button {
 	}
 }
 
-.contentWrapper>.flowWrapper>ul>li:nth-child(1n+1)>.flowElement {
+#mainFlow>.flowWrapper>ul>li:nth-child(1n+1)>.flowElement {
 	background-color: @green;
 
 	border-color: @green;
@@ -309,7 +311,7 @@ button, .button {
 	}
 }
 
-.contentWrapper>.flowWrapper>ul>li:nth-child(2n+1)>.flowElement {
+#mainFlow>.flowWrapper>ul>li:nth-child(2n+1)>.flowElement {
 	background-color: @light-blue;
 
 	border-color: @light-blue;
@@ -330,7 +332,7 @@ button, .button {
 	}
 }
 
-.contentWrapper>.flowWrapper>ul>li:nth-child(3n+1)>.flowElement {
+#mainFlow>.flowWrapper>ul>li:nth-child(3n+1)>.flowElement {
 	background-color: @orange;
 
 	border-color: @orange;
@@ -351,7 +353,7 @@ button, .button {
 	}
 }
 
-.contentWrapper>.flowWrapper>ul>li:nth-child(4n+1)>.flowElement {
+#mainFlow>.flowWrapper>ul>li:nth-child(4n+1)>.flowElement {
 	background-color: @red;
 
 	border-color: @red;
@@ -372,7 +374,7 @@ button, .button {
 	}
 }
 
-.contentWrapper>.flowWrapper>ul>li:nth-child(5n+1)>.flowElement {
+#mainFlow>.flowWrapper>ul>li:nth-child(5n+1)>.flowElement {
 	background-color: @blue;
 
 	border-color: @blue;
@@ -406,7 +408,7 @@ button, .button {
 	margin-bottom: -4px;
 	border: 0;
 
-	padding-left: 10px;
+	padding-left: 2%;
 
 
 	&>li {
@@ -459,6 +461,8 @@ button, .button {
 
 		.glyphicon {
 			vertical-align: middle;
+			display: block;
+			margin-bottom: 4px;
 		}
 
 		.tabName {
@@ -604,6 +608,10 @@ ul.media-list {
 	text-align: center;
 
 	padding: 50px 20px;
+
+	select {
+		margin-left: 6px;
+	}
 
 	.addFlowBtn {
 		background-color: white;

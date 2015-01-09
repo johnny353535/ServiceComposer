@@ -41,8 +41,6 @@ define(["react", "components/Fragment.react", "components/Activity.react", "disp
             actionType: 'DELETE_ACTIVITY',
             data: { id: id }
           });
-
-          alert("Deleted activity");
         }
       },
       render: function() {
@@ -69,6 +67,11 @@ define(["react", "components/Fragment.react", "components/Activity.react", "disp
             </li>;
 
           myActivities.push(elem);
+        }
+
+        // No activities to load
+        if(!myActivities.length) {
+          myActivities = <li><p>No activities</p></li>;
         }
 
         return (

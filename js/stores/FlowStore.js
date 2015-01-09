@@ -1,24 +1,13 @@
 define(["react", "dispatchers/AppDispatcher", "underscore", "minivents"], function(React, AppDispatcher, _) {
 
-    var _myActivities = localStorage.getItem('myActivities') ? JSON.parse(localStorage.getItem('myActivities')) : {};
-	var _flow = getFlow(); 
+	var _flow = null; 
 
-	window.clearMyActivites = function(){
-		localStorage.setItem('myActivities', "{}");
-	}
 
-    function getFlow(name, glyphicon){
-    	var uid = Date.now();
-
-    	return {
-          "uid": uid,
-          "name": name ? name : "myFlow "+uid,
-          "type": "flow",
-          "glyphicon": glyphicon ? glyphicon : "glyphicon-asterisk",
-          "description": "kein text",
-          "flow": []
-        }
-    }
+    /**
+	*
+	*	Action functions
+	*
+    */
 
     function insertActivity(root_uid, activity){
 
@@ -27,7 +16,6 @@ define(["react", "dispatchers/AppDispatcher", "underscore", "minivents"], functi
 		elem.uid = Date.now();
 
 		addElementToRoot(_flow, root_uid, elem);
-      	FlowStore.emitChange();
 	}
 
 	function insertFragment(root_uid, fragment){
@@ -37,35 +25,13 @@ define(["react", "dispatchers/AppDispatcher", "underscore", "minivents"], functi
 		elem.uid = Date.now();
 
 		addElementToRoot(_flow, root_uid, elem);
-      	FlowStore.emitChange();
 	}
 
 	function insertFlow(root_uid, name, glyphicon){
 		console.log('insertFlow', root_uid, name)
 
 		addElementToRoot(_flow, root_uid, getFlow(name, glyphicon), true);
-      	FlowStore.emitChange();
 	}
-
-	function addElementToRoot(root, uid, elem, addFlow) {
-
-	  if(root.uid == uid){
-	  	console.log("added", elem.uid);
-	  	if(addFlow)
-	     root.flows.push(elem);
-	 	else root.flow.push(elem);
-	    return true;
-	  } else if(root.flow) {
-	    for(var i = 0; i<root.flow.length; i++)
-	      if(root.flow[i].flows) addElementToRoot(root.flow[i], uid, elem, addFlow);
-	  } else if (root.flows) {
-	    for(var i = 0; i<root.flows.length; i++)
-	      addElementToRoot(root.flows[i], uid, elem, addFlow);
-	  }
-
-	  return false;
-	}
-
 
 	function deleteElementByUid(root, uid, elem){
 		if(root.flow) { // we are in a flowWrapper
@@ -89,32 +55,64 @@ define(["react", "dispatchers/AppDispatcher", "underscore", "minivents"], functi
 
 	function createActivity(name){
 		_flow = getFlow(name);
-		FlowStore.emitChange();
 	}
 
-	function loadActivity(uid){
-		_flow = _myActivities[uid];
-		FlowStore.emitChange();
+	function loadActivity(activity){
+		_flow = activity;
 	}
 
-	function saveActivity(){
-		_myActivities[_flow.uid] = _flow;
-		localStorage.setItem('myActivities', JSON.stringify(_myActivities));
 
-		FlowStore.emitChange();
+	/**
+	*
+	* Helper functions
+	*
+	*/
+
+	// inserts new elments into JSON at a desired position
+	function addElementToRoot(root, uid, elem, addFlow) {
+
+	  if(root.uid == uid){
+	  	console.log("added", elem.uid);
+	  	if(addFlow)
+	     root.flows.push(elem);
+	 	else root.flow.push(elem);
+	    return true;
+	  } else if(root.flow) {
+	    for(var i = 0; i<root.flow.length; i++)
+	      if(root.flow[i].flows) addElementToRoot(root.flow[i], uid, elem, addFlow);
+	  } else if (root.flows) {
+	    for(var i = 0; i<root.flows.length; i++)
+	      addElementToRoot(root.flows[i], uid, elem, addFlow);
+	  }
+
+	  return false;
 	}
 
-	function deleteActivity(id){
-		delete _myActivities[id];
+	// Getter for a new Flow template
+    function getFlow(name, glyphicon){
+    	var uid = Date.now();
 
-		FlowStore.emitChange();
-	}
+    	return {
+          "uid": uid,
+          "name": name ? name : "myFlow "+uid,
+          "type": "flow",
+          "glyphicon": glyphicon ? glyphicon : "glyphicon-asterisk",
+          "description": "kein text",
+          "flow": []
+        }
+    }
 
+
+    /*
+    *
+    *	FlowStore object
+    *
+    */
 
 	var FlowStore = {
-
-		getMyActivities: function() {
-			return _myActivities;
+		loadActivity: function(activity){
+			loadActivity(activity);
+			this.emitChange();
 		},
 		getFlow: function(){
 			return _flow;
@@ -136,18 +134,9 @@ define(["react", "dispatchers/AppDispatcher", "underscore", "minivents"], functi
 		dispatcherIndex: AppDispatcher.register(function(payload) {
 
 			switch(payload.actionType) {
-				case "LOAD_ACTIVITY":
-					loadActivity(payload.data.uid);
-					break;
 				case "CREATE_ACTIVITY":
 					createActivity(payload.data.name);
 					break;
-				case "SAVE_ACTIVITY":
-					saveActivity();
-					break;
-				 case "DELETE_ACTIVITY":
-				 	deleteActivity(payload.data.id);
-				 	break;
 				case "ADD_ACTIVITY":
 					insertActivity(payload.data.rootUid, payload.data.activity);
 					break;
@@ -161,6 +150,8 @@ define(["react", "dispatchers/AppDispatcher", "underscore", "minivents"], functi
 					deleteElementByUid(_flow, payload.data.uid);
 					break;
 			}
+
+			FlowStore.emitChange();
 
 			return true; // No errors. Needed by promise in Dispatcher.
 		})

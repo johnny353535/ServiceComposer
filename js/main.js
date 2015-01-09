@@ -19,12 +19,12 @@ requirejs.config({
 });
 
 
-require(["react", "components/MainFlow.react", "components/AddElementWrapper.react", "components/MainHeader.react", "flux", "jquery", "bootstrap", "minivents"], function (React, MainFlow, AddElementWrapper, MainHeader, Flux) {
+require(["react", "components/Main.react", "flux", "jquery", "bootstrap", "minivents"], function (React, Main, Flux) {
 
     React.initializeTouchEvents(true)
 
     React.render(
-      <MainFlow />,
+      <Main />,
       document.body
     );
 
