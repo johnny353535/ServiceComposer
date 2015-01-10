@@ -1,4 +1,4 @@
-define(["react", "dispatchers/AppDispatcher", "components/AddElementWrapper.react", "components/FragmentConfig.react", "components/MyActivities.react"], function(React, AppDispatcher, AddElementWrapper, FragmentConfig, MyActivities) {
+define(["react", "dispatchers/AppDispatcher", "components/AddElementWrapper.react", "components/FragmentConfig.react", "components/MyActivities.react", "components/ActivityConfig.react", "components/GlyphiconConfig.react"], function(React, AppDispatcher, AddElementWrapper, FragmentConfig, MyActivities, ActivityConfig, GlyphiconConfig) {
 
 	var Slide = React.createClass({
 	  emitClose: function(){
@@ -14,6 +14,12 @@ define(["react", "dispatchers/AppDispatcher", "components/AddElementWrapper.reac
       		case("FragmentConfig"):
       			content = <FragmentConfig data={this.props.data} />
       			break;
+          case("ActivityConfig"):
+            content = <ActivityConfig data={this.props.data} />
+            break;
+          case("GlyphiconConfig"):
+            content = <GlyphiconConfig data={this.props.data} />
+            break;
       		case("AddElement"):
       			content = <AddElementWrapper rootUid={this.props.data.rootUid} fragments={this.props.data.fragments} activities={this.props.data.activities} myActivities={this.props.data.myActivities}/>;
       			break;

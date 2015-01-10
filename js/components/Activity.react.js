@@ -1,14 +1,25 @@
 define(["react", "dispatchers/AppDispatcher"], function(React, AppDispatcher) {
 
   var Activity = React.createClass({
+      configHandler: function(){
+        AppDispatcher.dispatch({
+          actionType: 'TOGGLE_SLIDE',
+          data: {
+            open: true,
+            title: "Configure Activity",
+            type: "ActivityConfig",
+            payload: this.props
+          }
+        });
+      },
       deleteHandler: function(){
         if(window.confirm("Are you sure you want to remove this activity?")) {
-            AppDispatcher.dispatch({
-              actionType: "DELETE_ELEMENT",
-              data: {
-                uid: this.props.data.uid
-              }
-            });
+          AppDispatcher.dispatch({
+            actionType: "DELETE_ELEMENT",
+            data: {
+              uid: this.props.data.uid
+            }
+          });
         }
       },
       render: function() {
@@ -20,7 +31,7 @@ define(["react", "dispatchers/AppDispatcher"], function(React, AppDispatcher) {
                   <h3 className="title">{this.props.data.name}</h3>
                 </div>
                 <div className="container right">
-                  <button className="button-configure"><span className="glyphicon glyphicon-cog"></span></button>
+                  <button className="button-configure" onClick={this.configHandler}><span className="glyphicon glyphicon-cog"></span></button>
                   <button className="button-delete" onClick={this.deleteHandler}><span className="glyphicon glyphicon-trash"></span></button>
                 </div>
             </header>
