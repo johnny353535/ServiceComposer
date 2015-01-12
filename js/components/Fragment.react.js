@@ -2,10 +2,10 @@ define(["react", "require", "dispatchers/AppDispatcher"], function(React, requir
 
     var Fragment = React.createClass({
         componentDidMount: function(){
-            this.addFlowDialog();
+            this.addFlow();
         },
         deleteHandler: function(){
-            if(window.confirm("Are you sure you want to remove this activity?1")) {
+            if(window.confirm("Are you sure you want to remove this fragment?")) {
                 //window.root.deleteElement(this.props.data.uid);
                 AppDispatcher.dispatch({
                   actionType: "DELETE_ELEMENT",
@@ -15,15 +15,8 @@ define(["react", "require", "dispatchers/AppDispatcher"], function(React, requir
                 });
             }
         },
-        addFlowHandler: function(){
-            AppDispatcher.dispatch({
-              actionType: "ADD_FLOW",
-              data: {
-                rootUid: this.props.data.uid
-              }
-            });
-        },
-        addFlowDialog: function(){
+        addFlow: function(){
+          if(this.props.data.fragmentType == 'conditional' || this.props.data.fragmentType == 'loop') {
             AppDispatcher.dispatch({
                 actionType: 'TOGGLE_SLIDE',
                 data: {
@@ -33,6 +26,17 @@ define(["react", "require", "dispatchers/AppDispatcher"], function(React, requir
                   payload: this.props.data
                 }
               });
+          } else if (this.props.data.fragmentType == 'parallel') {
+
+            AppDispatcher.dispatch({
+              actionType: "ADD_FLOW",
+              data: {
+                rootUid: this.props.data.uid,
+                name: (this.props.data.flows.length + 1)
+              }
+            });
+          }
+
         },
       render: function() {
 
@@ -92,7 +96,7 @@ define(["react", "require", "dispatchers/AppDispatcher"], function(React, requir
                 {/*Tab navigation*/}
                 <ul className="nav nav-tabs mobile-nav-tabs" role="tablist">
                     {fragmentTabNav}
-                    <li key="addFlow"className="tab-pane addFlow"><button onClick={this.addFlowDialog}><span className="glyphicon glyphicon-plus"></span></button></li>
+                    <li key="addFlow"className="tab-pane addFlow"><button onClick={this.addFlow}><span className="glyphicon glyphicon-plus"></span></button></li>
                 </ul>
                 {/* Tab contents */}
                 <ul className="tab-content mobile-nav-content">

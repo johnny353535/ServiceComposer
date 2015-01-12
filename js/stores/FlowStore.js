@@ -94,9 +94,9 @@ define(["react", "dispatchers/AppDispatcher", "underscore", "minivents"], functi
 
     	return {
           "uid": uid,
-          "name": name ? name : "myFlow "+uid,
+          "name": name ? name : uid,
           "type": "flow",
-          "glyphicon": glyphicon ? glyphicon : "glyphicon-asterisk",
+          "glyphicon": glyphicon ? glyphicon : "",
           "description": "kein text",
           "flow": []
         }

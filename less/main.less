@@ -136,7 +136,9 @@ p.empty {
 }
 
 .flowHeader {
-
+	.saved {
+		color: @green;
+	}
 }
 
 .flowWrapper {
@@ -423,10 +425,6 @@ p.empty {
 		border-radius: 4px 4px 0 0;
 		overflow: hidden;
 
-		&:focus {
-			background: pink;
-		}
-
 
 		&>a {
 			text-decoration: none;
@@ -440,8 +438,8 @@ p.empty {
 				margin-right: 8px;
 			}
 			
-			&.empty .tabName {
-				color: @red;
+			&.empty .tabName:after {
+				content: '*';
 			}
 		}
 
@@ -449,7 +447,7 @@ p.empty {
 			background-color: white;
 
 			&>a {
-				font-weight: bold;
+				//font-weight: bold;
 				background-color: inherit;
 			}
 		}

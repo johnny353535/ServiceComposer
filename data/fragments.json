@@ -77,17 +77,5 @@
       "flows":[  
 
       ]
-   },
-   {  
-      "id":"loop",
-      "type":"fragment",
-      "fragmentType":"loop",
-      "name":"Loop",
-      "condition":"x > 42",
-      "description":"Executes encapsulated activities as long as the provided condition yields true",
-      "glyphicon": "glyphicon-retweet",
-      "flows":[  
-
-      ]
    }
 ]
