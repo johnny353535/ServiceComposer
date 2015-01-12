@@ -13,12 +13,13 @@ define(["react", "dispatchers/AppDispatcher"], function(React, AppDispatcher) {
               });
 		},
 		emitNewActivity: function(){
-			var name = window.prompt("Enter a name for the activity","myFlow "+Date.now());
-			if(name){
+			var name = window.prompt("Enter a name for the activity", Date.now());
+			if(name){ // Check whether name is given
 				AppDispatcher.dispatch({
 			        actionType: 'CREATE_ACTIVITY',
 			        data: {
-			        	name: name
+			        	name: name,
+			        	glyphicon: "glyphicon-asterisk"
 			        }
 			      });
 			}

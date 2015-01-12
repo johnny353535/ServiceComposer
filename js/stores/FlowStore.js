@@ -33,6 +33,10 @@ define(["react", "dispatchers/AppDispatcher", "underscore", "minivents"], functi
 		addElementToRoot(_flow, root_uid, getFlow(name, glyphicon), true);
 	}
 
+	function setGlyphicon(glyphicon){
+		_flow.glyphicon = glyphicon;
+	}
+
 	function deleteElementByUid(root, uid, elem){
 		if(root.flow) { // we are in a flowWrapper
 		    for(var i = 0; i<root.flow.length; i++){
@@ -53,8 +57,8 @@ define(["react", "dispatchers/AppDispatcher", "underscore", "minivents"], functi
 		  return false;
 	}
 
-	function createActivity(name){
-		_flow = getFlow(name);
+	function createActivity(name, glyphicon){
+		_flow = getFlow(name, glyphicon);
 	}
 
 	function loadActivity(activity){
@@ -135,7 +139,7 @@ define(["react", "dispatchers/AppDispatcher", "underscore", "minivents"], functi
 
 			switch(payload.actionType) {
 				case "CREATE_ACTIVITY":
-					createActivity(payload.data.name);
+					createActivity(payload.data.name, payload.data.glyphicon);
 					break;
 				case "ADD_ACTIVITY":
 					insertActivity(payload.data.rootUid, payload.data.activity);
@@ -146,6 +150,8 @@ define(["react", "dispatchers/AppDispatcher", "underscore", "minivents"], functi
 				case "ADD_FLOW":
 					insertFlow(payload.data.rootUid, payload.data.name, payload.data.glyphicon);
 					break;
+				case "SET_GLYPHICON":
+					setGlyphicon(payload.data.glyphicon);
 				case "DELETE_ELEMENT":
 					deleteElementByUid(_flow, payload.data.uid);
 					break;
