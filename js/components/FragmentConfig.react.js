@@ -42,7 +42,6 @@ define(["react", "components/Fragment.react", "components/Activity.react", "disp
       	var _this = this;
 
         var options = this.props.data.payload.options.map(function (option) {
-          console.log(option)
           var value = {
             name: option.name,
             glyphicon: option.glyphicon

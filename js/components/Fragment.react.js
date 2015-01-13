@@ -16,7 +16,8 @@ define(["react", "require", "dispatchers/AppDispatcher"], function(React, requir
             }
         },
         addFlow: function(){
-          if(this.props.data.fragmentType == 'conditional' || this.props.data.fragmentType == 'loop') {
+          // Pull up configuration dialog if branches need to be configured
+          if(this.props.data.options.length) {
             AppDispatcher.dispatch({
                 actionType: 'TOGGLE_SLIDE',
                 data: {
@@ -48,11 +49,9 @@ define(["react", "require", "dispatchers/AppDispatcher"], function(React, requir
             var className = first ? "active" : "";
             first = false;
 
-            console.log(flow)
-
             return (
-              <li key={flow.name} role="presentation" className={className}>
-                <a href={"#"+flow.name} role="tab" data-toggle="tab" className={!flow.flow.length ? "button empty" : "button"}>{flow.glyphicon ? <span className={"glyphicon "+flow.glyphicon}></span> : null}<span className="tabName short">{flow.name}</span></a>
+              <li key={flow.uid} role="presentation" className={className}>
+                <a href={"#"+flow.uid} role="tab" data-toggle="tab" className={!flow.flow.length ? "button empty" : "button"}>{flow.glyphicon ? <span className={"glyphicon "+flow.glyphicon}></span> : null}<span className="tabName short">{flow.name}</span></a>
               </li>
             );
         });
@@ -66,7 +65,7 @@ define(["react", "require", "dispatchers/AppDispatcher"], function(React, requir
             require("components/FlowWrapper.react");
 
             return (
-                <li key={flow.uid} role="tabpanel" className={"tab-pane "+className} id={flow.name}><FlowWrapper data={flow} /></li>
+                <li key={flow.uid} role="tabpanel" className={"tab-pane "+className} id={flow.uid}><FlowWrapper data={flow} /></li>
             );
         });
 
