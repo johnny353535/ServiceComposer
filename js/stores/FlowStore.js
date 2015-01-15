@@ -65,6 +65,13 @@ define(["react", "dispatchers/AppDispatcher", "underscore", "minivents"], functi
 		_flow = activity;
 	}
 
+	function sendToServer(){
+		// Send flow to the server
+		jQuery.post("http://127.0.0.1:3000/bpmn", _flow, function(data) {
+			alert('BPMN response:\n\n' + data);
+		}, "text");
+	}
+
 
 	/**
 	*
@@ -122,6 +129,7 @@ define(["react", "dispatchers/AppDispatcher", "underscore", "minivents"], functi
 			return _flow;
 		},
 		emitChange: function() {
+			console.dir(_flow);
 			this.events.emit('CHANGE'); 
 		},
 
@@ -155,7 +163,10 @@ define(["react", "dispatchers/AppDispatcher", "underscore", "minivents"], functi
 				case "DELETE_ELEMENT":
 					deleteElementByUid(_flow, payload.data.uid);
 					break;
-			}
+				case "SEND_FLOW":
+					sendToServer();
+					break;
+				}
 
 			FlowStore.emitChange();
 
