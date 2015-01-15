@@ -17,7 +17,7 @@ define(["react", "components/FlowWrapper.react", "dispatchers/AppDispatcher"], f
 	          actionType: 'SAVE_ACTIVITY'
 	        });
 
-	        $('.flowHeader .saveActivity').addClass('saved'); // Just until next render
+	        $('.flowHeader .saveActivity').addClass('saved'); // Just until next render // TODO use glyphicon with tick instead
 		},
 		render: function(){
 
@@ -29,6 +29,7 @@ define(["react", "components/FlowWrapper.react", "dispatchers/AppDispatcher"], f
             		<header className="header flowHeader">
             			<button className="left"><span className={"glyphicon "+currentElement.glyphicon} onClick={this.changeGlyphicon}></span></button>
             			<h3 className="title">{currentElement.name}</h3>
+            			<button className="right"><span className={"glyphicon glyphicon-share"} onClick={function(){alert('Flow sent to server!')}}></span></button>
             			<button className="right"><span className={"saveActivity glyphicon glyphicon-floppy-disk"} onClick={this.saveActivity}></span></button>
             		</header>
 					<FlowWrapper key={this.props.currentUid} data = {currentElement} />
