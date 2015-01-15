@@ -52,6 +52,7 @@ define(["react", "require", "dispatchers/AppDispatcher"], function(React, requir
             return (
               <li key={flow.uid} role="presentation" className={className}>
                 <a href={"#"+flow.uid} role="tab" data-toggle="tab" className={!flow.flow.length ? "button empty" : "button"}>{flow.glyphicon ? <span className={"glyphicon "+flow.glyphicon}></span> : null}<span className="tabName short">{flow.name}</span></a>
+                <a href={"#"+flow.uid} role="tab" data-toggle="tab" className={!flow.flow.length ? "button empty" : "button"}>{flow.glyphicon ? <span className={"glyphicon "+flow.glyphicon}></span> : null}<span className="tabName short">{flow.name}</span><span className="warning glyphicon glyphicon-warning-sign"></span></a>
               </li>
             );
         });

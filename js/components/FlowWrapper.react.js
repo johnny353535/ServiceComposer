@@ -50,7 +50,7 @@ define(["react", "components/Fragment.react", "components/Activity.react", "disp
 
       return (
         <div className={classes}>
-            <p className="empty">This branch is empty</p>
+            <p className="empty"><span className="warning glyphicon glyphicon-warning-sign"></span> This branch is empty. Please add an activity.</p>
             <ul>
               {flowElementNodes}
               <li key="flowControl"><button className="flowElement flowControl" onClick={this.openAddElementWrapper}><span className="glyphicon glyphicon-plus"></span></button></li>

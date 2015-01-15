@@ -57,6 +57,9 @@ p.empty {
 	font-weight: lighter;
 }
 
+.warning {
+	color: yellow;
+}
 
 .header {
 
@@ -147,6 +150,7 @@ p.empty {
 
 	&>.empty {
 		display: none;
+		color: inherit;
 	}
 
 	&.isEmpty {
@@ -434,12 +438,18 @@ p.empty {
 			width: 100%;
 
 			.glyphicon {
-				color: inherit;
 				margin-right: 8px;
 			}
+
+			.glyphicon.warning {
+				display: none;
+		
+				margin-right: 0;
+				margin-left: 8px;
+			}
 			
-			&.empty .tabName:after {
-				content: '*';
+			&.empty .warning {
+				display: inline-block;
 			}
 		}
 
@@ -635,13 +645,13 @@ ul.media-list {
 
 		li {
 			width: 24%;
-			padding: 20px;
 			margin: 0.5%;
 			float: left;
 			background-color: #ccc;
 
 			.glyphicon {
 				font-size: 20px;
+				padding: 20px;
 			}
 
 			.glyphicon-class {
