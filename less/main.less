@@ -243,7 +243,29 @@ p.empty {
 
 
 .activity {
+	select {
+		border: 0;
+		color: @black;
+	}
 
+	.dataConfig {
+		padding: 0 16px 20px 16px;
+
+		.left {
+			width: 50%;
+			display: inline-block;
+		}
+
+		.right {
+			width: 50%;
+			display: inline-block;
+			text-align: right;
+		}
+
+		.glyphicon {
+			margin-right: 10px;
+		}
+	}
 }
 
 .fragment {

@@ -35,6 +35,20 @@ define(["react", "dispatchers/AppDispatcher"], function(React, AppDispatcher) {
                   <button className="button-delete" onClick={this.deleteHandler}><span className="glyphicon glyphicon-trash"></span></button>
                 </div>
             </header>
+            <div className="dataConfig">
+              <div className="left">
+                <span className="glyphicon glyphicon-log-in"></span>
+                <select>
+                  <option>Time</option>
+                  <option>Location</option>
+                  <option>Temperature</option>
+                </select>
+              </div>
+              <div className="right">
+                <span className="glyphicon glyphicon-log-out"></span>
+                <span>Outputname</span>
+              </div>
+            </div>
         </div>
         );
       }
