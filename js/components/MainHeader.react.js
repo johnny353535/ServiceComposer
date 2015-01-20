@@ -6,14 +6,14 @@ define(["react", "dispatchers/AppDispatcher"], function(React, AppDispatcher) {
                 actionType: 'TOGGLE_SLIDE',
                 data: {
                   open: true,
-                  title: "My Activities",
+                  title: "Compositions",
                   type: "MyActivities",
                   payload: this.props.MyActivities
                 }
               });
 		},
 		emitNewActivity: function(){
-			var name = window.prompt("Enter a name for the activity", Date.now());
+			var name = window.prompt("Enter a name for the composition", Date.now());
 			if(name){ // Check whether name is given
 				AppDispatcher.dispatch({
 			        actionType: 'CREATE_ACTIVITY',

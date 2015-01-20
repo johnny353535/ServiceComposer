@@ -114,7 +114,7 @@ define(["react", "dispatchers/AppDispatcher"], function(React, AppDispatcher) {
                   <ul className="nav nav-tabs mobile-nav-tabs" role="tablist">
                       <li role="presentation" className="active">
                           <a href="#myActivities" role="tab" data-toggle="tab" className="button">
-                            <span className="glyphicon glyphicon-book"></span><span className="tabName">MyActivities</span>
+                            <span className="glyphicon glyphicon-book"></span><span className="tabName">Compositions</span>
                           </a>
                       </li>
                       <li role="presentation">
