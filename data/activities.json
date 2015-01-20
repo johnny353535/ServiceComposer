@@ -24,16 +24,48 @@
 		"glyphicon": "glyphicon-envelope",
 		"url": ""
 	}, {
-		"id": "ada09dj3d3",
-		"name": "Share status",
-		"description": "Share a status on Twitter or Facebook",
-		"glyphicon": "glyphicon-share",
-		"url": ""
-	}, {
 		"id": "as0kd9a9d",
 		"name": "Play music",
 		"description": "Play a song or playlist",
 		"glyphicon": "glyphicon-music",
+		"url": ""
+	}, {
+		"id": "as0kd19a9d",
+		"name": "Ask user for campus",
+		"description": "Shows a list of campuses and let's the user pick one",
+		"glyphicon": "glyphicon-record",
+		"url": "",
+		"output": {
+			"type": "string",
+			"name": "campus"
+		}
+	}, {
+		"id": "as40kd9a9d",
+		"name": "Library seats",
+		"description": "Checks which libraries have available seats",
+		"glyphicon": "glyphicon-book",
+		"url": "",
+		"output": {
+			"type": "string",
+			"name": "library seat"
+		}
+	}, {
+		"id": "as0kd69a9d",
+		"name": "Select library and bike station",
+		"description": "Select library and bike station",
+		"glyphicon": "glyphicon-list",
+		"url": ""
+	}, {
+		"id": "a1da09dj3d3",
+		"name": "Reserve a spot at the bike station",
+		"description": "Reserve a spot at the bike station",
+		"glyphicon": "glyphicon-road",
+		"url": ""
+	}, {
+		"id": "ada099dj36d3",
+		"name": "Reserve library seat",
+		"description": "Reserve library seat",
+		"glyphicon": "glyphicon-book",
 		"url": ""
 	}
 ]
