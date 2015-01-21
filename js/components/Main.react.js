@@ -1,4 +1,4 @@
-define(["react", "components/MainFlow.react", "components/Slide.react", "components/MainHeader.react", "stores/FlowStore", "stores/MyActivitiesStore","dispatchers/AppDispatcher", "underscore"], function(React, MainFlow, Slide, MainHeader, FlowStore, MyActivitiesStore, AppDispatcher, _) {
+define(["react", "components/MainFlow.react", "components/Slide.react", "components/MainHeader.react", "components/Tutorial.react", "stores/FlowStore", "stores/MyActivitiesStore","dispatchers/AppDispatcher", "underscore"], function(React, MainFlow, Slide, MainHeader, Tutorial, FlowStore, MyActivitiesStore, AppDispatcher, _) {
 
 	var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
 
@@ -89,18 +89,18 @@ define(["react", "components/MainFlow.react", "components/Slide.react", "compone
 	        var currentUid = this.props.uid;
 	        var currentElement = this.props.flow;
 
-	        var content = currentElement ? <MainFlow flow={this.props.flow} /> : <p className="empty">Please create an Activity or load one from MyActivites</p>;
+	        var content = currentElement ? <MainFlow flow={this.props.flow} /> : <Tutorial />;
 
 			return(
 				<div id="mainWrapper" className="mainWrapper">
             		<MainHeader title="Service Composer"/>
-            	<div id="contentWrapper" className="contentWrapper">
-            		{content}
-					<ReactCSSTransitionGroup transitionName="slide">
-						{slide}
-					</ReactCSSTransitionGroup>
-				</div>
-          	</div>
+	            	<div id="contentWrapper" className="contentWrapper">
+	            		{content}
+						<ReactCSSTransitionGroup transitionName="slide">
+							{slide}
+						</ReactCSSTransitionGroup>
+					</div>
+	          	</div>
 				
 			)
 		}
