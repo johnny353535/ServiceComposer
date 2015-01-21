@@ -59,9 +59,9 @@ define(["react", "dispatchers/AppDispatcher"], function(React, AppDispatcher) {
 
         var myActivities = [];
 
-        for (activityUid in this.props.myActivities){
+        for (compositionUid in this.props.myActivities){
 
-          var activity = this.props.myActivities[activityUid];
+          var activity = this.props.myActivities[compositionUid];
           var elem =
             <li key={activity.uid} className="media" onClick={_this.addActivity.bind(null, activity)}>
               <span className="media-left media-middle" href="#">
@@ -74,6 +74,16 @@ define(["react", "dispatchers/AppDispatcher"], function(React, AppDispatcher) {
             </li>;
 
           myActivities.push(elem);
+        }
+
+        // No compositions to load
+        if(!myActivities.length) {
+          myActivities = 
+            <li className="media">
+              <div className="media-body">
+                <p>No composition available</p>
+              </div>
+            </li>;
         }
 
         var activities = this.props.activities.map(function (activity) {

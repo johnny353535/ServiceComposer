@@ -9,19 +9,23 @@
       "sentence": "If the weather is",
       "options": [
          {
-            "name": "sunny",
+            "id": "sunny",
+            "name": "Sunny",
             "glyphicon": "glyphicon-certificate"
          },
          {
-            "name": "cloudy",
+            "id": "cloudy",
+            "name": "Cloudy",
             "glyphicon": "glyphicon-cloud"
          },
          {
-            "name": "rainy",
+            "id": "rainy",
+            "name": "Rainy",
             "glyphicon": "glyphicon-tint"
          },
          {
-            "name": "windy",
+            "id": "windy",
+            "name": "Windy",
             "glyphicon": "glyphicon-flag"
          }
       ],

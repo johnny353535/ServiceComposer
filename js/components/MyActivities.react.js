@@ -71,7 +71,12 @@ define(["react", "components/Fragment.react", "components/Activity.react", "disp
 
         // No activities to load
         if(!myActivities.length) {
-          myActivities = <li><p>No compositions</p></li>;
+          myActivities = 
+            <li className="media">
+              <div className="media-body">
+                <p>No composition available</p>
+              </div>
+            </li>;
         }
 
         return (
