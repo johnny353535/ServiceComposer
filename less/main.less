@@ -262,8 +262,18 @@ p.empty {
 			text-align: right;
 		}
 
+		
+		ul {
+			display: inline-block;
+			text-align: left;
+			padding-left: 20px;
+
+			font-size: 14px;
+		}
+
 		.glyphicon {
 			margin-right: 10px;
+			vertical-align: top;
 		}
 	}
 }
@@ -318,6 +328,18 @@ p.empty {
 	}
 }
 
+.flowHeader {
+	border-radius: 4px;
+
+	.glyphicon:first-child {
+		margin-right: 8px;
+	}
+}
+
+#mainFlow>.flowWrapper>header {
+	display: none;
+}
+
 #mainFlow>.flowWrapper>ul>li:nth-child(1n+1)>.flowElement {
 	background-color: @green;
 
@@ -327,6 +349,10 @@ p.empty {
 	.mobile-nav-tabs.nav-tabs > li, .flowWrapper {
 		background-color: lighten(@green, 8%);
 		border-color: lighten(@green, 8%);
+	}
+
+	.flowHeader {
+		background-color: @green;
 	}
 
 	.flowElement {
@@ -350,6 +376,10 @@ p.empty {
 		border-color: lighten(@light-blue, 8%);
 	}
 
+	.flowHeader {
+		background-color: @light-blue;
+	}
+
 	.flowElement {
 		background-color: @light-blue;
 		border-top-color: darken(@light-blue, 8%);
@@ -369,6 +399,10 @@ p.empty {
 	.mobile-nav-tabs.nav-tabs > li, .flowWrapper {
 		background-color: lighten(@orange, 8%);
 		border-color: lighten(@orange, 8%);;
+	}
+
+	.flowHeader {
+		background-color: @orange;
 	}
 
 	.flowElement {
@@ -392,6 +426,10 @@ p.empty {
 		border-color: lighten(@red, 8%);
 	}
 
+	.flowHeader {
+		background-color: @red;
+	}
+
 	.flowElement {
 		background-color: @red;
 		border-top-color: darken(@red, 8%);
@@ -411,6 +449,10 @@ p.empty {
 	.mobile-nav-tabs.nav-tabs > li, .flowWrapper {
 		background-color: lighten(@blue, 8%);
 		border-color: lighten(@blue, 8%);
+	}
+
+	.flowHeader {
+		background-color: @blue;
 	}
 
 	.flowElement {
@@ -498,6 +540,8 @@ p.empty {
 		.tabName {
 			display: inline-block;
 			margin-bottom: -4px;
+
+			font-size: 14px;
 			
 			&.short {
 				overflow: hidden;
@@ -653,6 +697,13 @@ ul.media-list {
 
 .activityConfig {
 
+	padding: 20px;
+
+	.outputPicker {
+		option:first-letter {
+			text-transform: uppercase;
+		}
+	}
 }
 
 .glyphiconConfig {
@@ -669,7 +720,7 @@ ul.media-list {
 			width: 24%;
 			margin: 0.5%;
 			float: left;
-			background-color: #ccc;
+			background-color: #eee;
 
 			.glyphicon {
 				font-size: 20px;
@@ -685,4 +736,24 @@ ul.media-list {
 
 .myActivities {
 	
+}
+
+.tutorial {
+	.help {
+		padding: 30px;
+		padding-top: 10px;
+
+		ul {
+
+			padding-left: 20px;
+
+			li {
+				margin-bottom: 10px;
+
+				.glyphicon {
+					margin: 0 10px;
+				}
+			}
+		}
+	}
 }

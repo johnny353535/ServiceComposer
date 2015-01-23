@@ -52,11 +52,11 @@ define(["react", "components/Fragment.react", "components/Activity.react", "disp
 
         return (
           <div className="fragmentConfig">
-            <span>{this.props.data.payload.sentence}</span>
+            <span>Conditions:</span>
             <select id="options" name="options" onChange={this.handleChange}>
              {options}
             </select>
-            <button onClick={this.emitAddFlow} className="addFlowBtn"><span>Add flow</span></button>
+            <button className="left" onClick={this.emitAddFlow}><span className="glyphicon glyphicon-plus"></span></button>
           </div>
         );
       }

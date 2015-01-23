@@ -17,7 +17,7 @@ define(["react", "require", "dispatchers/AppDispatcher"], function(React, requir
         },
         addFlow: function(){
           // Pull up configuration dialog if branches need to be configured
-          if(this.props.data.options.length) {
+          if(this.props.data.options && this.props.data.options.length) {
             AppDispatcher.dispatch({
                 actionType: 'TOGGLE_SLIDE',
                 data: {
@@ -28,6 +28,16 @@ define(["react", "require", "dispatchers/AppDispatcher"], function(React, requir
                 }
               });
           } else if (this.props.data.fragmentType == 'parallel') {
+
+            // Each parallel fragment needs at least two flows
+
+            AppDispatcher.dispatch({
+              actionType: "ADD_FLOW",
+              data: {
+                rootUid: this.props.data.uid,
+                name: (this.props.data.flows.length + 1)
+              }
+            });
 
             AppDispatcher.dispatch({
               actionType: "ADD_FLOW",
@@ -51,7 +61,6 @@ define(["react", "require", "dispatchers/AppDispatcher"], function(React, requir
 
             return (
               <li key={flow.uid} role="presentation" className={className}>
-                <a href={"#"+flow.uid} role="tab" data-toggle="tab" className={!flow.flow.length ? "button empty" : "button"}>{flow.glyphicon ? <span className={"glyphicon "+flow.glyphicon}></span> : null}<span className="tabName short">{flow.name}</span></a>
                 <a href={"#"+flow.uid} role="tab" data-toggle="tab" className={!flow.flow.length ? "button empty" : "button"}>{flow.glyphicon ? <span className={"glyphicon "+flow.glyphicon}></span> : null}<span className="tabName short">{flow.name}</span><span className="warning glyphicon glyphicon-warning-sign"></span></a>
               </li>
             );
@@ -87,7 +96,7 @@ define(["react", "require", "dispatchers/AppDispatcher"], function(React, requir
                   <h3 className="title">{this.props.data.name}</h3>
                 </div>
                 <div className="container right">
-                  <button className="button-configure"><span className="glyphicon glyphicon-cog"></span></button>
+                  {/*<button className="button-configure"><span className="glyphicon glyphicon-cog"></span></button>*/}
                   <button className="button-delete" onClick={this.deleteHandler}><span className="glyphicon glyphicon-trash"></span></button>
                 </div>
             </header>

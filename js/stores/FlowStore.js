@@ -33,6 +33,12 @@ define(["react", "dispatchers/AppDispatcher", "underscore", "minivents"], functi
 		addElementToRoot(_flow, root_uid, getFlow(name, glyphicon), true);
 	}
 
+	function deleteFlow(uid){
+		console.log('deleteFlow', uid)
+
+		deleteElementByUid(_flow, uid, null);
+	}
+
 	function setGlyphicon(glyphicon){
 		_flow.glyphicon = glyphicon;
 	}
@@ -41,17 +47,25 @@ define(["react", "dispatchers/AppDispatcher", "underscore", "minivents"], functi
 		if(root.flow) { // we are in a flowWrapper
 		    for(var i = 0; i<root.flow.length; i++){
 		      if(root.flow[i].uid == uid) {
+		      	
 		        console.log("deleted", uid);
 		        root.flow.splice(i,1); // delete element
-
-		        FlowStore.emitChange();
 
 		        return true;
 		      } else deleteElementByUid(root.flow[i], uid, elem);
 		    }
 		  } else if (root.flows) { // we are in a fragment with multiple flowWrappers
-		    for(var i = 0; i<root.flows.length; i++)
+		    for(var i = 0; i<root.flows.length; i++) {
+		    	if(root.flows[i].uid === uid){
+
+		    		console.log("deleted", uid);
+		    		root.flows.splice(i,1);
+
+		        	return true;
+		    	}
+
 		      deleteElementByUid(root.flows[i], uid, elem);
+		    }
 		  }
 
 		  return false;
@@ -157,6 +171,9 @@ define(["react", "dispatchers/AppDispatcher", "underscore", "minivents"], functi
 					break;
 				case "ADD_FLOW":
 					insertFlow(payload.data.rootUid, payload.data.name, payload.data.glyphicon);
+					break;
+				case "DELETE_FLOW":
+					deleteFlow(payload.data.uid);
 					break;
 				case "SET_GLYPHICON":
 					setGlyphicon(payload.data.glyphicon);

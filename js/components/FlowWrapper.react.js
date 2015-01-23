@@ -13,12 +13,19 @@ define(["react", "components/Fragment.react", "components/Activity.react", "disp
         }
       });
     },
-    dispatcherIndex: null,
+    deleteHandler: function(){
+      if(window.confirm("Are you sure you want to remove this conditional branch?")) {
+          //window.root.deleteElement(this.props.data.uid);
+          AppDispatcher.dispatch({
+            actionType: "DELETE_FLOW",
+            data: {
+              uid: this.props.data.uid
+            }
+          });
+      }
+    },
     componentDidMount: function() {
       var _this = this;
-    },
-    componentWillUnmount: function() {
-      AppDispatcher.unregister(this.dispatcherIndex);
     },
     render: function() {
 
@@ -48,8 +55,14 @@ define(["react", "components/Fragment.react", "components/Activity.react", "disp
         'isEmpty': !flowElementNodes.length
       });
 
+      console.log(this.props.data);
+
       return (
         <div className={classes}>
+            <header className="header flowHeader">
+              <div className="left"><span className={"glyphicon "+this.props.data.glyphicon}></span>{this.props.data.name}</div>
+              <button className="right" onClick={this.deleteHandler}><span className="glyphicon glyphicon-trash"></span></button>
+            </header>
             <p className="empty"><span className="warning glyphicon glyphicon-warning-sign"></span> This branch is empty. Please add an activity.</p>
             <ul>
               {flowElementNodes}
