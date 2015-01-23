@@ -5,7 +5,6 @@ define(["react"], function(React) {
 
 			return(
 				<div className="tutorial">
-					<p className="empty">No composition loaded</p>
 					<div className="help">
 						<h4>Help</h4>
 						<ul>
