@@ -47,7 +47,7 @@ define(["react", "dispatchers/AppDispatcher", "underscore", "minivents"], functi
 		if(root.flow) { // we are in a flowWrapper
 		    for(var i = 0; i<root.flow.length; i++){
 		      if(root.flow[i].uid == uid) {
-		      	
+
 		        console.log("deleted", uid);
 		        root.flow.splice(i,1); // delete element
 
@@ -141,6 +141,31 @@ define(["react", "dispatchers/AppDispatcher", "underscore", "minivents"], functi
 		},
 		getFlow: function(){
 			return _flow;
+		},
+		getPreviousOutputs: function(uid){
+
+			// Reports all output parameters from previous acitivies
+
+			var flow = _flow.flow;
+
+			if(flow.length < 2) return [];
+
+			var index = function(){
+				for(var i = 0; i < _flow.length; i++){
+					if(flow[i].uid === uid) return (i - 1);
+				}
+			}();
+			var previousElements = flow.slice(0, index);
+
+			// Find all output objects and remove undefined objects (activities without outputs)
+			console.log(previousElements)
+			var outputArguments = _.flatten(_.compact(_.pluck(previousElements, 'outputArguments')));
+
+			if(!outputArguments) return [];
+
+			var outputNames = _.pluck(outputArguments, 'name'); // Just return output names
+
+			return outputNames;
 		},
 		emitChange: function() {
 			console.dir(_flow);

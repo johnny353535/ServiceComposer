@@ -1,71 +1,163 @@
 [
-	{
-		"id": "aj9d0ajsd09a",
-		"name": "Light",
-		"description": "Control the light",
-		"glyphicon": "glyphicon-certificate",
-		"url": ""
-	}, {	
-		"id": "aspodjasd90",
-		"name": "Radiator",
-		"description": "Control the room temperature",
-		"glyphicon": "glyphicon-dashboard",
-		"url": ""
-	}, {
-		"id": "akspoda0s9d2",
-		"name": "Door",
-		"description": "Lock and unlock the door",
-		"glyphicon": "glyphicon-home",
-		"url": ""
-	}, {
-		"id": "a90di03k09",
-		"name": "E-Mail",
-		"description": "Send a notfication via mail",
-		"glyphicon": "glyphicon-envelope",
-		"url": ""
-	}, {
-		"id": "as0kd9a9d",
-		"name": "Play music",
-		"description": "Play a song or playlist",
-		"glyphicon": "glyphicon-music",
-		"url": ""
-	}, {
-		"id": "as0kd19a9d",
-		"name": "Ask user for campus",
-		"description": "Shows a list of campuses and let's the user pick one",
-		"glyphicon": "glyphicon-record",
-		"url": "",
-		"output": {
-			"type": "string",
-			"name": "campus"
-		}
-	}, {
-		"id": "as40kd9a9d",
-		"name": "Library seats",
-		"description": "Checks which libraries have available seats",
-		"glyphicon": "glyphicon-book",
-		"url": "",
-		"output": {
-			"type": "string",
-			"name": "library seat"
-		}
-	}, {
-		"id": "as0kd69a9d",
-		"name": "Select library and bike station",
-		"description": "Select library and bike station",
-		"glyphicon": "glyphicon-list",
-		"url": ""
-	}, {
-		"id": "a1da09dj3d3",
-		"name": "Reserve a spot at the bike station",
-		"description": "Reserve a spot at the bike station",
-		"glyphicon": "glyphicon-road",
-		"url": ""
-	}, {
-		"id": "ada099dj36d3",
-		"name": "Reserve library seat",
-		"description": "Reserve library seat",
-		"glyphicon": "glyphicon-book",
-		"url": ""
-	}
+   {
+      "id":"aj9d0ajsd09a",
+      "name":"Light",
+      "description":"Control the light",
+      "glyphicon":"glyphicon-certificate",
+      "url":""
+   },
+   {
+      "id":"aspodjasd90",
+      "name":"Radiator",
+      "description":"Control the room temperature",
+      "glyphicon":"glyphicon-dashboard",
+      "url":""
+   },
+   {
+      "id":"akspoda0s9d2",
+      "name":"Door",
+      "description":"Lock and unlock the door",
+      "glyphicon":"glyphicon-home",
+      "url":""
+   },
+   {
+      "id":"a90di03k09",
+      "name":"E-Mail",
+      "description":"Send a notfication via mail",
+      "glyphicon":"glyphicon-envelope",
+      "url":""
+   },
+   {
+      "id":"as0kd9a9d",
+      "name":"Play music",
+      "description":"Play a song or playlist",
+      "glyphicon":"glyphicon-music",
+      "url":""
+   },
+   {
+      "id":"as0kd19a9d",
+      "name":"Ask user for campus",
+      "description":"Shows a list of campuses and let's the user pick one",
+      "glyphicon":"glyphicon-record",
+      "url":"",
+      "output":{
+         "type":"string",
+         "name":"campus"
+      }
+   },
+   {
+      "id":"as40kd9a9d",
+      "name":"Library seats",
+      "description":"Checks which libraries have available seats",
+      "glyphicon":"glyphicon-book",
+      "url":""
+   },
+   {
+      "id":"as0kd69a9d",
+      "name":"Select library and bike station",
+      "description":"Select library and bike station",
+      "glyphicon":"glyphicon-list",
+      "url":""
+   },
+   {
+      "id":"a1da09dj3d3",
+      "name":"Reserve a spot at the bike station",
+      "description":"Reserve a spot at the bike station",
+      "glyphicon":"glyphicon-road",
+      "url":""
+   },
+   {
+      "id":"ada099dj36d3",
+      "name":"Reserve library seat",
+      "description":"Reserve library seat",
+      "glyphicon":"glyphicon-book",
+      "url":""
+   },
+   {
+      "id":"UPV_LIBRARY_SEAT_BOOKING",
+      "name":"UPV Library Seat Booking",
+      "url":"http://www.upv.es/libraryBookSeat",
+      "description":"Service to book a seat on one of the UPV's Libraries",
+      "method":"POST",
+      "glyphicon":"glyphicon-book",
+      "inputType":"payload",
+      "inputArguments":[
+         {
+            "id":"library",
+            "name":"Library",
+            "type":"simpleChoice",
+            "options":[
+               {
+                  "id":"27",
+                  "label":"Central Vera",
+                  "otherValues":[
+                     {
+                        "libraryLocation":{
+                           "lat":"0.0",
+                           "lon":"0.0"
+                        }
+                     }
+                  ]
+               },
+               {
+                  "id":"373",
+                  "label":"Informática Vera",
+                  "otherValues":[
+                     {
+                        "libraryLocation":{
+                           "lat":"0.0",
+                           "lon":"0.0"
+                        }
+                     }
+                  ]
+               }
+            ],
+            "render":{
+               "value":"libraryLocation",
+               "renderAs":"location"
+            },
+            "optionsType":"integer"
+         }
+      ],
+      "outputArguments":[
+         {
+            "id":"seat",
+            "name":"Seat",
+            "description":"The Seat the user have booked",
+            "type":"structure",
+            "structure":[
+               {
+                  "field":"id",
+                  "type":"integer"
+               },
+               {
+                  "field":"seatNumber",
+                  "type":"integer"
+               },
+               {
+                  "field":"table",
+                  "type":"integer"
+               },
+               {
+                  "field":"floor",
+                  "type":"integer"
+               },
+               {
+                  "field":"library",
+                  "type":"structure",
+                  "structure":[
+                     {
+                        "field":"id",
+                        "type":"integer"
+                     },
+                     {
+                        "field":"libraryName",
+                        "type":"String"
+                     }
+                  ]
+               }
+            ]
+         }
+      ]
+   }
 ]

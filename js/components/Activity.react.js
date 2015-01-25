@@ -1,4 +1,4 @@
-define(["react", "dispatchers/AppDispatcher"], function(React, AppDispatcher) {
+define(["react", "dispatchers/AppDispatcher", "stores/FlowStore"], function(React, AppDispatcher, FlowStore) {
 
   var Activity = React.createClass({
       configHandler: function(){
@@ -23,6 +23,29 @@ define(["react", "dispatchers/AppDispatcher"], function(React, AppDispatcher) {
         }
       },
       render: function() {
+
+        var inputArguments = this.props.data.inputArguments ? this.props.data.inputArguments : []
+        var inputs = inputArguments.map(function (input) {
+          var key = new Date().getTime().toString()+input.name;
+
+          return (
+            <li key={key}>{input.name}</li>
+          );
+        });
+
+        var outputArguments = this.props.data.outputArguments ? this.props.data.outputArguments : []
+        var outputs = outputArguments.map(function (output) {
+          var key = new Date().getTime().toString()+output.name;
+
+          return (
+            <li key={key}>{output.name}</li>
+          );
+        });
+
+        var showInputs = !inputs.length ? 'hidden' : '';
+        var showOutputs = !outputs.length ? 'hidden' : '';
+        var showNoData = (showInputs && showOutputs) ? 'hidden': '';
+
         return (
           <div className={"flowElement activity"}>
             <header className="header">
@@ -35,18 +58,18 @@ define(["react", "dispatchers/AppDispatcher"], function(React, AppDispatcher) {
                   <button className="button-delete" onClick={this.deleteHandler}><span className="glyphicon glyphicon-trash"></span></button>
                 </div>
             </header>
-            <div className="dataConfig">
-              <div className="left">
+            <div className={"dataConfig "+showNoData}>
+              <div className={"left "+showInputs}>
                 <span className="glyphicon glyphicon-log-in"></span>
-                <select>
-                  <option>Time</option>
-                  <option>Location</option>
-                  <option>Temperature</option>
-                </select>
+                <ul className="inputs">
+                  {inputs}
+                </ul>
               </div>
-              <div className="right">
+              <div className={"right "+showOutputs}>
                 <span className="glyphicon glyphicon-log-out"></span>
-                <span>Outputname</span>
+                <ul className="outputs">
+                  {outputs}
+                </ul>
               </div>
             </div>
         </div>
