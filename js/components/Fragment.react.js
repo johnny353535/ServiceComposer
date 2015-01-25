@@ -2,7 +2,11 @@ define(["react", "require", "dispatchers/AppDispatcher"], function(React, requir
 
     var Fragment = React.createClass({
         componentDidMount: function(){
+          //Each parallel fragment needs at least two flows
+          if (this.props.data.fragmentType == 'parallel') {
             this.addFlow();
+            this.addFlow();
+          }
         },
         deleteHandler: function(){
             if(window.confirm("Are you sure you want to remove this fragment?")) {
@@ -28,17 +32,6 @@ define(["react", "require", "dispatchers/AppDispatcher"], function(React, requir
                 }
               });
           } else if (this.props.data.fragmentType == 'parallel') {
-
-            // Each parallel fragment needs at least two flows
-
-            AppDispatcher.dispatch({
-              actionType: "ADD_FLOW",
-              data: {
-                rootUid: this.props.data.uid,
-                name: (this.props.data.flows.length + 1)
-              }
-            });
-
             AppDispatcher.dispatch({
               actionType: "ADD_FLOW",
               data: {
@@ -88,6 +81,9 @@ define(["react", "require", "dispatchers/AppDispatcher"], function(React, requir
             'panel-info fragment-loop': this.props.data.fragmentType == 'loop'
         });
 
+        // Add highlight to Add button if no flows exist
+        var active = this.props.data.flows.length ? "" : "active";
+
         return (
           <div className={"flowElement fragment "+classes}>
             <header className="header">
@@ -105,7 +101,7 @@ define(["react", "require", "dispatchers/AppDispatcher"], function(React, requir
                 {/*Tab navigation*/}
                 <ul className="nav nav-tabs mobile-nav-tabs" role="tablist">
                     {fragmentTabNav}
-                    <li key="addFlow"className="tab-pane addFlow"><button onClick={this.addFlow}><span className="glyphicon glyphicon-plus"></span></button></li>
+                    <li key="addFlow"className={"tab-pane addFlow " + active}><button onClick={this.addFlow}><span className="glyphicon glyphicon-plus"></span></button></li>
                 </ul>
                 {/* Tab contents */}
                 <ul className="tab-content mobile-nav-content">
