@@ -59,17 +59,19 @@ define(["react", "dispatchers/AppDispatcher", "stores/FlowStore"], function(Reac
                 </div>
             </header>
             <div className={"dataConfig "+showNoData}>
-              <div className={"left "+showInputs}>
-                <span className="glyphicon glyphicon-log-in"></span>
-                <ul className="inputs">
-                  {inputs}
-                </ul>
-              </div>
-              <div className={"right "+showOutputs}>
-                <span className="glyphicon glyphicon-log-out"></span>
-                <ul className="outputs">
-                  {outputs}
-                </ul>
+              <div className="dataConfigInner">
+                <div className={"left "+showInputs}>
+                  <span className="glyphicon glyphicon-log-in"></span>
+                  <ul className="inputs">
+                    {inputs}
+                  </ul>
+                </div>
+                <div className={"right "+showOutputs}>
+                  <span className="glyphicon glyphicon-log-out"></span>
+                  <ul className="outputs">
+                    {outputs}
+                  </ul>
+                </div>
               </div>
             </div>
         </div>
