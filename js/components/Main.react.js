@@ -23,11 +23,11 @@ define(["react", "components/MainFlow.react", "components/Slide.react", "compone
 
 			var _this = this;
 
-			//var url_activities = "data/activities.json";
-        	//var url_fragments = "data/fragments.json";
+			var url_activities = "data/activities.json";
+        	var url_fragments = "data/fragments.json";
 
-        	var url_activities = "http://localhost:3000/activities";
-			var url_fragments = "http://localhost:3000/fragments";
+        	//var url_activities = "http://localhost:3000/activities";
+			//var url_fragments = "http://localhost:3000/fragments";
 
 			$.when(
             $.getJSON(url_activities),
