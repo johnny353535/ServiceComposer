@@ -8,31 +8,7 @@ End-User Service Compositions in the Internet of Things
 Installation Guide
 ==================
 
-Scaffolds out a [gosub](http://gosub.de/)-flavored [HTML5 Boilerplate](http://html5boilerplate.com).
-
 Note: Most of the actions will be performed via the console/command-line/terminal. You should be familiar with opening the console, traversing directories and running commands. If a command is failing try to run it as an administrator. To do this on Mac start the command with `sudo`.
-
-## Initial setup
-
-Windows users: Download and install [git](http://git-scm.com/). Pick "Use Git from the Windows Command Prompt" during install! To check whether it's installed properly open a command line window and type `git`.
-
-- Download and install [Node.js](http://nodejs.org/)
-- Install [Yeoman](http://yeoman.io) (`npm install -g yo`)
-- Install [Grunt](http://gruntjs.com) (`npm install -g grunt-cli`)
-- Install [Bower](http://bower.io/#installing-bower) (`npm install -g bower`)
-- Install the generator (`npm install -g https://github.com/gosub-communications/generator-gosub/tarball/master`). Make sure that you are verified to access the GitHub repository.
-
-## Setting up a new project
-
-- Open a terminal window and go to the project folder you want to work in. Make sure it's empty.
-- Create a project with the help of [Yeoman](https://github.com/yeoman/yo): `yo gosub`
-
-The generator tries to install all Grunt and Bower plugins automatically. If this is failing you have to run the following commands yourself.
-So, if an error is shown
-
-- Install the required Grunt plugins with `npm install`. If this fails run the command as an administrator.
-- Install the required Bower plugins with `bower install`
-- Run `grunt dev` to start working on the project
 
 ## Components
 
@@ -42,6 +18,17 @@ So, if an error is shown
 
 - [Bower](bower.io) is used to search for, install and uninstall JavaScript and LESS/CSS frameworks and libraries used in front-end development (like jQuery, modernizr, HTML5shiv etc.).
 
+## Initial setup
+
+Windows users: Download and install [git](http://git-scm.com/). Pick "Use Git from the Windows Command Prompt" during install! To check whether it's installed properly open a command line window and type `git`.
+
+- Download and install [Node.js](http://nodejs.org/)
+- Install [Grunt](http://gruntjs.com) (`npm install -g grunt-cli`)
+- Install [Bower](http://bower.io/#installing-bower) (`npm install -g bower`)
+
+- Install the required Grunt plugins with `npm install`. If this fails run the command as an administrator.
+- Install the required Bower plugins with `bower install`
+- Run `grunt dev` to start working on the project
 
 ## Working with Grunt.js
 
