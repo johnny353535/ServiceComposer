@@ -58,7 +58,7 @@ define(["react", "dispatchers/AppDispatcher", "stores/FlowStore"], function(Reac
                   <button className="button-delete" onClick={this.deleteHandler}><span className="glyphicon glyphicon-trash"></span></button>
                 </div>
             </header>
-            <div className={"dataConfig "+showNoData}>
+            <div className={"dataConfig "+showNoData} onClick={this.configHandler}>
               <div className="dataConfigInner">
                 <div className={"left "+showInputs}>
                   <span className="glyphicon glyphicon-log-in"></span>
