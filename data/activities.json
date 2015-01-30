@@ -1,38 +1,17 @@
 [
    {
-      "id":"aj9d0ajsd09a",
-      "name":"Light",
-      "description":"Control the light",
-      "glyphicon":"glyphicon-certificate",
-      "url":""
-   },
-   {
-      "id":"aspodjasd90",
-      "name":"Radiator",
-      "description":"Control the room temperature",
-      "glyphicon":"glyphicon-dashboard",
-      "url":""
-   },
-   {
-      "id":"akspoda0s9d2",
-      "name":"Door",
-      "description":"Lock and unlock the door",
-      "glyphicon":"glyphicon-home",
-      "url":""
-   },
-   {
       "id":"a90di03k09",
       "name":"E-Mail",
       "description":"Send a notfication via mail",
       "glyphicon":"glyphicon-envelope",
-      "url":""
-   },
-   {
-      "id":"as0kd9a9d",
-      "name":"Play music",
-      "description":"Play a song or playlist",
-      "glyphicon":"glyphicon-music",
-      "url":""
+      "url":"",
+      "inputArguments": [
+         {
+            "id": "text",
+            "name ": "Text",
+            "type": "string"
+         }
+      ]
    },
    {
       "id":"as0kd19a9d",
@@ -40,10 +19,28 @@
       "description":"Shows a list of campuses and let's the user pick one",
       "glyphicon":"glyphicon-record",
       "url":"",
-      "output":{
-         "type":"string",
-         "name":"campus"
-      }
+      "outputArguments": [
+         {
+            "id": "campus",
+            "name": "Campus",
+            "type": "simpleChoice",
+            "visible": 0,
+            "options": [
+               {
+                  "id": "1",
+                  "label": "Vera"
+               },
+               {
+                  "id": "2",
+                  "label": "Gandia"
+               },
+               {
+                  "id": "3",
+                  "label": "Alcoi"
+               }
+            ]
+         }
+      ]
    },
    {
       "id":"as40kd9a9d",
@@ -53,25 +50,32 @@
       "url":""
    },
    {
-      "id":"as0kd69a9d",
-      "name":"Select library and bike station",
-      "description":"Select library and bike station",
-      "glyphicon":"glyphicon-list",
-      "url":""
-   },
-   {
       "id":"a1da09dj3d3",
-      "name":"Reserve a spot at the bike station",
+      "name":"Reserve bike spot",
       "description":"Reserve a spot at the bike station",
       "glyphicon":"glyphicon-road",
-      "url":""
-   },
-   {
-      "id":"ada099dj36d3",
-      "name":"Reserve library seat",
-      "description":"Reserve library seat",
-      "glyphicon":"glyphicon-book",
-      "url":""
+      "url":"",
+      "inputArguments": [
+         {
+            "id": "bikestation",
+            "name": "Bike Station",
+            "type": "simpleChoice",
+            "options": [
+               {
+                  "id": "1",
+                  "label": "Plaza de la Reina"
+               },
+               {
+                  "id": "2",
+                  "label": "Plaza del Adjuntamiento"
+               },
+               {
+                  "id": "3",
+                  "label": "Marina"
+               }
+            ]
+         }
+      ]
    },
    {
       "id":"UPV_LIBRARY_SEAT_BOOKING",
@@ -125,6 +129,7 @@
             "name":"Seat",
             "description":"The Seat the user have booked",
             "type":"structure",
+            "visible": 0,
             "structure":[
                {
                   "field":"id",
