@@ -26,7 +26,7 @@ define(["react", "require", "dispatchers/AppDispatcher"], function(React, requir
                 actionType: 'TOGGLE_SLIDE',
                 data: {
                   open: true,
-                  title: "Configure a conditional fragment",
+                  title: "Add conditional branch",
                   type: "FragmentConfig",
                   payload: this.props.data
                 }
@@ -84,6 +84,9 @@ define(["react", "require", "dispatchers/AppDispatcher"], function(React, requir
         // Add highlight to Add button if no flows exist
         var active = this.props.data.flows.length ? "" : "active";
 
+        var warning = active ? <p className="empty"><span className="warning glyphicon glyphicon-warning-sign"></span> This fragment is empty. Please add a conditional branch.</p> : "";
+
+
         return (
           <div className={"flowElement fragment "+classes}>
             <header className="header">
@@ -96,6 +99,7 @@ define(["react", "require", "dispatchers/AppDispatcher"], function(React, requir
                   <button className="button-delete" onClick={this.deleteHandler}><span className="glyphicon glyphicon-trash"></span></button>
                 </div>
             </header>
+            {warning}
             <div className="fragmentWrapper">
 
                 {/*Tab navigation*/}

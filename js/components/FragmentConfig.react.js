@@ -52,7 +52,7 @@ define(["react", "components/Fragment.react", "components/Activity.react", "disp
 
         return (
           <div className="fragmentConfig">
-            <span>Conditions:</span>
+            <h3><span className="glyphicon glyphicon-sign-out"></span>Condition</h3>
             <select id="options" name="options" onChange={this.handleChange}>
              {options}
             </select>

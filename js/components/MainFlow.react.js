@@ -6,7 +6,7 @@ define(["react", "components/FlowWrapper.react", "dispatchers/AppDispatcher"], f
 	          actionType: 'TOGGLE_SLIDE',
 	          data: {
 	            open: true,
-	            title: "Set Activity Icon",
+	            title: "Set Composition Icon",
 	            type: "GlyphiconConfig",
 	            payload: null
 	          }

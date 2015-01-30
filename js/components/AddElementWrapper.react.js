@@ -62,6 +62,7 @@ define(["react", "dispatchers/AppDispatcher"], function(React, AppDispatcher) {
         for (compositionUid in this.props.myActivities){
 
           var activity = this.props.myActivities[compositionUid];
+
           var elem =
             <li key={activity.uid} className="media" onClick={_this.addActivity.bind(null, activity)}>
               <span className="media-left media-middle" href="#">
@@ -69,7 +70,7 @@ define(["react", "dispatchers/AppDispatcher"], function(React, AppDispatcher) {
               </span>
               <div className="media-body">
                 <h4 className="media-heading">{activity.name}</h4>
-                <p>{activity.description}</p>
+                {/*<p>{activity.description}</p>*/}
               </div>
             </li>;
 
@@ -88,6 +89,9 @@ define(["react", "dispatchers/AppDispatcher"], function(React, AppDispatcher) {
 
         var activities = this.props.activities.map(function (activity) {
 
+            var inputCount = activity.inputArguments ? <div className="inputs"><span className="glyphicon glyphicon-log-in"></span> {activity.inputArguments.length}</div> : null;
+            var outputCount = activity.outputArguments ? <div className="outputs"><span className="glyphicon glyphicon-log-out"></span> {activity.outputArguments.length}</div> : null;
+
             return (
               <li key={activity.id} className="media" onClick={_this.addActivity.bind(null, activity)}>
                   <span className="media-left media-middle" href="#">
@@ -96,6 +100,10 @@ define(["react", "dispatchers/AppDispatcher"], function(React, AppDispatcher) {
                   <div className="media-body">
                       <h4 className="media-heading">{activity.name}</h4>
                       <p>{activity.description}</p>
+                  </div>
+                  <div className="data">
+                    {inputCount}
+                    {outputCount}
                   </div>
               </li>
             )

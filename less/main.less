@@ -695,17 +695,26 @@ ul.media-list {
 
 .addElementWrapper {
 	padding-top: 10px;
+
+	#activities {
+		.media {
+			position: relative;
+
+			.data {
+				opacity: 0.6;
+
+				position: absolute;
+				top: 15px;
+				right: 15px;
+			}
+		}
+	}
 }
 
 .fragmentConfig {
 
-	text-align: center;
-
-	padding: 50px 20px;
-
-	select {
-		margin-left: 6px;
-	}
+	
+	padding: 20px;
 
 	.addFlowBtn {
 		background-color: white;

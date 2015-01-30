@@ -59,7 +59,7 @@ define(["react", "components/Fragment.react", "components/Activity.react", "disp
               </span>
               <div className="media-body">
                 <h4 className="media-heading">{activity.name}</h4>
-                <p>{activity.description}</p>
+                {/*<p>{activity.description}</p>*/}
               </div>
               <a href="#" className="media-right" onClick={_this.deleteActivity.bind(null, activity.uid)}>
                 <span className="glyphicon glyphicon-trash"></span> 
