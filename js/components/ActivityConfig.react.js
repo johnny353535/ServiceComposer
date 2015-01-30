@@ -31,7 +31,7 @@ define(["react", "dispatchers/AppDispatcher", "stores/FlowStore"], function(Reac
         // Get available input data from previous activities
         var availableInputs = this.getPreviousInputs().map(function (output) {
           return (
-            <option key={Math.random()}>{output}</option>
+            <option key={Math.random()}>{output.name} ({output.source.name})</option>
           );
         });
 

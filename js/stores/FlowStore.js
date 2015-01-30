@@ -150,22 +150,31 @@ define(["react", "dispatchers/AppDispatcher", "underscore", "minivents"], functi
 
 			if(flow.length < 2) return [];
 
+			// Find previous Elements
 			var index = function(){
-				for(var i = 0; i < _flow.length; i++){
-					if(flow[i].uid === uid) return (i - 1);
+				for(var i = 0; i < flow.length; i++){
+					if(flow[i].uid === uid) return i;
 				}
 			}();
+			console.log(index)
 			var previousElements = flow.slice(0, index);
 
-			// Find all output objects and remove undefined objects (activities without outputs)
-			console.log(previousElements)
-			var outputArguments = _.flatten(_.compact(_.pluck(previousElements, 'outputArguments')));
+			var outputs = [];
+			for(var i= 0; i < previousElements.length; i++){
+				var currentElement = previousElements[i];
 
-			if(!outputArguments) return [];
+				outputs = outputs.concat(
+					// Flavor each outputArgument with its source
+					_.map(currentElement.outputArguments, function(outputArgument){
+						outputArgument.source = currentElement;
+						return outputArgument;
+					})
+				);
+			}
 
-			var outputNames = _.pluck(outputArguments, 'name'); // Just return output names
+			console.log(outputs)
 
-			return outputNames;
+			return outputs;
 		},
 		emitChange: function() {
 			console.dir(_flow);
