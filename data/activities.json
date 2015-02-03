@@ -7,8 +7,8 @@
       "url":"",
       "inputArguments": [
          {
-            "id": "text",
-            "name ": "Text",
+            "id": "message",
+            "name": "Message",
             "type": "string"
          }
       ]
