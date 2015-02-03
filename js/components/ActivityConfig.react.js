@@ -44,39 +44,50 @@ define(["react", "dispatchers/AppDispatcher", "stores/FlowStore"], function(Reac
 
         var inputs = this.getInputs().map(function (input) {
           return (
-            <li key={Math.random()}>{input.name}: {availableInputs}</li>
+            <tr key={Math.random()}><td>{input.name}</td><td>{availableInputs}</td></tr>
           );
         });
 
 
         var outputs = this.getOutputs().map(function (output) {
           return (
-            <li key={Math.random()}>{output.name}</li>
+            <tr><td key={Math.random()}>{output.name}</td></tr>
           );
         });
 
         console.log(inputs);
+
+				var showDescription = !activity.description ? 'hidden': '';
         var showInputs = !inputs.length ? 'hidden' : '';
         var showOutputs = !outputs.length ? 'hidden' : '';
         var showNoData = (showInputs && showOutputs) ? 'hidden': '';
 
         return (
           <div className={"activityConfig "+showNoData}>
+						<div className={showDescription}>
+							<h3><span className="glyphicon glyphicon-list-alt"></span> Description</h3>
+							<div>
+								<p>{activity.description}</p>
+							</div>
+						</div>
+
             <div className={showInputs}>
-              <h3><span className="glyphicon glyphicon-sign-in"></span>Inputs</h3>
+              <h3><span className="glyphicon glyphicon-log-in"></span> Inputs</h3>
               <div className={"inputsWrapper "+showInputs}>
-                <ul>
+                <table className="table">
+									<tr><th>Name</th><th>Source</th></tr>
                   {inputs}
-                </ul>
+                </table>
               </div>
             </div>
 
             <div className={showOutputs}>
-              <h3><span className="glyphicon glyphicon-sign-out"></span>Outputs</h3>
+              <h3><span className="glyphicon glyphicon-log-out"></span> Outputs</h3>
               <div className={"outputsWrapper "+showOutputs}>
-                <ul>
+                <table className="table">
+									<tr><th>Name</th></tr>
                   {outputs}
-                </ul>
+                </table>
               </div>
             </div>
           </div>
