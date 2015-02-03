@@ -29,15 +29,22 @@ define(["react", "dispatchers/AppDispatcher", "stores/FlowStore"], function(Reac
         var activity = this.props.data.payload.data;
 
         // Get available input data from previous activities
-        var availableInputs = this.getPreviousInputs().map(function (output) {
+        var availableInputOptions = this.getPreviousInputs().map(function (output) {
           return (
             <option key={Math.random()}>{output.name} ({output.source.name})</option>
           );
         });
 
+				// When inputs are available, show these. Otherwise render a textfield
+
+				var availableInputOptions = <select>{availableInputOptions}</select>;
+				var textfield = <input type="text" placeholder="Please enter an input-value" />;
+
+				var availableInputs = availableInputOptions.length ? availableInputOptions : textfield;
+
         var inputs = this.getInputs().map(function (input) {
           return (
-            <li key={Math.random()}>{input.name}: <select>{availableInputs}</select></li>
+            <li key={Math.random()}>{input.name}: {availableInputs}</li>
           );
         });
 
