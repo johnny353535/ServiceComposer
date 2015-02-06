@@ -1,6 +1,8 @@
+'use strict';
+
 define(["react", "dispatchers/AppDispatcher", "underscore", "minivents"], function(React, AppDispatcher, _) {
 
-	var _flow = null; 
+	var _flow = null;
 
 
     /**
@@ -9,7 +11,7 @@ define(["react", "dispatchers/AppDispatcher", "underscore", "minivents"], functi
 	*
     */
 
-    function insertActivity(root_uid, activity){
+  function insertActivity(root_uid, activity){
 
 		var elem = jQuery.extend(true, {}, activity); // Make deep copy
 		elem.type = "activity";
@@ -225,7 +227,7 @@ define(["react", "dispatchers/AppDispatcher", "underscore", "minivents"], functi
 		})
 
 	};
-	
+
 
 	return FlowStore;
 

@@ -1,3 +1,5 @@
+'use strict';
+
 define(["react", "components/Fragment.react", "components/Activity.react", "dispatchers/AppDispatcher", "underscore"], function(React, Fragment, Activity, AppDispatcher, _) {
 
 

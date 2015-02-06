@@ -1,3 +1,5 @@
+'use strict';
+
 define(["react", "components/MainFlow.react", "components/Slide.react", "components/MainHeader.react", "components/Tutorial.react", "stores/FlowStore", "stores/MyActivitiesStore","dispatchers/AppDispatcher", "underscore"], function(React, MainFlow, Slide, MainHeader, Tutorial, FlowStore, MyActivitiesStore, AppDispatcher, _) {
 
 	var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
@@ -104,7 +106,7 @@ define(["react", "components/MainFlow.react", "components/Slide.react", "compone
 						</ReactCSSTransitionGroup>
 					</div>
 	          	</div>
-				
+
 			)
 		}
 

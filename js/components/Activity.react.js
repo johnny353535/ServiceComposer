@@ -1,3 +1,5 @@
+'use strict';
+
 define(["react", "dispatchers/AppDispatcher", "stores/FlowStore"], function(React, AppDispatcher, FlowStore) {
 
   var Activity = React.createClass({

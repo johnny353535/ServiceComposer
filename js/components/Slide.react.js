@@ -1,3 +1,5 @@
+'use strict';
+
 define(["react", "dispatchers/AppDispatcher", "components/AddElementWrapper.react", "components/FragmentConfig.react", "components/MyActivities.react", "components/ActivityConfig.react", "components/GlyphiconConfig.react", "components/Tutorial.react"], function(React, AppDispatcher, AddElementWrapper, FragmentConfig, MyActivities, ActivityConfig, GlyphiconConfig, Tutorial) {
 
 	var Slide = React.createClass({
@@ -29,7 +31,7 @@ define(["react", "dispatchers/AppDispatcher", "components/AddElementWrapper.reac
           case("Help"):
             content = <Tutorial />;
             break;
-      		default: 
+      		default:
       			//Nufin
       	}
 
@@ -44,7 +46,7 @@ define(["react", "dispatchers/AppDispatcher", "components/AddElementWrapper.reac
           	</div>
           </div>
         );
-        
+
       }
     });
 

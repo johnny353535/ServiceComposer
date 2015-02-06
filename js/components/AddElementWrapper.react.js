@@ -1,3 +1,5 @@
+'use strict';
+
 define(["react", "dispatchers/AppDispatcher"], function(React, AppDispatcher) {
 
 

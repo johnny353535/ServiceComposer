@@ -1,3 +1,5 @@
+'use strict';
+
 define(["react", "require", "dispatchers/AppDispatcher"], function(React, require, AppDispatcher) {
 
     var Fragment = React.createClass({

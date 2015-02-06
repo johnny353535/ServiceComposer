@@ -1,3 +1,5 @@
+'use strict';
+
 define(["react", "components/FlowWrapper.react", "dispatchers/AppDispatcher"], function(React, FlowWrapper, AppDispatcher) {
 
 	var MainFlow = React.createClass({

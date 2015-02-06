@@ -1,3 +1,5 @@
+'use strict';
+
 requirejs.config({
 	shim: {
         "bootstrap": {
@@ -14,7 +16,7 @@ requirejs.config({
         minivents: '../bower_components/minivents-cuzzo/minivents.min'
     },
     packages: [
- 
+
     ]
 });
 

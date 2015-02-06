@@ -1,3 +1,5 @@
+'use strict';
+
 define(["flux"], function(Flux) {
 
 	var AppDispatcher = new Flux.Dispatcher();

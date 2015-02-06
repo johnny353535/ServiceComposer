@@ -1,3 +1,5 @@
+'use strict';
+
 define(["react", "components/Fragment.react", "components/Activity.react", "dispatchers/AppDispatcher", "underscore"], function(React, Fragment, Activity, AppDispatcher, _) {
 
 
@@ -24,7 +26,7 @@ define(["react", "components/Fragment.react", "components/Activity.react", "disp
         this.emitClose();
       },
       emitClose: function(){
-        
+
         AppDispatcher.dispatch({
           actionType: 'TOGGLE_SLIDE',
           data: { open: false }
@@ -49,20 +51,20 @@ define(["react", "components/Fragment.react", "components/Activity.react", "disp
 
         var myActivities = [];
 
-        for (activityUid in this.props.myActivities){
+        for (var activityUid in this.props.myActivities){
 
           var activity = this.props.myActivities[activityUid];
           var elem =
             <li key={activity.uid} className="media" onClick={_this.emitLoadActivity.bind(null, activityUid)}>
               <span className="media-left media-middle">
-                <span className={"glyphicon "+activity.glyphicon}></span> 
+                <span className={"glyphicon "+activity.glyphicon}></span>
               </span>
               <div className="media-body">
                 <h4 className="media-heading">{activity.name}</h4>
                 {/*<p>{activity.description}</p>*/}
               </div>
               <a href="#" className="media-right" onClick={_this.deleteActivity.bind(null, activity.uid)}>
-                <span className="glyphicon glyphicon-trash"></span> 
+                <span className="glyphicon glyphicon-trash"></span>
               </a>
             </li>;
 
@@ -71,7 +73,7 @@ define(["react", "components/Fragment.react", "components/Activity.react", "disp
 
         // No activities to load
         if(!myActivities.length) {
-          myActivities = 
+          myActivities =
             <li className="media">
               <div className="media-body">
                 <p>No composition available</p>
