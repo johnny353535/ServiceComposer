@@ -16,6 +16,7 @@ define(["react"], function(React) {
 						<h4>Help</h4>
 						<p>A service composition defines a sequence of operations that shall be automized.</p>
 						<p>There are three times of elements in a service composition: activities, fragments and compositions.</p>
+						<p>Tap <span className="glyphicon glyphicon-book"></span> to reopen this help any time.</p>
 					</div>
 				</div>
 			)

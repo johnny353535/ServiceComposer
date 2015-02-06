@@ -61,14 +61,14 @@ define(["react", "dispatchers/AppDispatcher"], function(React, AppDispatcher) {
 
         var myActivities = [];
 
-        for (compositionUid in this.props.myActivities){
+        for (var compositionUid in this.props.myActivities){
 
           var activity = this.props.myActivities[compositionUid];
 
           var elem =
             <li key={activity.uid} className="media" onClick={_this.addActivity.bind(null, activity)}>
               <span className="media-left media-middle" href="#">
-                <span className={"glyphicon "+activity.glyphicon}></span> 
+                <span className={"glyphicon "+activity.glyphicon}></span>
               </span>
               <div className="media-body">
                 <h4 className="media-heading">{activity.name}</h4>
@@ -81,7 +81,7 @@ define(["react", "dispatchers/AppDispatcher"], function(React, AppDispatcher) {
 
         // No compositions to load
         if(!myActivities.length) {
-          myActivities = 
+          myActivities =
             <li className="media">
               <div className="media-body">
                 <p>No composition available</p>
@@ -97,7 +97,7 @@ define(["react", "dispatchers/AppDispatcher"], function(React, AppDispatcher) {
             return (
               <li key={activity.id} className="media" onClick={_this.addActivity.bind(null, activity)}>
                   <span className="media-left media-middle" href="#">
-                    <span className={"glyphicon "+activity.glyphicon}></span> 
+                    <span className={"glyphicon "+activity.glyphicon}></span>
                   </span>
                   <div className="media-body">
                       <h4 className="media-heading">{activity.name}</h4>
@@ -117,7 +117,7 @@ define(["react", "dispatchers/AppDispatcher"], function(React, AppDispatcher) {
             return (
               <li key={fragment.id} className="media" onClick={_this.addFragment.bind(null, fragment)}>
                   <span className="media-left media-middle" href="#">
-                      <span className={"glyphicon "+fragment.glyphicon}></span> 
+                      <span className={"glyphicon "+fragment.glyphicon}></span>
                   </span>
                   <div className="media-body">
                       <h4 className="media-heading">{fragment.name}</h4>

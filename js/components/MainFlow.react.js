@@ -19,7 +19,7 @@ define(["react", "components/FlowWrapper.react", "dispatchers/AppDispatcher"], f
 	          actionType: 'SAVE_ACTIVITY'
 	        });
 
-	        jQuery('.flowHeader .saveActivity').addClass('saved'); // Just until next render // TODO use glyphicon with tick instead
+					alert('Composition saved!');
 		},
 		sendToServer: function(){
 			AppDispatcher.dispatch({
@@ -40,7 +40,7 @@ define(["react", "components/FlowWrapper.react", "dispatchers/AppDispatcher"], f
             			<button className="right"><span className={"saveActivity glyphicon glyphicon-floppy-disk"} onClick={this.saveActivity}></span></button>
             		</header>
 					<FlowWrapper key={this.props.currentUid} data = {currentElement} />
-				</div>	
+				</div>
 			)
 		}
 
