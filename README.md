@@ -32,16 +32,18 @@ Windows users: Download and install [git](http://git-scm.com/). Pick "Use Git fr
 
 ## Working with Grunt.js
 
-To run a task use `grunt [task name]`. There are two default tasks available - *dev* and *build*. They will be explained in the following.
+To run a task use `grunt [task name]`. There are two default tasks available - *dev* and *dist*. They will be explained in the following.
 
 ### grunt dev: Development
 
 The task used during development is called 'dev'. Run it with `grunt dev`.
-It starts a static web-server with auto-reload enabled, compiles LESS files into CSS and checks JavaScript files for errors using [JSHint](http://jshint.com).
+It starts a static web-server with auto-reload enabled, compiles React files to JavaScript, compiles LESS files into CSS and checks JavaScript files for errors using [JSHint](http://jshint.com).
 
-### grunt build: Building the project
+Once the task is running the page can be accessed via 'http://localhost:8080'
 
-The task used to create a deployable version of the project is called 'build'. Run it with `grunt build`. It will export to the `dist` repository.
+### grunt dist: Building a distribution ready version of the project
+
+The task used to create a deployable version of the project is called 'dist'. Run it with `grunt dist`. It will export to the `dist` repository.
 
 What it does:
 

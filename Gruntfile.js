@@ -20,13 +20,9 @@ module.exports = function (grunt) {
             options: {
                 hostname: 'localhost',
                 port: 8080,
-                open: true,
                 livereload: 35729
             },
             livereload: {
-                options: {
-                    open: true
-                }
             }
 
         },
@@ -47,7 +43,11 @@ module.exports = function (grunt) {
             react: {
                 files: ['js/**/*.js'],
                 tasks: ['react']
-            }
+            },
+            jshint: {
+                files: ['build/**/*.js'],
+                tasks: ['jshint:all']
+            },
         },
 
         // Compiles LESS
@@ -82,15 +82,23 @@ module.exports = function (grunt) {
         // Checks for JS errors
         jshint: {
             options: {
-                ignores: [],
-                jshintrc: true
+              devel: true,
+              force: true,
+              browser: true,
+              globalstrict: false,
+              asi: true,
+              globals: {
+                jQuery: true,
+                Events: true,
+                define: true
+              }
             },
             all: [
-                'Gruntfile.js',
-                'js/**/*.js',
-                '!bower_components/**/*.js',
-                '!node_modules/**/*.js',
-                '!js/vendor/**/*.js'
+              'Gruntfile.js',
+              'build/**/*.js',
+              '!bower_components/**/*.js',
+              '!node_modules/**/*.js',
+              '!js/vendor/**/*.js'
             ]
 
         },
@@ -129,8 +137,8 @@ module.exports = function (grunt) {
                 options: {
                     include: 'main',
                     name: '../bower_components/almond/almond',
-                    mainConfigFile: 'js/main.js',
-                    baseUrl: 'js',
+                    mainConfigFile: 'build/main.js',
+                    baseUrl: 'build',
                     out: config.dist + '/js/main.min.js',
                     optimize: 'uglify2',
                     generateSourceMaps: true,
@@ -179,7 +187,8 @@ module.exports = function (grunt) {
                             '.htaccess',
                             '{,*/}*.html', // Copy all HTML files
                             'img/{,*/}*.*', // Copy all pictures
-                            'fonts/{,*/}*.*' // Copy all fonts
+                            'fonts/{,*/}*.*', // Copy all fonts
+                            'data/{,*/}*.*', // Copy all data
                         ]
                     }
                 ]
@@ -188,7 +197,7 @@ module.exports = function (grunt) {
         },
         bower: {
             all: {
-                rjsConfig: 'js/main.js',
+                rjsConfig: 'build/main.js',
                 options: {
                     transitive: true
                 }
@@ -223,7 +232,7 @@ module.exports = function (grunt) {
      */
 
     grunt.registerTask('default', ['dev']); // The default task just runs the dev task
-    grunt.registerTask('dev', ['less:dev', 'react', 'connect', 'watch']);
-    grunt.registerTask('build', ['clean:dist', 'copy:dist', 'requirejs', 'less:dist', 'autoprefixer:dist', 'processhtml:dist']);
+    grunt.registerTask('dev', ['less:dev', 'react', 'jshint', 'connect', 'watch']);
+    grunt.registerTask('dist', ['clean:dist', 'copy:dist', 'requirejs', 'less:dist', 'autoprefixer:dist', 'processhtml:dist']);
 
 };
