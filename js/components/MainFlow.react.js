@@ -1,6 +1,6 @@
-'use strict';
-
 define(["react", "components/FlowWrapper.react", "dispatchers/AppDispatcher"], function(React, FlowWrapper, AppDispatcher) {
+
+	'use strict';
 
 	var MainFlow = React.createClass({
 		changeGlyphicon: function(){

@@ -1,6 +1,6 @@
-'use strict';
-
 define(["react", "dispatchers/AppDispatcher", "components/AddElementWrapper.react", "components/FragmentConfig.react", "components/MyActivities.react", "components/ActivityConfig.react", "components/GlyphiconConfig.react", "components/Tutorial.react"], function(React, AppDispatcher, AddElementWrapper, FragmentConfig, MyActivities, ActivityConfig, GlyphiconConfig, Tutorial) {
+
+	'use strict';
 
 	var Slide = React.createClass({
 	  emitClose: function(){

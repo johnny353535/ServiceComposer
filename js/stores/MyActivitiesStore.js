@@ -1,8 +1,8 @@
-'use strict';
-
 define(["react", "dispatchers/AppDispatcher", "underscore", "stores/FlowStore", "minivents"], function(React, AppDispatcher, _, FlowStore) {
 
-    var _myActivities = localStorage.getItem('myActivities') ? JSON.parse(localStorage.getItem('myActivities')) : {};
+  'use strict';
+
+  var _myActivities = localStorage.getItem('myActivities') ? JSON.parse(localStorage.getItem('myActivities')) : {};
 
 
 	/**

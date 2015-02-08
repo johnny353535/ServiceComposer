@@ -1,6 +1,6 @@
-'use strict';
-
 define(["react", "dispatchers/AppDispatcher"], function(React, AppDispatcher) {
+
+	'use strict';
 
 	var MainHeader = React.createClass({
 		emitOpenMyActivities: function(){

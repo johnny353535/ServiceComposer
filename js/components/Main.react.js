@@ -1,6 +1,6 @@
-'use strict';
-
 define(["react", "components/MainFlow.react", "components/Slide.react", "components/MainHeader.react", "components/Tutorial.react", "stores/FlowStore", "stores/MyActivitiesStore","dispatchers/AppDispatcher", "underscore"], function(React, MainFlow, Slide, MainHeader, Tutorial, FlowStore, MyActivitiesStore, AppDispatcher, _) {
+
+	'use strict';
 
 	var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
 
@@ -42,8 +42,6 @@ define(["react", "components/MainFlow.react", "components/Slide.react", "compone
 	              	"fragments": fragments[0]
 	            });
 	        });
-
-			var _this = this;
 
 			this.dispatcherIndex = AppDispatcher.register(
 				function(payload) {

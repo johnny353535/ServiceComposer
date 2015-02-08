@@ -1,6 +1,6 @@
-'use strict';
-
 define(["react", "dispatchers/AppDispatcher", "underscore", "minivents"], function(React, AppDispatcher, _) {
+
+	'use strict';
 
 	var _flow = null;
 
@@ -30,13 +30,13 @@ define(["react", "dispatchers/AppDispatcher", "underscore", "minivents"], functi
 	}
 
 	function insertFlow(root_uid, name, glyphicon){
-		console.log('insertFlow', root_uid, name)
+		console.log('insertFlow', root_uid, name);
 
 		addElementToRoot(_flow, root_uid, getFlow(name, glyphicon), true);
 	}
 
 	function deleteFlow(uid){
-		console.log('deleteFlow', uid)
+		console.log('deleteFlow', uid);
 
 		deleteElementByUid(_flow, uid, null);
 	}
@@ -57,16 +57,16 @@ define(["react", "dispatchers/AppDispatcher", "underscore", "minivents"], functi
 		      } else deleteElementByUid(root.flow[i], uid, elem);
 		    }
 		  } else if (root.flows) { // we are in a fragment with multiple flowWrappers
-		    for(var i = 0; i<root.flows.length; i++) {
-		    	if(root.flows[i].uid === uid){
+		    for(var k = 0; k<root.flows.length; k++) {
+		    	if(root.flows[k].uid === uid){
 
 		    		console.log("deleted", uid);
-		    		root.flows.splice(i,1);
+		    		root.flows.splice(k,1);
 
 		        	return true;
 		    	}
 
-		      deleteElementByUid(root.flows[i], uid, elem);
+		      deleteElementByUid(root.flows[k], uid, elem);
 		    }
 		  }
 
@@ -108,8 +108,8 @@ define(["react", "dispatchers/AppDispatcher", "underscore", "minivents"], functi
 	    for(var i = 0; i<root.flow.length; i++)
 	      if(root.flow[i].flows) addElementToRoot(root.flow[i], uid, elem, addFlow);
 	  } else if (root.flows) {
-	    for(var i = 0; i<root.flows.length; i++)
-	      addElementToRoot(root.flows[i], uid, elem, addFlow);
+	    for(var j = 0; j<root.flows.length; j++)
+	      addElementToRoot(root.flows[j], uid, elem, addFlow);
 	  }
 
 	  return false;
@@ -126,7 +126,7 @@ define(["react", "dispatchers/AppDispatcher", "underscore", "minivents"], functi
           "glyphicon": glyphicon ? glyphicon : "",
           "description": "kein text",
           "flow": []
-        }
+        };
     }
 
 
@@ -158,7 +158,7 @@ define(["react", "dispatchers/AppDispatcher", "underscore", "minivents"], functi
 					if(flow[i].uid === uid) return i;
 				}
 			}();
-			console.log(index)
+
 			var previousElements = flow.slice(0, index);
 
 			var outputs = [];
@@ -174,13 +174,13 @@ define(["react", "dispatchers/AppDispatcher", "underscore", "minivents"], functi
 				);
 			}
 
-			console.log(outputs)
+			console.log(outputs);
 
 			return outputs;
 		},
 		emitChange: function() {
 			console.dir(_flow);
-			this.events.emit('CHANGE'); 
+			this.events.emit('CHANGE');
 		},
 
 		addChangeListener: function(callback) {
@@ -213,6 +213,7 @@ define(["react", "dispatchers/AppDispatcher", "underscore", "minivents"], functi
 					break;
 				case "SET_GLYPHICON":
 					setGlyphicon(payload.data.glyphicon);
+					break;
 				case "DELETE_ELEMENT":
 					deleteElementByUid(_flow, payload.data.uid);
 					break;

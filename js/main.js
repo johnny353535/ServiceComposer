@@ -1,5 +1,3 @@
-'use strict';
-
 requirejs.config({
 	shim: {
         "bootstrap": {
@@ -22,6 +20,8 @@ requirejs.config({
 
 
 require(["react", "components/Main.react", "flux", "jquery", "bootstrap", "minivents"], function (React, Main, Flux) {
+
+	'use strict';
 
     React.initializeTouchEvents(true)
 

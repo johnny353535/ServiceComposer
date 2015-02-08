@@ -1,6 +1,6 @@
-'use strict';
-
 define(["react", "dispatchers/AppDispatcher", "stores/FlowStore"], function(React, AppDispatcher, FlowStore) {
+
+	'use strict';
 
 	var ActivityConfig = React.createClass({
       emitClose: function(){

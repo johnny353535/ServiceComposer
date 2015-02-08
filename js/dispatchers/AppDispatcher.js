@@ -1,6 +1,6 @@
-'use strict';
-
 define(["flux"], function(Flux) {
+
+	'use strict';
 
 	var AppDispatcher = new Flux.Dispatcher();
 
@@ -10,4 +10,4 @@ define(["flux"], function(Flux) {
 
     return AppDispatcher;
 
-})
+});

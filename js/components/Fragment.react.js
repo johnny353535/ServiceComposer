@@ -1,5 +1,3 @@
-'use strict';
-
 define(["react", "require", "dispatchers/AppDispatcher"], function(React, require, AppDispatcher) {
 
     var Fragment = React.createClass({
@@ -26,6 +24,7 @@ define(["react", "require", "dispatchers/AppDispatcher"], function(React, requir
           if(this.props.data.options && this.props.data.options.length) {
             AppDispatcher.dispatch({
                 actionType: 'TOGGLE_SLIDE',
+  'use strict';
                 data: {
                   open: true,
                   title: "Add conditional branch",

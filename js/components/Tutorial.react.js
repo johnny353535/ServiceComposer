@@ -1,6 +1,6 @@
-'use strict';
-
 define(["react"], function(React) {
+
+	'use strict';
 
 	var Tutorial = React.createClass({
 		render: function(){

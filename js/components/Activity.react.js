@@ -1,6 +1,6 @@
-'use strict';
-
 define(["react", "dispatchers/AppDispatcher", "stores/FlowStore"], function(React, AppDispatcher, FlowStore) {
+
+  'use strict';
 
   var Activity = React.createClass({
       configHandler: function(){
@@ -26,7 +26,7 @@ define(["react", "dispatchers/AppDispatcher", "stores/FlowStore"], function(Reac
       },
       render: function() {
 
-        var inputArguments = this.props.data.inputArguments ? this.props.data.inputArguments : []
+        var inputArguments = this.props.data.inputArguments ? this.props.data.inputArguments : [];
         var inputs = inputArguments.map(function (input) {
           var key = new Date().getTime().toString()+input.name;
           var isUnassigned = !input.source ? 'warning' : '';
@@ -36,7 +36,7 @@ define(["react", "dispatchers/AppDispatcher", "stores/FlowStore"], function(Reac
           );
         });
 
-        var outputArguments = this.props.data.outputArguments ? this.props.data.outputArguments : []
+        var outputArguments = this.props.data.outputArguments ? this.props.data.outputArguments : [];
         var outputs = outputArguments.map(function (output) {
           var key = new Date().getTime().toString()+output.name;
 

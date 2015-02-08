@@ -1,7 +1,6 @@
-'use strict';
-
 define(["react", "components/Fragment.react", "components/Activity.react", "dispatchers/AppDispatcher", "underscore"], function(React, Fragment, Activity, AppDispatcher, _) {
 
+	'use strict';
 
 	var FlowWrapper = React.createClass({
     openAddElementWrapper: function(){
@@ -44,7 +43,6 @@ define(["react", "components/Fragment.react", "components/Activity.react", "disp
                 return (
                   <li key={flowElement.uid}><Fragment data={flowElement}></Fragment></li>
                 );
-                break;
               default:
                   // do nufin
           }

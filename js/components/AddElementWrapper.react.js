@@ -1,7 +1,6 @@
-'use strict';
-
 define(["react", "dispatchers/AppDispatcher"], function(React, AppDispatcher) {
 
+	'use strict';
 
 	var AddElementWrapper = React.createClass({
       getInitialState: function(){

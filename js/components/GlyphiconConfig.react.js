@@ -1,8 +1,6 @@
-'use strict';
-
 define(["react", "dispatchers/AppDispatcher"], function(React, AppDispatcher) {
 
-
+	'use strict';
 
 	var GlyphiconConfig = React.createClass({
       emitClose: function(){
