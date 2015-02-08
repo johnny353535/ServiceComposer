@@ -53,7 +53,7 @@ define(["react", "dispatchers/AppDispatcher", "stores/FlowStore"], function(Reac
 
         var outputs = this.getOutputs().map(function (output) {
           return (
-            <tr><td key={Math.random()}>{output.name}</td></tr>
+            <tr key={Math.random()}><td>{output.name}</td></tr>
           );
         });
 

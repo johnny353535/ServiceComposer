@@ -81,6 +81,35 @@ define(["react", "dispatchers/AppDispatcher", "underscore", "minivents"], functi
 		_flow = activity;
 	}
 
+	function updateInputSource(root, activityId, inputId, source){
+		if(root.flow) { // we are in a flowWrapper
+				for(var i = 0; i<root.flow.length; i++){
+					if(root.flow[i].uid == uid) {
+
+						var activity = root.flow[i];
+
+						for(var k = 0; k < activity.inputArguments; k++){
+							if(activity.inputArguments[k] === inputId){
+								activity.inputArguments[k].source = source;
+								console.log("updated", uid);
+
+								return true;
+							}
+						}
+
+						return false;
+
+					} else updateInputSource(root.flow[i], activityId, inputId, source);
+				}
+			} else if (root.flows) { // we are in a fragment with multiple flowWrappers
+				for(var j = 0; j<root.flows.length; j++) {
+					updateInputSource(root.flows[j], activityId, inputId, sourcem);
+				}
+			}
+
+			return false;
+	}
+
 	function sendToServer(){
 		// Send flow to the server
 		jQuery.post("http://127.0.0.1:3000/bpmn", _flow, function(data) {
@@ -216,6 +245,9 @@ define(["react", "dispatchers/AppDispatcher", "underscore", "minivents"], functi
 					break;
 				case "DELETE_ELEMENT":
 					deleteElementByUid(_flow, payload.data.uid);
+					break;
+				case "UPDATE_INPUT_SOURCE":
+					updateInputSource(_flow, payload.data.uid, payload.data.inputId, payload.data.source);
 					break;
 				case "SEND_FLOW":
 					sendToServer();
