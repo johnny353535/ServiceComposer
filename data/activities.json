@@ -1,83 +1,5 @@
 [
    {
-      "id":"a90di03k09",
-      "name":"E-Mail",
-      "description":"Send a notfication via mail",
-      "glyphicon":"glyphicon-envelope",
-      "url":"",
-      "inputArguments": [
-         {
-            "id": "message",
-            "name": "Message",
-            "type": "string"
-         }
-      ]
-   },
-   {
-      "id":"as0kd19a9d",
-      "name":"Ask user for campus",
-      "description":"Shows a list of campuses and let's the user pick one",
-      "glyphicon":"glyphicon-record",
-      "url":"",
-      "outputArguments": [
-         {
-            "id": "campus",
-            "name": "Campus",
-            "type": "simpleChoice",
-            "visible": 0,
-            "options": [
-               {
-                  "id": "1",
-                  "label": "Vera"
-               },
-               {
-                  "id": "2",
-                  "label": "Gandia"
-               },
-               {
-                  "id": "3",
-                  "label": "Alcoi"
-               }
-            ]
-         }
-      ]
-   },
-   {
-      "id":"as40kd9a9d",
-      "name":"Library seats",
-      "description":"Checks which libraries have available seats",
-      "glyphicon":"glyphicon-book",
-      "url":""
-   },
-   {
-      "id":"a1da09dj3d3",
-      "name":"Reserve bike spot",
-      "description":"Reserve a spot at the bike station",
-      "glyphicon":"glyphicon-road",
-      "url":"",
-      "inputArguments": [
-         {
-            "id": "bikestation",
-            "name": "Bike Station",
-            "type": "simpleChoice",
-            "options": [
-               {
-                  "id": "1",
-                  "label": "Plaza de la Reina"
-               },
-               {
-                  "id": "2",
-                  "label": "Plaza del Adjuntamiento"
-               },
-               {
-                  "id": "3",
-                  "label": "Marina"
-               }
-            ]
-         }
-      ]
-   },
-   {
       "id":"UPV_LIBRARY_SEAT_BOOKING",
       "name":"UPV Library Seat Booking",
       "url":"http://www.upv.es/libraryBookSeat",
@@ -162,6 +84,78 @@
                   ]
                }
             ]
+         }
+      ]
+   },
+   {
+      "id":"WEATHER_SERVICE",
+      "name":"Weather Service",
+      "url":"http://www.weather.com/api",
+      "description":"Check the weather at a given location",
+      "method":"POST",
+      "glyphicon":"glyphicon-cloud",
+      "inputType":"payload",
+      "inputArguments":[
+         {
+            "id":"location",
+            "name":"Location",
+            "type":"location"
+         }
+      ],
+      "outputArguments":[
+         {
+            "id":"weather",
+            "name":"Weather condition",
+            "description":"The weather condition at a given location",
+            "type":"string",
+            "visible": 0
+         }
+      ]
+   },
+   {
+      "id":"RESERVE_BIKE_SPOT",
+      "name":"Reserve bike spot",
+      "description":"Reserve a spot at the bike station",
+      "glyphicon":"glyphicon-road",
+      "url":"",
+      "inputArguments": [
+         {
+            "id": "location",
+            "name": "Bike Station",
+            "type": "location"
+         }
+      ]
+   },
+   {
+      "id":"GET_DIRECTIONS",
+      "name":"Directions",
+      "description":"Get directions",
+      "glyphicon":"glyphicon-tag",
+      "url":"",
+      "inputArguments": [
+         {
+            "id": "STARTING_DESTINATION",
+            "name": "Starting destination",
+            "type": "location"
+         },
+         {
+            "id": "FINAL_DESTINATION",
+            "name": "Final destination",
+            "type": "location"
+         }
+      ]
+   },
+   {
+      "id":"FACEBOOK_STATUS",
+      "name":"Facebook",
+      "description":"Publish a status on Facebook",
+      "glyphicon":"glyphicon-share",
+      "url":"",
+      "inputArguments": [
+         {
+            "id": "text",
+            "name": "Your status post",
+            "type": "string"
          }
       ]
    }

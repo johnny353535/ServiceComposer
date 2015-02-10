@@ -26,29 +26,74 @@ define(["react", "dispatchers/AppDispatcher", "stores/FlowStore"], function(Reac
         var activity = this.props.data.payload.data;
         return activity.outputArguments ? activity.outputArguments : [];
       },
+			handleOptionsChange: function(event){
+
+				var value = JSON.parse(event.target.value);
+
+				var payload = {
+					value: value,
+					uid: this.props.data.payload.data.uid,
+					inputId: value.inputField
+				};
+
+				AppDispatcher.dispatch({
+					actionType: 'UPDATE_INPUT_SOURCE',
+					data: payload
+				});
+			},
+			handleTextfieldChange: function(){
+
+			},
       render: function() {
 
         var activity = this.props.data.payload.data;
 
-        // Get available input data from previous activities
-        var availableInputOptions = this.getPreviousInputs().map(function (output) {
-          return (
-            <option key={Math.random()}>{output.name} ({output.source.name})</option>
-          );
-        });
-
-				// When inputs are available, show these. Otherwise render a textfield
-
-				var availableInputOptions = <select>{availableInputOptions}</select>;
-				var textfield = <input type="text" placeholder="Please enter an input-value" />;
-
-				var availableInputs = availableInputOptions.length ? availableInputOptions : textfield;
-
         var inputs = this.getInputs().map(function (input) {
+
+
+					// Get available input data from previous activities
+					var availableInputOptions;
+					var defaultValue;
+
+					switch(input.type) {
+						case "simpleChoice":
+							availableInputOptions = input.options.map(function (option) {
+
+								defaultValue = (input.value === option) ? option : null; // TODO comparison doesn't work
+								option.inputField = input.id;
+								var value = JSON.stringify(option);
+
+								return (
+									<option key={Math.random()} value={value}>{option.label}</option>
+								);
+							});
+							break;
+						default:
+							availableInputOptions = this.getPreviousInputs().map(function (output) {
+
+								defaultValue = (input.value === output) ? output : null; // TODO comparison doesn't work
+								output.inputField = input.id;
+								var value = JSON.stringify(output);
+
+								return (
+									<option key={Math.random()} value={value} defaultValue={defaultValue}>{output.value.name} ({output.source})</option>
+								);
+							});
+
+					}
+
+
+					// When inputs are available, show these. Otherwise render a textfield
+
+					var select = <select onChange={this.handleOptionsChange} value="null"><option value="null">-- Please select an option --</option>+{availableInputOptions}+</select>;
+					var textfield = <input type="text" placeholder="Please fill out" onChange={this.handleTextfieldChange} />;
+
+					var availableInputs = availableInputOptions.length ? select : textfield;
+
           return (
             <tr key={Math.random()}><td>{input.name}</td><td>{availableInputs}</td></tr>
           );
-        });
+        }.bind(this));
 
 
         var outputs = this.getOutputs().map(function (output) {
@@ -56,8 +101,6 @@ define(["react", "dispatchers/AppDispatcher", "stores/FlowStore"], function(Reac
             <tr key={Math.random()}><td>{output.name}</td></tr>
           );
         });
-
-        console.log(inputs);
 
 				var showDescription = !activity.description ? 'hidden': '';
         var showInputs = !inputs.length ? 'hidden' : '';
@@ -77,8 +120,10 @@ define(["react", "dispatchers/AppDispatcher", "stores/FlowStore"], function(Reac
               <h3><span className="glyphicon glyphicon-log-in"></span> Inputs</h3>
               <div className={"inputsWrapper "+showInputs}>
                 <table className="table">
-									<tr><th>Name</th><th>Source</th></tr>
-                  {inputs}
+									<tbody>
+										<tr><th>Name</th><th>Source</th></tr>
+	                  {inputs}
+									</tbody>
                 </table>
               </div>
             </div>
@@ -87,8 +132,10 @@ define(["react", "dispatchers/AppDispatcher", "stores/FlowStore"], function(Reac
               <h3><span className="glyphicon glyphicon-log-out"></span> Outputs</h3>
               <div className={"outputsWrapper "+showOutputs}>
                 <table className="table">
-									<tr><th>Name</th></tr>
-                  {outputs}
+									<tbody>
+										<tr><th>Name</th></tr>
+	                  {outputs}
+									</tbody>
                 </table>
               </div>
             </div>

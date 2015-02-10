@@ -81,17 +81,23 @@ define(["react", "dispatchers/AppDispatcher", "underscore", "minivents"], functi
 		_flow = activity;
 	}
 
-	function updateInputSource(root, activityId, inputId, source){
+	function updateInputSource(root, activityId, inputId, value){
+
+		console.log(activityId, inputId, value)
 		if(root.flow) { // we are in a flowWrapper
 				for(var i = 0; i<root.flow.length; i++){
-					if(root.flow[i].uid == uid) {
+					if(root.flow[i].uid == activityId) {
 
 						var activity = root.flow[i];
 
-						for(var k = 0; k < activity.inputArguments; k++){
-							if(activity.inputArguments[k] === inputId){
-								activity.inputArguments[k].source = source;
-								console.log("updated", uid);
+						console.log("Found activity!", activity)
+
+						for(var k = 0; k < activity.inputArguments.length; k++){
+							console.log(activityId, inputId);
+							console.log(activity.inputArguments[k])
+							if(activity.inputArguments[k].id === inputId){
+								activity.inputArguments[k].value = value;
+								console.log("updated", activityId);
 
 								return true;
 							}
@@ -99,11 +105,11 @@ define(["react", "dispatchers/AppDispatcher", "underscore", "minivents"], functi
 
 						return false;
 
-					} else updateInputSource(root.flow[i], activityId, inputId, source);
+					} else updateInputSource(root.flow[i], activityId, inputId, value);
 				}
 			} else if (root.flows) { // we are in a fragment with multiple flowWrappers
 				for(var j = 0; j<root.flows.length; j++) {
-					updateInputSource(root.flows[j], activityId, inputId, sourcem);
+					updateInputSource(root.flows[j], activityId, inputId, value);
 				}
 			}
 
@@ -191,17 +197,20 @@ define(["react", "dispatchers/AppDispatcher", "underscore", "minivents"], functi
 			var previousElements = flow.slice(0, index);
 
 			var outputs = [];
-			for(var i= 0; i < previousElements.length; i++){
-				var currentElement = previousElements[i];
 
-				outputs = outputs.concat(
-					// Flavor each outputArgument with its source
-					_.map(currentElement.outputArguments, function(outputArgument){
-						outputArgument.source = currentElement;
-						return outputArgument;
-					})
-				);
-			}
+			// Iterate over all previous elements
+			_.forEach(previousElements, function (currentElement){
+
+				// Iterate over all available outputs
+				_.forEach(currentElement.outputArguments, function(output){
+					output = {
+						source: currentElement.uid,
+						value: output
+					};
+
+					outputs.push(output);
+				});
+			});
 
 			console.log(outputs);
 
@@ -247,7 +256,7 @@ define(["react", "dispatchers/AppDispatcher", "underscore", "minivents"], functi
 					deleteElementByUid(_flow, payload.data.uid);
 					break;
 				case "UPDATE_INPUT_SOURCE":
-					updateInputSource(_flow, payload.data.uid, payload.data.inputId, payload.data.source);
+					updateInputSource(_flow, payload.data.uid, payload.data.inputId, payload.data.value);
 					break;
 				case "SEND_FLOW":
 					sendToServer();
