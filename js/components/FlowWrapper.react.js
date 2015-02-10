@@ -55,8 +55,6 @@ define(["react", "components/Fragment.react", "components/Activity.react", "disp
         'isEmpty': !flowElementNodes.length
       });
 
-      console.log(this.props.data);
-
       return (
         <div className={classes}>
             <header className="header flowHeader">
