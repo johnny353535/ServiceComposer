@@ -39,7 +39,7 @@ define(["react", "components/FlowWrapper.react", "dispatchers/AppDispatcher"], f
             			<button className="right"><span className={"glyphicon glyphicon-share"} onClick={this.sendToServer}></span></button>
             			<button className="right"><span className={"saveActivity glyphicon glyphicon-floppy-disk"} onClick={this.saveActivity}></span></button>
             		</header>
-					<FlowWrapper key={this.props.currentUid} data = {currentElement} />
+					<FlowWrapper key={this.props.currentUid} data={currentElement} isMainFlow={true}/>
 				</div>
 			)
 		}

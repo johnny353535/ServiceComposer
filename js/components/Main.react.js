@@ -96,14 +96,14 @@ define(["react", "components/MainFlow.react", "components/Slide.react", "compone
 
 			return(
 				<div id="mainWrapper" className="mainWrapper">
-            		<MainHeader title="Service Composer"/>
-	            	<div id="contentWrapper" className="contentWrapper">
-	            		{content}
+      		<MainHeader title="Service Composer"/>
+        	<div id="contentWrapper" className="contentWrapper">
+        		{content}
 						<ReactCSSTransitionGroup transitionName="slide">
 							{slide}
 						</ReactCSSTransitionGroup>
 					</div>
-	          	</div>
+      	</div>
 
 			)
 		}

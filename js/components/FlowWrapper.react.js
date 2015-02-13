@@ -4,13 +4,16 @@ define(["react", "components/Fragment.react", "components/Activity.react", "disp
 
 	var FlowWrapper = React.createClass({
     openAddElementWrapper: function(){
+			var _this = this;
+
       AppDispatcher.dispatch({
         actionType: 'TOGGLE_SLIDE',
         data: {
           open: true,
           type: "AddElement",
           title: "Add Element",
-          rootUid: this.props.data.uid
+          rootUid: this.props.data.uid,
+					hideFragments: !_this.props.isMainFlow
         }
       });
     },

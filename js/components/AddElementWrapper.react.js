@@ -107,7 +107,7 @@ define(["react", "dispatchers/AppDispatcher"], function(React, AppDispatcher) {
                     {outputCount}
                   </div>
               </li>
-            )
+            );
         });
 
 
@@ -123,8 +123,11 @@ define(["react", "dispatchers/AppDispatcher"], function(React, AppDispatcher) {
                       <p>{fragment.description}</p>
                   </div>
               </li>
-            )
+            );
         });
+
+				var isHidden = this.props.hideFragments ? 'hidden' : '';
+				console.log(isHidden)
 
 
         return (
@@ -142,7 +145,7 @@ define(["react", "dispatchers/AppDispatcher"], function(React, AppDispatcher) {
                         </a>
                       </li>
                       <li role="presentation">
-                          <a href="#fragments" role="tab" data-toggle="tab" className="button">
+                          <a href="#fragments" role="tab" data-toggle="tab" className={"button "+isHidden}>
                             <span className="glyphicon glyphicon-list-alt"></span><span className="tabName">Fragments</span>
                           </a>
                       </li>
@@ -153,7 +156,7 @@ define(["react", "dispatchers/AppDispatcher"], function(React, AppDispatcher) {
                             {myActivities}
                           </ul>
                       </div>
-                      <div role="tabpanel" className="tab-pane" id="activities">
+                      <div role="tabpanel" className={"tab-pane "+isHidden} id="activities">
                           <ul className="media-list">
                               {activities}
                           </ul>
