@@ -204,7 +204,10 @@ define(["react", "dispatchers/AppDispatcher", "underscore", "minivents"], functi
 				// Iterate over all available outputs
 				_.forEach(currentElement.outputArguments, function(output){
 					output = {
-						source: currentElement.uid,
+						source: {
+							uid: currentElement.uid,
+							name: currentElement.name
+						},
 						value: output
 					};
 

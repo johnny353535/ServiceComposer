@@ -1,7 +1,7 @@
 [
    {
       "id":"UPV_LIBRARY_SEAT_BOOKING",
-      "name":"UPV Library Seat Booking",
+      "name":"UPV Library Seat",
       "url":"http://www.upv.es/libraryBookSeat",
       "description":"Service to book a seat on one of the UPV's Libraries",
       "method":"POST",
@@ -146,8 +146,8 @@
       ]
    },
    {
-      "id":"FACEBOOK_STATUS",
-      "name":"Facebook",
+      "id":"SOCIAL_NETWORK_STATUS",
+      "name":"Social Network Status",
       "description":"Publish a status on Facebook",
       "glyphicon":"glyphicon-share",
       "url":"",
