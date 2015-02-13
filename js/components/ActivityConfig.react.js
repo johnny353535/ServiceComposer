@@ -85,7 +85,10 @@ define(["react", "dispatchers/AppDispatcher", "stores/FlowStore"], function(Reac
 
 					// When inputs are available, show these. Otherwise render a textfield
 
-					var select = <select onChange={this.handleOptionsChange} value="null"><option value="null">-- Please select an option --</option>+{availableInputOptions}+</select>;
+					// The standard option for input selection is a user select at runtime
+					var standardInput = {'inputField': input.id};
+
+					var select = <select onChange={this.handleOptionsChange}><option value={JSON.stringify(standardInput)}>User Select</option>{availableInputOptions}</select>;
 					var textfield = <input type="text" placeholder="Please fill out" onChange={this.handleTextfieldChange} />;
 
 					var availableInputs = availableInputOptions.length ? select : textfield;
@@ -118,6 +121,7 @@ define(["react", "dispatchers/AppDispatcher", "stores/FlowStore"], function(Reac
 
             <div className={showInputs}>
               <h3><span className="glyphicon glyphicon-log-in"></span> Inputs</h3>
+							<p className="small">The default value for inputs is <b><span className="glyphicon glyphicon-pencil"></span> User Select</b>, which lets the user pick the input's value when the service composition is being executed.</p>
               <div className={"inputsWrapper "+showInputs}>
                 <table className="table">
 									<tbody>
