@@ -53,6 +53,8 @@ define(["react", "dispatchers/AppDispatcher", "underscore", "minivents"], functi
 		        console.log("deleted", uid);
 		        root.flow.splice(i,1); // delete element
 
+						deleteReferences(_flow, uid); // Delete all data linked to this activity
+
 		        return true;
 		      } else deleteElementByUid(root.flow[i], uid, elem);
 		    }
@@ -73,6 +75,43 @@ define(["react", "dispatchers/AppDispatcher", "underscore", "minivents"], functi
 		  return false;
 	}
 
+	function deleteReferences(root, uid){
+		if(root.flow) { // we are in a flowWrapper
+				for(var i = 0; i<root.flow.length; i++){ // every element
+					if(root.flow[i].inputArguments) {
+
+
+						for(var j = 0; j <root.flow[i].inputArguments.length; j++){
+							if(root.flow[i].inputArguments[j].value && root.flow[i].inputArguments[j].value.source.uid === uid){
+								delete root.flow[i].inputArguments[j].value; // cut it out
+								console.log("deleted one reference to element", uid);
+							}
+						}
+
+						return true;
+					} else deleteElementByUid(root.flow[i], uid, elem);
+				}
+			} else if (root.flows) { // every flowWrapper
+				for(var k = 0; k<root.flows.length; k++) { // everyElement
+					if(root.flows[k].inputArguments){
+
+						for(var l = 0; l <root.flow[k].inputArguments.length; l++){
+							if(root.flow[k].inputArguments[l].value && root.flow[k].inputArguments[l].value.source.uid === uid){
+								delete root.flow[k].inputArguments[l].value; // cut it out
+								console.log("deleted one reference to element", uid);
+							}
+						}
+
+						return true;
+					}
+
+					deleteReferences(root.flows[k], uid);
+				}
+			}
+
+			return false;
+	}
+
 	function createActivity(name, glyphicon){
 		_flow = getFlow(name, glyphicon);
 	}
@@ -83,18 +122,18 @@ define(["react", "dispatchers/AppDispatcher", "underscore", "minivents"], functi
 
 	function updateInputSource(root, activityId, inputId, value){
 
-		console.log(activityId, inputId, value)
+		console.log(activityId, inputId, value);
 		if(root.flow) { // we are in a flowWrapper
 				for(var i = 0; i<root.flow.length; i++){
 					if(root.flow[i].uid == activityId) {
 
 						var activity = root.flow[i];
 
-						console.log("Found activity!", activity)
+						console.log("Found activity!", activity);
 
 						for(var k = 0; k < activity.inputArguments.length; k++){
 							console.log(activityId, inputId);
-							console.log(activity.inputArguments[k])
+							console.log(activity.inputArguments[k]);
 							if(activity.inputArguments[k].id === inputId){
 								activity.inputArguments[k].value = value;
 								console.log("updated", activityId);

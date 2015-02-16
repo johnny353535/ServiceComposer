@@ -27,8 +27,9 @@ define(["react", "dispatchers/AppDispatcher", "stores/FlowStore"], function(Reac
         return activity.outputArguments ? activity.outputArguments : [];
       },
 			handleOptionsChange: function(event){
+				console.log(event.target.value)
 
-				var value = JSON.parse(event.target.value);
+				var value = event.target.value ? JSON.parse(event.target.value) : null;
 
 				var payload = {
 					value: value,
@@ -74,14 +75,12 @@ define(["react", "dispatchers/AppDispatcher", "stores/FlowStore"], function(Reac
 								var value = JSON.stringify(output);
 
 								return (
-									<option key={Math.random()} value={JSON.stringify}>{output.value.name} ({output.source.name})</option>
+									<option key={Math.random()} value={value}>{output.value.name} ({output.source.name})</option>
 								);
 							});
 
 					}
 
-
-					//defaultValue = (input.value === output) ? output : null; // TODO comparison doesn't work
 
 					// When inputs are available, show these. Otherwise render a textfield
 
