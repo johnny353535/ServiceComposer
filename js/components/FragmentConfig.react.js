@@ -40,13 +40,24 @@ define(["react", "components/Fragment.react", "components/Activity.react", "disp
       render: function() {
 
       	var _this = this;
+				var fragment = this.props.data.payload;
 
-        var options = this.props.data.payload.options.map(function (option) {
+        var options = fragment.options.map(function (option) {
           var value = {
             name: option.name,
             glyphicon: option.glyphicon
           }
-          return (<option key={option.name} value={JSON.stringify(value)}>{option.name}</option>);
+
+					var skip = false;
+
+					_.each(fragment.flows,function(flow){
+							if(flow.name === option.name) {
+								skip = true;
+							}
+					});
+
+					if(skip) return;
+          else return (<option key={option.name} value={JSON.stringify(value)}>{option.name}</option>);
 
         });
 
