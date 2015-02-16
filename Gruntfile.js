@@ -82,16 +82,8 @@ module.exports = function (grunt) {
         // Checks for JS errors
         jshint: {
             options: {
-              devel: true,
-              force: true,
-              browser: true,
-              globalstrict: false,
-              asi: true,
-              globals: {
-                jQuery: true,
-                Events: true,
-                define: true
-              }
+              jshintrc: true,
+              force: true
             },
             all: [
               'Gruntfile.js',

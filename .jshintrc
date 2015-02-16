@@ -1,0 +1,11 @@
+{
+  "devel": true,
+  "browser": true,
+  "globalstrict": false,
+  "asi": true,
+  "globals": {
+    "jQuery": true,
+    "Events": true,
+    "define": true
+  }
+}
