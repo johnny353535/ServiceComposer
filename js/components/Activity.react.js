@@ -29,7 +29,7 @@ define(["react", "dispatchers/AppDispatcher", "stores/FlowStore"], function(Reac
         var inputArguments = this.props.data.inputArguments ? this.props.data.inputArguments : [];
         var inputs = inputArguments.map(function (input) {
           var key = new Date().getTime().toString()+input.name;
-          var isUnassigned = !input.value || !input.value.type ? <span className="glyphicon glyphicon-pencil"></span> : '';
+          var isUnassigned = !input.value ? <span className="glyphicon glyphicon-pencil"></span> : '';
 
           return (
             <li key={key}>{isUnassigned}{input.name}</li>
