@@ -89,7 +89,7 @@ define(["react", "dispatchers/AppDispatcher", "underscore", "minivents"], functi
 						}
 
 						return true;
-					} else deleteElementByUid(root.flow[i], uid, elem);
+					} else deleteElementByUid(root.flow[i], uid);
 				}
 			} else if (root.flows) { // every flowWrapper
 				for(var k = 0; k<root.flows.length; k++) { // everyElement
@@ -224,18 +224,58 @@ define(["react", "dispatchers/AppDispatcher", "underscore", "minivents"], functi
 
 			var flow = _flow.flow;
 
-			if(flow.length < 2) return [];
+			if(flow.length < 2) return []; // If only one element is available
 
-			// Find previous Elements
-			var index = function(){
-				for(var i = 0; i < flow.length; i++){
-					if(flow[i].uid === uid) return i;
-				}
-			}();
-
-			var previousElements = flow.slice(0, index);
 
 			var outputs = [];
+			var index = 0;
+
+			// Find position of activity in the flow
+			for(var i = 0; i < flow.length; i++){
+				if(flow[i].uid === uid) index =  i;
+				// Search subflow
+				else if (flow[i].flows) {
+
+					console.log("subflow")
+					for(var k = 0; k < flow[i].flows.length; k++){
+						var subflow = flow[i].flows[k];
+
+						// Every element in subflow
+						for(var l = 0; l < subflow.length; l++){
+
+							if(flow[l].uid === uid) {
+
+								index = i;
+
+								console.log("Found element in subflow!");
+
+								var previousElements = subflow.slice(0, l);
+
+								// Iterate over all previous elements
+								_.forEach(previousElements, function (currentElement){
+
+									// Iterate over all available outputs
+									_.forEach(currentElement.outputArguments, function(output){
+										output = {
+											source: {
+												uid: currentElement.uid,
+												name: currentElement.name
+											},
+											value: output
+										};
+
+										outputs.push(output);
+									});
+								});
+
+							}
+						}
+					}
+
+				}
+			}
+
+			var previousElements = flow.slice(0, index);
 
 			// Iterate over all previous elements
 			_.forEach(previousElements, function (currentElement){

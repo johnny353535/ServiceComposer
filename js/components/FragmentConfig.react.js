@@ -4,10 +4,33 @@ define(["react", "components/Fragment.react", "components/Activity.react", "disp
 
 	var FragmentConfig = React.createClass({
       getInitialState: function(){
-        return {
-          name: this.props.data.payload.options[0].name,
-          glyphicon: this.props.data.payload.options[0].glyphicon
-        }
+
+				var fragment = this.props.data.payload;
+				var state;
+
+
+				fragment.options.map(function (option) {
+
+					// Check if current condition is already in use
+					_.each(fragment.flows,function(flow){
+							if(flow.name !== option.name && !state) {
+								state = {
+									name: option.name,
+									glyphicon: option.glyphicon
+								}
+							}
+					});
+
+				});
+
+				if(!state){
+					state = {
+	          name: this.props.data.payload.options[0].name,
+	          glyphicon: this.props.data.payload.options[0].glyphicon
+	        };
+				}
+
+        return state;
       },
       componentDidMount: function() {
         var _this = this;
@@ -42,6 +65,7 @@ define(["react", "components/Fragment.react", "components/Activity.react", "disp
       	var _this = this;
 				var fragment = this.props.data.payload;
 
+				// Generate possible options for conditional branches
         var options = fragment.options.map(function (option) {
           var value = {
             name: option.name,
@@ -50,13 +74,14 @@ define(["react", "components/Fragment.react", "components/Activity.react", "disp
 
 					var skip = false;
 
+					// Check if current condition is already in use
 					_.each(fragment.flows,function(flow){
 							if(flow.name === option.name) {
 								skip = true;
 							}
 					});
 
-					if(skip) return;
+					if(skip) return; // Skip condition if already in use
           else return (<option key={option.name} value={JSON.stringify(value)}>{option.name}</option>);
 
         });
