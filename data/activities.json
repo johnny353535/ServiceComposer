@@ -84,6 +84,11 @@
                   ]
                }
             ]
+         },
+         {
+            "id":"library",
+            "name":"Library",
+            "type":"location"
          }
       ]
    },
@@ -122,6 +127,21 @@
          {
             "id": "location",
             "name": "Bike Station",
+            "type": "location"
+         }
+      ]
+   },
+   {
+      "id":"GET_LOCATION",
+      "name":"GPS",
+      "description":"Current directions",
+      "glyphicon":"glyphicon-screenshot",
+      "url":"",
+      "outputArguments": [
+         {
+            "id": "CURRENT_LOCATION",
+            "name": "Current location",
+            "description": "Get the user's location",
             "type": "location"
          }
       ]

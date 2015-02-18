@@ -1,5 +1,5 @@
-[  
-   {  
+[
+   {
       "id":"weather",
       "type":"fragment",
       "fragmentType":"conditional",
@@ -29,69 +29,31 @@
             "glyphicon": "glyphicon-flag"
          }
       ],
-      "flows":[  
+      "flows":[
 
       ]
    },
-   {  
-      "id":"temperature",
-      "type":"fragment",
-      "fragmentType":"conditional",
-      "name":"Outside Temperature",
-      "description":"Reacts based on the outside temperature",
-      "glyphicon": "glyphicon-dashboard",
-      "sentence": "If the outside temperature is",
-      "options": [
-         {
-            "name": "< 0",
-            "id": "0"
-         },
-         {
-            "name": "0 - 9",
-            "id": "09"
-         },
-         {
-            "name": "10- 19",
-            "id": "1019"
-         },
-         {
-            "name": "20 - 29",
-            "id": "2029"
-         },
-         {
-            "name": "30 - 40",
-            "id": "3040"
-         },
-         {
-            "name": "> 40",
-            "id": "40"
-         }
-      ],
-      "flows":[  
-
-      ]
-   },
-   {  
-      "id":"parallel",
-      "type":"fragment",
-      "fragmentType":"parallel",
-      "name":"Parallel",
-      "description":"Executes multiple activitiy flows at the same time",
-      "glyphicon": "glyphicon-pause",
-      "flows":[  
-
-      ]
-   },
-   {  
+   {
       "id":"userchoice",
       "type":"fragment",
       "fragmentType":"conditional",
       "name":"User choice",
       "description":"Prompts the user whether the activity should be executed",
       "glyphicon": "glyphicon-question-sign",
-      "flows":[  
+      "flows":[
          {"flow": [], "glyphicon": "glyphicon-ok-sign", "name": "", "type": "flow", "uid": 823820938490},
          {"flow": [], "glyphicon": "glyphicon-remove-sign", "name": "", "type": "flow", "uid": 2394822013890}
+      ]
+   },
+   {
+      "id":"parallel",
+      "type":"fragment",
+      "fragmentType":"parallel",
+      "name":"Parallel",
+      "description":"Executes multiple activitiy flows at the same time",
+      "glyphicon": "glyphicon-pause",
+      "flows":[
+
       ]
    }
 ]
