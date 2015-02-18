@@ -9,26 +9,25 @@ define(["react", "components/Fragment.react", "components/Activity.react", "disp
 				var state;
 
 
-				fragment.options.map(function (option) {
+				_.each(fragment.options,function (option) {
+
+					var exists = false;
 
 					// Check if current condition is already in use
 					_.each(fragment.flows,function(flow){
-							if(flow.name !== option.name && !state) {
-								state = {
-									name: option.name,
-									glyphicon: option.glyphicon
-								}
+							if(flow.name === option.name) {
+								exists = true;
 							}
 					});
 
-				});
+					if(!exists && !state) {
+						state = {
+							name: option.name,
+							glyphicon: option.glyphicon
+						}
+					}
 
-				if(!state){
-					state = {
-	          name: this.props.data.payload.options[0].name,
-	          glyphicon: this.props.data.payload.options[0].glyphicon
-	        };
-				}
+				});
 
         return state;
       },
