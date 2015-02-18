@@ -154,7 +154,7 @@
       "inputArguments": [
          {
             "id": "text",
-            "name": "Your status post",
+            "name": "Status post",
             "type": "string"
          }
       ]

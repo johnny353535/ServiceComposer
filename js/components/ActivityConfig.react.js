@@ -27,7 +27,6 @@ define(["react", "dispatchers/AppDispatcher", "stores/FlowStore"], function(Reac
         return activity.outputArguments ? activity.outputArguments : [];
       },
 			handleOptionsChange: function(event){
-				console.log(event.target.value)
 
 				var value = event.target.value ? JSON.parse(event.target.value) : null;
 
@@ -42,7 +41,22 @@ define(["react", "dispatchers/AppDispatcher", "stores/FlowStore"], function(Reac
 					data: payload
 				});
 			},
-			handleTextfieldChange: function(){
+			handleTextfieldChange: function(event){
+
+				var value = {
+					"text": event.target.value
+				}
+
+				var payload = {
+					value: value,
+					uid: this.props.data.payload.data.uid,
+					inputId: event.target.id
+				};
+
+				AppDispatcher.dispatch({
+					actionType: 'UPDATE_INPUT_SOURCE',
+					data: payload
+				});
 
 			},
       render: function() {
@@ -89,7 +103,13 @@ define(["react", "dispatchers/AppDispatcher", "stores/FlowStore"], function(Reac
 
 					if(input.value) input.value.inputField = input.id; // This field has to be added, so React can check wether the selected option matches the current value of an input
 
-					var availableInputs = <select onChange={this.handleOptionsChange} value={JSON.stringify(input.value)}><option value={JSON.stringify(standardInput)}>User Select</option>{availableInputOptions}</select>;
+					var availableInputs;
+
+					if(input.type === "string"){
+						availableInputs = <textarea id={input.id} onBlur={this.handleTextfieldChange} key={input.id+"textarea"} defaultValue={input.value ? input.value.text : ""} /> // Render a textfield if input type is string
+					} else {
+						availableInputs = <select key={input.id+"select"} onChange={this.handleOptionsChange} value={JSON.stringify(input.value)}><option value={JSON.stringify(standardInput)}>User Select</option>{availableInputOptions}</select>
+					}
 
           return (
             <tr key={Math.random()}><td>{input.name}</td><td>{availableInputs}</td></tr>
