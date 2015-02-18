@@ -93,31 +93,6 @@
       ]
    },
    {
-      "id":"WEATHER_SERVICE",
-      "name":"Weather Service",
-      "url":"http://www.weather.com/api",
-      "description":"Check the weather at a given location",
-      "method":"POST",
-      "glyphicon":"glyphicon-cloud",
-      "inputType":"payload",
-      "inputArguments":[
-         {
-            "id":"location",
-            "name":"Location",
-            "type":"location"
-         }
-      ],
-      "outputArguments":[
-         {
-            "id":"weather",
-            "name":"Weather condition",
-            "description":"The weather condition at a given location",
-            "type":"string",
-            "visible": 0
-         }
-      ]
-   },
-   {
       "id":"RESERVE_BIKE_SPOT",
       "name":"Reserve bike spot",
       "description":"Reserve a spot at the bike station",
@@ -132,21 +107,6 @@
       ]
    },
    {
-      "id":"GET_LOCATION",
-      "name":"GPS",
-      "description":"Current directions",
-      "glyphicon":"glyphicon-screenshot",
-      "url":"",
-      "outputArguments": [
-         {
-            "id": "CURRENT_LOCATION",
-            "name": "Current location",
-            "description": "Get the user's location",
-            "type": "location"
-         }
-      ]
-   },
-   {
       "id":"GET_DIRECTIONS",
       "name":"Directions",
       "description":"Get directions",
@@ -156,7 +116,13 @@
          {
             "id": "STARTING_DESTINATION",
             "name": "Starting destination",
-            "type": "location"
+            "type":"simpleChoice",
+            "options":[
+               {
+                  "id":"271",
+                  "label":"Current location"
+               }
+            ]
          },
          {
             "id": "FINAL_DESTINATION",

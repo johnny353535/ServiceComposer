@@ -89,7 +89,7 @@ define(["react", "dispatchers/AppDispatcher", "stores/FlowStore"], function(Reac
 								var value = JSON.stringify(output);
 
 								return (
-									<option key={Math.random()} value={value}>{output.value.name} ({output.source.name})</option>
+									<option key={Math.random()} value={value}>{output.name} ({output.source.name})</option>
 								);
 							});
 
