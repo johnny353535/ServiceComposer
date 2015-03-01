@@ -157,8 +157,9 @@ define(["react", "dispatchers/AppDispatcher", "underscore", "minivents"], functi
 
 	function sendToServer(){
 		// Send flow to the server
-		jQuery.post("http://127.0.0.1:3000/bpmn", _flow, function(data) {
-			alert('BPMN response:\n\n' + data);
+		var payload = JSON.stringify(_flow);
+		jQuery.post("http://127.0.0.1:3000/bpmn", {"json": payload}, function(data) {
+			console.log('BPMN response:\n\n' + data);
 		}, "text");
 	}
 

@@ -12,9 +12,7 @@ app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
 
 app.post('/bpmn', function (req, res) {
 
-  var json = req.body;
-
-	console.log(json);
+  var json = JSON.parse(req.body.json);
 
 	res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
