@@ -3,6 +3,7 @@
 var activities = require('../data/activities.json');
 var fragments = require('../data/fragments.json');
 
+var fs = require('fs');
 var underscore = require('underscore');
 var express = require('express');
 var app = express();
@@ -12,6 +13,9 @@ app.use( bodyParser.json() );       // to support JSON-encoded bodies
 app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
   extended: true
 }));
+
+
+app.use('/exports', express.static(__dirname + '/exports')); // grant outside access to the public folder for accessing BPMN files
 
 app.post('/bpmn', function (req, res) {
 
@@ -52,8 +56,8 @@ app.get('/fragments', function(req, res) {
 
 var server = app.listen(3000, function () {
 
-  var host = server.address().address
-  var port = server.address().port
+  var host = server.address().address;
+  var port = server.address().port;
 
   console.log('Server listening at http://%s:%s', host, port)
 
@@ -65,7 +69,7 @@ function JSONtoXML(json){
 
   var flow = json.flow;
 
-  var xml = '<?xml version="1.0" encoding="UTF-8">\n';
+  var xml = '<?xml version="1.0" encoding="UTF-8"?>\n';
   var definitions = '<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/test">\n';
   var process = '<process id="'+json.uid+'" name="'+json.name+'" isExecutable="true">\n';
 
@@ -86,7 +90,6 @@ function JSONtoXML(json){
 	//console.log(sequence)
 
   // Build the BPMN
-
   var bpmn =
         xml + '\n'+
         definitions +
@@ -97,12 +100,31 @@ function JSONtoXML(json){
         '</process>\n' +
         '</definitions>';
 
-  //console.log('JSON:', json);
-  //console.log('BPMN:', bpmn);
 
-  return bpmn;
+  var path = 'exports';
+  var filename = (json.name).replace(/\s/g, '')+Date.now()+'.bpm';
+  var content = bpmn;
+
+  // If path doesn't exist yet, create it.
+  if (!fs.exists(path)) {
+    fs.mkdir(path, function(error) {
+      console.log(error);
+    })
+  }
+  fs.writeFile(path+'/'+filename, content, function (err) {
+    if (err) return console.log(err);
+    console.log('Saved BPM to > '+ path);
+  });
+
+  var host = server.address().address;
+  var port = server.address().port;
+
+  console.log('Server listening at http://%s:%s', host, port)
+
+  return 'http://'+host+':'+port+'/'+path+'/'+filename;
 
 }
+
 
 // Collect data objects
 function collectDataObjects(flow){
